@@ -15,6 +15,14 @@ static int const MOTOR_STOP = 0;
 static int const MOTOR_FULL = 255;
 static int const MOTOR_HALF = 128;
 
+static char const FOCUS_ONE = 'f';
+static char const FOCUS_STOP = 'c';
+static char const FOCUS_TWO - 't';
+static char const FAST_CCW_SIGNAL = '1';
+static char const SLOW_CCW_SIGNAL = '2';
+
+
+
 char val = 'n';         // variable to receive data from the serial port
 
 Servo myservo;         // create servo objects
