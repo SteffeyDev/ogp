@@ -6,14 +6,25 @@
 #include <Servo.h>
 #include <AFMotor.h>
 
+/*
+    By using constant variables for commonly used servo values we allow for
+    a greater understanding of the code by nonprogrammers and ease in the
+    programming process
+*/
+
 static int const SERVO_STOP = 90;
-static int const SLOW_CW = 87; //CW = Clockwise
+static int const SLOW_CW = 87;      //CW = Clockwise
 static int const FAST_CW = 85;
-static int const SLOW_CCW = 93; //CCW = CounterClockwise
+static int const SLOW_CCW = 93;     //CCW = CounterClockwise
 static int const FAST_CCW = 95;
 static int const MOTOR_STOP = 0;
 static int const MOTOR_FULL = 255;
 static int const MOTOR_HALF = 128;
+
+/*
+   Incoming data is sent through serial as single characters (f, c, t, N, etc)
+   using variables for our signals allows for more comprehensible code
+*/
 
 static char const FOCUS_ONE = 'f';
 static char const FOCUS_STOP = 'c';
@@ -31,52 +42,52 @@ static char const SLOW_CW_2_SIGNAL = '0';
 static char const FAST_CW_2_SIGNAL = '9';
 
 
-char val = 'n';         // variable to receive data from the serial port
+char receivedVal = 'n';                 // variable used to store data received from the serial port
 
-Servo myservo;         // create servo objects
+Servo myservo;                          // create servo objects
 Servo myservo2;
-AF_DCMotor motor(2);     //create dc motor object
+AF_DCMotor motor(2);                    //create dc motor object
 
 void setup()
 {
-  myservo.attach(9);         // attaches the servo on pin 9 to the servo object
+  myservo.attach(9);                    // attaches the servo on pin 9 to the servo object
   myservo2.attach(10);
 
-  motor.setSpeed(MOTOR_STOP);         // just to make sure the motor is stopped
+  motor.setSpeed(MOTOR_STOP);           // just to make sure the motor is stopped
   motor.run(RELEASE);
 
 
-  Serial.begin(9600);    // start serial communication at 9600bps
+  Serial.begin(9600);                   // start serial communication at 9600bps
 }
 
 void loop() {
 
-  if( Serial.available() )       // if data is available to read
+  if( Serial.available() )              // if data is available to read
   {
-    val = Serial.read();         // read it and store it in 'val'
+    recievedVal = Serial.read();                // read it and store it in 'receivedVal'
   }
 
-  switch( val )        //switch handles incoming signal
-{
+  switch( receivedVal )                                 //switch handles incoming signal
+  {
 
-        case FOCUS_ONE:                      //   focus  1
+        case FOCUS_ONE:                         //   focus  1
         motor.setSpeed(MOTOR_FULL);
         motor.run(FORWARD);
         Serial.println("focus 1");
         break;
 
-        case FOCUS_STOP:                  // focus stop
+        case FOCUS_STOP:                        // focus stop
         motor.run(RELEASE);
         Serial.println("focus stop");
         break;
 
-        case FOCUS_TWO:                  // focus 2
+        case FOCUS_TWO:                         // focus 2
         motor.setSpeed(MOTOR_FULL);
         motor.run(BACKWARD);
         break;
 
 
-        case FAST_CCW_SIGNAL:                         //  directionals  X
+        case FAST_CCW_SIGNAL:                   //  directionals  X
         myservo.write(FAST_CCW);
         Serial.println("1 - CounterClockwise Fast");
         break;
@@ -101,7 +112,7 @@ void loop() {
         Serial.println("9 - Clockwise Fast");
         break;
 
-        case FAST_CCW_2_SIGNAL:                           // Y
+        case FAST_CCW_2_SIGNAL:                 // Y
         myservo2.write(FAST_CCW);
         Serial.println("7 - down fast");
         break;
@@ -132,14 +143,12 @@ void loop() {
         break;
 
 
-        default :              // catches exceptions
+        default :                               // catches exceptions
         myservo.write(SERVO_STOP);
         myservo2.write(SERVO_STOP);
         Serial.println("default");
-
+    
+    }
 
 }
-
-}
-//hi
 // (c) Copyright 2014   C. Robert Barnett III
