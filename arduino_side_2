@@ -18,9 +18,17 @@ static int const MOTOR_HALF = 128;
 static char const FOCUS_ONE = 'f';
 static char const FOCUS_STOP = 'c';
 static char const FOCUS_TWO - 't';
-static char const FAST_CCW_SIGNAL = '1';
-static char const SLOW_CCW_SIGNAL = '2';
-
+static char const ALL_STOP = 'N';
+static char const FAST_CCW_1_SIGNAL = '1';
+static char const SLOW_CCW_1_SIGNAL = '2';
+static char const SERVO_STOP_1_SIGNAL = '3';
+static char const SLOW_CW_1_SIGNAL = '4';
+static char const FAST_CW_1_SIGNAL = '5';
+static char const FAST_CCW_2_SIGNAL = '6';
+static char const SLOW_CCW_2_SIGNAL = '7';
+static char const SERVO_STOP_2_SIGNAL = '8';
+static char const SLOW_CW_2_SIGNAL = '0';
+static char const FAST_CW_2_SIGNAL = '9';
 
 
 char val = 'n';         // variable to receive data from the serial port
@@ -51,73 +59,73 @@ void loop() {
   switch( val )        //switch handles incoming signal
 {
 
-        case 'f':                      //   focus  1
+        case FOCUS_ONE:                      //   focus  1
         motor.setSpeed(MOTOR_FULL);
         motor.run(FORWARD);
         Serial.println("focus 1");
         break;
 
-        case 'c':                  // focus stop
+        case FOCUS_STOP:                  // focus stop
         motor.run(RELEASE);
         Serial.println("focus stop");
         break;
 
-        case 't':                  // focus 2
+        case FOCUS_TWO:                  // focus 2
         motor.setSpeed(MOTOR_FULL);
         motor.run(BACKWARD);
         break;
 
 
-        case '1':                         //  directionals  X
+        case FAST_CCW_SIGNAL:                         //  directionals  X
         myservo.write(FAST_CCW);
         Serial.println("1 - CounterClockwise Fast");
         break;
 
-        case '2':
+        case SLOW_CCW_SIGNAL:
         myservo.write(SLOW_CCW);
         Serial.println("2 - CounterClockwise");
         break;
 
-        case '3':               // stopped
+        case SERVO_STOP_1_SIGNAL:               // stopped
         myservo.write(SERVO_STOP);
         Serial.println("3 - Stop x");
         break;
 
-        case '4':
+        case SLOW_CW_1_SIGNAL:
         myservo.write(SLOW_CW);
         Serial.println("8 - Clockwise");
         break;
 
-        case '5':
+        case FAST_CW_1_SIGNAL:
         myservo.write(FAST_CW);
         Serial.println("9 - Clockwise Fast");
         break;
 
-        case '6':                           // Y
+        case FAST_CCW_2_SIGNAL:                           // Y
         myservo2.write(FAST_CCW);
         Serial.println("7 - down fast");
         break;
 
-        case '7':
+        case SLOW_CCW_2_SIGNAL:
         myservo2.write(SLOW_CCW);
         Serial.println("7 - down");
         break;
 
-        case '8':
+        case SERVO_STOP_2_SIGNAL:
         myservo2.write(SERVO_STOP);
         break;
 
-        case '9':
+        case FAST_CW_2_SIGNAL:
         myservo2.write(FAST_CW);
         Serial.println("9 - up");
         break;
 
-        case '0':
+        case SLOW_CW_2_SIGNAL:
         myservo2.write(SLOW_CW);
         Serial.println("0 - up fast");
         break;
 
-        case 'n':
+        case ALL_STOP:
         myservo2.write(SERVO_STOP);
         myservo.write(SERVO_STOP);
         Serial.println("all stop");
