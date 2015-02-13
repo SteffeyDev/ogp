@@ -48,6 +48,10 @@ stat = "ogp"
 s.write('3')
 s.write('8')
 
+<<<<<<< HEAD:newsocket.py
+=======
+
+>>>>>>> FETCH_HEAD:newsocket.py
 sqx = int(272)
 sqy = int(144)
 
@@ -426,3 +430,7 @@ if __name__ == "__main__":                       ##    since this is the main mo
     http_server = tornado.httpserver.HTTPServer(application)      ## opens the socket
     http_server.listen(8888)                                     ## on this port
     tornado.ioloop.IOLoop.instance().start()        ##   this starts the threaded socket loop
+<<<<<<< HEAD:newsocket.py
+=======
+        
+>>>>>>> FETCH_HEAD:newsocket.py
