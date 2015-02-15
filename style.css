@@ -1,0 +1,243 @@
+<style type="text/css">
+
+#tabBar {
+  position: fixed;
+  left: 20px;
+  right: 20px;
+  top: 0px;
+  height: 30px;
+}
+#tabBar button {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  width: 30%;
+}
+/*
+#tabBar #captureButton, #tabBar #imagesButton {
+  style
+  border-right-width: 1px;
+  border-right-color: grey;
+  border-right: line;
+}
+*/
+
+#videoDiv {
+  position: absolute;
+  left: 5px;
+  top: 40px;
+  width: 544px;
+  height: 350px;
+  border-width: 2px;
+  border-style: line;
+  background-color: yellow;
+}
+#videoDiv iframe {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  width: 100%;
+}
+#videoDiv #spotter {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 30px;
+  width: 100px;
+}
+#videoDiv #main {
+  position: absolute;
+  left: 100px;
+  top: 0;
+  height: 30px;
+  width: 100px;
+}
+#videoDiv #longCapture {
+  position: absolute;
+  right: 0;
+  top: 30px;
+  height: 30px;
+  width: 100px;
+}
+#videoDiv #capture {
+  position: absolute;
+  right: 100px;
+  top: 30px;
+  height: 30px;
+  width: 100px;
+}
+#videoDiv #chase {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 30px;
+  width: 100px;
+}
+#videoDiv #plusButton {
+  position: absolute;
+  right: 100px;
+  bottom: 0;
+  height: 30px;
+  width: 100px;
+}
+#videoDiv #minusButton {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 30px;
+  width: 100px;
+}
+#videoDiv #coordinates {
+  position: absolute;
+  left: 0;
+  bottom: 30px;
+  height: 50px;
+  width: 300px;
+  color: white;
+  font-size: 12pt;
+  text-align: left;
+  padding-left: 5px;
+  margin-bottom: 5px;
+}
+
+#controlDiv {
+  position: absolute;
+  left: 560px;
+  top: 40px;
+  width: 400px;
+  height: 350px;
+  background-color: blue;
+}
+#infoDiv {
+  position: absolute;
+  top: 400px;
+  left: 10px;
+  right: 10px;
+  height: 100px;
+  background-color: purple;
+}
+
+/*
+  #up {
+    height: 5em;
+    width: 181px;
+    background-color: transparent;
+    font-size: 80%;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  #down {
+    height: 5em;
+    width: 181px;
+    background-color: transparent;
+    font-size: 80%;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  #left {
+    height: 288px;
+    width: 145px;
+    background-color: transparent;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  #right {
+    height: 288px;
+    width: 145px;
+    background-color: transparent;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  input.stepsize {
+    height: 5em;
+    width: 100px;
+    background-color: transparent;
+    font-size: 80%;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  input.up2 {
+    height: 5em;
+    width: 177px;
+    background-color: transparent;
+    font-size: 80%;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  input.pic1 {
+    height: 5em;
+    width: 145px;
+    background-color: transparent;
+    font-size: 80%;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  input.stop1 {
+    height: 5em;
+    width: 145px;
+    background-color: transparent;
+    font-size: 80%;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  input.stop2 {
+    height: 5em;
+    width: 145px;
+    background-color: red;
+    font-size: 80%;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  div.centre {
+    background-image: url('ogp2gui.jpg');
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-height: 3000px;
+    max-width: 850px;
+    min-width: 850px;
+    min-height: 600px;
+  }
+  input.padbutton {
+    width: 80px;
+    color: white;
+    height: 100px;
+  }
+  input.padbutton2 {
+    width: 100px;
+    color: black;
+    height: 100px;
+    background-color: red;
+  }
+  input.padbutton3 {
+    width: 80px;
+    color: white;
+    height: 30px;
+  }
+  input.padbutton6 {
+    width: 80px;
+    color: white;
+    height: 100px;
+    background-color: yellow;
+  }
+  div.log {
+    box-shadow: 0px 0px 0px 0px;
+    height: 120px;
+  }
+  input.padbutton4 {
+    width: 100px;
+    color: white;
+    height: 30px;
+  }
+  div.bottom {
+    max-height: 250px;
+    columns: 200px 3;
+    -webkit-columns: 200px 3;
+    z-index: 0;
+  }
+  */
+  body {
+    text-align: center;
+    background-image: url("background_image3.jpg");
+  }
+</style>
