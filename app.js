@@ -25,15 +25,19 @@ $(document).ready( function () {
 function updateSizes() {
 
   var extraSpace = window.innerWidth - 220;
-  console.log(extraSpace);
+
   if (((extraSpace * 0.643) + 60) < window.innerHeight) {
-    $("#videoDiv").css({width: extraSpace, height: (extraSpace * 0.643)});
+    $("#videoDiv").css({width: extraSpace, height: (extraSpace * 0.643), left: 10});
     $("#videoDiv iframe").width(extraSpace);
     $("#videoDiv iframe").height(extraSpace * 0.5294);
+    $("#controlDiv").css({right: 10});
   }
   else {
-    extraSpace = window.innerWidth - 180;
-    $("#videoDiv").css({left: extraSpace});
+    extraSpace = window.innerWidth - 220 - $("#videoDiv iframe").width();
+    $("#videoDiv").css({left: (extraSpace / 2) + 10, height: window.innerHeight - 60, width: (window.innerHeight - 60) * 1.554});
+    $("#controlDiv").css({right: (extraSpace / 2) + 10});
+    $("#videoDiv iframe").width((window.innerHeight - 60) * 1.554);
+    $("#videoDiv iframe").height($("#videoDiv iframe").width() * 0.5294);
   }
 }
 
