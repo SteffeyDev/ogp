@@ -6,6 +6,8 @@
   right: 20px;
   top: 0px;
   height: 30px;
+  background-color: blue;
+  opacity: 0.5;
 }
 #tabBar button {
   display: inline-block;
@@ -24,10 +26,10 @@
 
 #videoDiv {
   position: absolute;
-  left: 5px;
   top: 40px;
   width: 544px;
   height: 350px;
+  left: 10px;
   border-width: 2px;
   border-style: line;
   background-color: yellow;
@@ -102,19 +104,171 @@
 
 #controlDiv {
   position: absolute;
-  left: 560px;
   top: 40px;
-  width: 400px;
-  height: 350px;
+  width: 180px;
+  height: 450px;
+  right: 10px;
   background-color: blue;
 }
+#controlDiv #joystickBubble {
+  position: absolute;
+  display: inline-block;
+  background-color: red;
+  width: 15px;
+  height: 15px;
+  top: 125px;
+  left: 75px;
+  transition:none;
+}
+#controlDiv #up {
+  position: absolute;
+  background-color: red;
+  width: 10px;
+  height: 10px;
+  top: 50px;
+  left: 75px;
+}
+#controlDiv #down {
+  position: absolute;
+  background-color: red;
+  width: 10px;
+  height: 10px;
+  top: 200px;
+  left: 75px;
+}
+#controlDiv #left {
+  position: absolute;
+  background-color: red;
+  width: 10px;
+  height: 10px;
+  top: 125px;
+  left: 0;
+}
+#controlDiv #right {
+  position: absolute;
+  background-color: red;
+  width: 10px;
+  height: 10px;
+  top: 125px;
+  left: 150px;
+}
+#controlDiv #lock {
+  position: absolute;
+  background-color: red;
+  width: 10px;
+  height: 10px;
+  top: 60px;
+  left: 150px;
+}
+#controlDiv #moveCameraLabel {
+  position: absolute;
+  width: 100px;
+  height: 10px;
+  top: 10px;
+  left: 30px;
+  text-align: center;
+  margin: 0;
+}
+#controlDiv #rotationLabel {
+  position: absolute;
+  width: 100px;
+  height: 10px;
+  top: 230px;
+  left: -20px;
+  margin: 0;
+  text-align: right;
+}
+#controlDiv #rotation {
+  position: absolute;
+  width: 30px;
+  height: 15px;
+  top: 230px;
+  left: 90px;
+}
+#controlDiv #angleLabel {
+  position: absolute;
+  width: 100px;
+  height: 10px;
+  top: 260px;
+  left: -20px;
+  margin: 0;
+  text-align: right;
+}
+#controlDiv #angle {
+  position: absolute;
+  width: 30px;
+  height: 15px;
+  top: 260px;
+  left: 90px;
+}
+#controlDiv #stepLabel {
+  position: absolute;
+  width: 100px;
+  height: 10px;
+  top: 290px;
+  left: -20px;
+  margin: 0;
+  text-align: right;
+}
+#controlDiv #small {
+  position: absolute;
+  width: 20px;
+  height: 15px;
+  top: 290px;
+  left: 90px;
+}
+#controlDiv #medium {
+  position: absolute;
+  width: 20px;
+  height: 15px;
+  top: 290px;
+  left: 110px;
+}
+#controlDiv #large {
+  position: absolute;
+  width: 20px;
+  height: 15px;
+  top: 290px;
+  left: 130px;
+}
+#controlDiv #focusBubble {
+  position: absolute;
+  background-color: red;
+  width: 15px;
+  height: 15px;
+  top: 20px;
+  left: 0px;
+}
+#controlDiv #focusContainer {
+  position: absolute;
+  width: 130px;
+  height: 15px;
+  top: 340px;
+  left: 10px;
+}
+#controlDiv #focusLabel {
+  position: absolute;
+  width: 100px;
+  height: 10px;
+  top: 330px;
+  left: 40px;
+  text-align: center;
+  margin: 0px;
+}
+#controlDiv #focus {
+  position: absolute;
+  width: 30px;
+  height: 15px;
+  top: 390px;
+  left: 70px;
+}
+
 #infoDiv {
   position: absolute;
-  top: 400px;
+  top: 500px;
   left: 10px;
   right: 10px;
   height: 100px;
-  background-color: purple;
 }
 
 /*

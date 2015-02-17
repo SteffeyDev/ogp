@@ -1,3 +1,44 @@
+$(document).ready( function () {
+  $(window).resize(updateSizes());
+  window.onresize = updateSizes;
+  updateSizes();
+
+  $('#log').hide();
+
+  $('#joystickBubble').draggable();
+  $('#joystickBubble').mouseup(function() {
+    $(this).css({ transition: '1s'});
+    $(this).css({left: 75, top: 125});
+    setTimeout( function() {$('#joystickBubble').css({ transition: 'none' });console.log("back");} , 1000);
+  });
+
+  $('#focusBubble').draggable({ axis: "x", containment: 'parent' });
+  $('#focusBubble').mousedown(function() {
+    console.log("down");
+  });
+  // $bubble.mousemove(function(event) {
+  //   console.log("x: " + event.pageX + "\ty: " + event.pageY);
+  //   $(this).css({left: event.pageX, top: event.pageY, 'background-color': "green"});
+  // });
+});
+
+function updateSizes() {
+
+  var extraSpace = window.innerWidth - 220;
+  console.log(extraSpace);
+  if (((extraSpace * 0.643) + 60) < window.innerHeight) {
+    $("#videoDiv").css({width: extraSpace, height: (extraSpace * 0.643)});
+    $("#videoDiv iframe").width(extraSpace);
+    $("#videoDiv iframe").height(extraSpace * 0.5294);
+  }
+  else {
+    extraSpace = window.innerWidth - 180;
+    $("#videoDiv").css({left: extraSpace});
+  }
+}
+
+
+
 var chasing = false;
 var chx = 277;
 var chy = 144;
@@ -25,7 +66,7 @@ $(function() {
 
     var xpos = parseInt(x);
     var ypos = parseInt(y);
-    var c = document.getElementById("myCanvas");
+    //var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     xpos = xpos * 20;
     ypos = -ypos * 20;
@@ -89,19 +130,19 @@ $(function() {
     $("#msg").val(msg);
   }
 
-  ws = new WebSocket("ws://192.168.42.1:8888/ws");
-  ws.onmessage = function(evt) {
-    logger(evt.data);
-  };
-  ws.onclose = function(evt) {
-    $("#log").text("Connection Closed");
-    $("#thebutton #msg").prop('disabled', true);
-  };
-  ws.onopen = function(evt) {
-    $("#log").text("OGP-- SOCKET OPEN");
-    ws.send('n');
-
-  };
+  // ws = new WebSocket("ws://192.168.42.1:8888/ws");
+  // ws.onmessage = function(evt) {
+  //   logger(evt.data);
+  // };
+  // ws.onclose = function(evt) {
+  //   $("#log").text("Connection Closed");
+  //   $("#thebutton #msg").prop('disabled', true);
+  // };
+  // ws.onopen = function(evt) {
+  //   $("#log").text("OGP-- SOCKET OPEN");
+  //   ws.send('n');
+  //
+  // };
   $("#msg").keypress(function(event) {
     if (event.which == 13) {
       sender();
@@ -169,24 +210,28 @@ $(function() {
     }
 
   });
-  $("#in").click(function() {
+  /*
+  $("#plusButton").click(function() {
     ws.send('f');
   });
-  $("#out").click(function() {
+  $("#minusButton").click(function() {
     ws.send('t');
   });
-  $("#short").click(function() {
+  */
+  $("#minusButton").click(function() {
     dgear = "n";
   });
-  $("#long").click(function() {
+  $("#plusButton").click(function() {
     dgear = "m";
   });
+  /*
   $("#open").click(function() {
     dgear = "o";
   });
   $("#map").click(function() {
     ws.send('n');
   });
+  */
   $("#chase").click(function() {
     if (chasing == false) {
 
@@ -224,24 +269,20 @@ $(function() {
   $("#allstop2").click(function() {
     ws.send('8');
   });
-  $("#cam2").click(function() {
+  $("#main").click(function() {
     ws.send('c2');
   });
-  $("#cam1").click(function() {
+  $("#spotter").click(function() {
     ws.send('c1');
   });
-  $("#cam4").click(function() {
+  $("#longCapture").click(function() {
     ws.send('c4');
   });
-  $("#cam3").click(function() {
+  $("#capture").click(function() {
     ws.send('c3');
   });
   $("#mapsizea").click(function() {
     ws.send('p');
-
-  });
-  $("#cam2").click(function() {
-    ws.send('c2');
 
   });
   $("#mapsizeb").click(function() {
