@@ -1,4 +1,5 @@
 var mode = 0;
+var expanded = false;
 
 $(document).ready( function () {
   $(window).resize(updateSizes());
@@ -7,14 +8,14 @@ $(document).ready( function () {
 
   $('#log').hide();
   $('#mapDiv').css({left: window.innerWidth + 10});
-  $('#imagesDiv').css({left: window.innerWidth + 10});
+  $('#imagesDiv').css({left: (window.innerWidth * 2) + 10});
   $('#imagesDiv').css({width: window.innerWidth - 20, top: 60, bottom: 10});
 
   var images = "";
   for (var i = 1; i < 3; i++) {
-    images += "<img src=\"image" + i + ".jpg\" />";
+    images += "<img id=\"" + i + "\" src=\"image" + i + ".jpg\" />";
   }
-  $('#imagesDiv').html(images);
+  $('#imagesContainer').html(images);
 
   $('#joystickBubble').draggable();
   $('#joystickBubble').mouseup(function() {
@@ -27,13 +28,7 @@ $(document).ready( function () {
   $('#focusBubble').mousedown(function() {
     console.log("down");
   });
-  $('#mapButton').click(function() {
-    var extraSpace = window.innerWidth - 544;
-    $('#mapDiv').animate({left: (extraSpace/2)});
-    $('#videoDiv').animate({left: 0 - (window.innerWidth + 10)});
-    mode = 1;
-    setTimeout(function() {updateSizes();}, 500);
-  });
+
   $('#captureButton').click(function() {
     var extraSpace = window.innerWidth - 220;
 
@@ -44,19 +39,49 @@ $(document).ready( function () {
       $('#videoDiv').animate({left: (extraSpace / 2) + 10});
     }
     $('#mapDiv').animate({left: window.innerWidth + 10});
+    $('#imagesDiv').animate({left: (window.innerWidth * 2) + 10});
     mode = 5;
     updateSizes();
     setTimeout(function() {
       mode = 0;
       updateSizes();
     }, 500);
-
+  });
+  $('#mapButton').click(function() {
+    var extraSpace = window.innerWidth - 544;
+    $('#mapDiv').animate({left: (extraSpace/2)});
+    $('#videoDiv').animate({left: 0 - (window.innerWidth + 10)});
+    $('#imagesDiv').animate({left: (window.innerWidth) + 10});
+    $('#controlDiv').animate({right: 10});
+    mode = 1;
+    setTimeout(function() {updateSizes();}, 500);
   });
   $('#imagesButton').click(function() {
     $('#mapDiv').animate({left: 0 - (window.innerWidth + 10)});
+    $('#videoDiv').animate({left: 0 - ((window.innerWidth * 2) + 10)});
     $('#imagesDiv').animate({left: 10});
+    $('#controlDiv').animate({right: (window.innerWidth + 10)});
     mode = 2;
     setTimeout(function() {updateSizes();}, 500);
+  });
+
+  $("#imagesContainer img").on('click', function() {
+    if (expanded == false) {
+      var width = ($("#imagesDiv").height() - 20) * 1.3333;
+      var height = $("#imagesDiv").height() - 20;
+      var extraSpace = (window.innerWidth - width)/2;
+      $('#imagesContainer').animate({width: ('#imagesDiv img').length * (width + 20)});
+      $('#imagesContainer').children().animate({width: width, height: height});
+      $('#imagesDiv').animate({scrollLeft: (($(this).attr('id')-1) * (width + 20)) - extraSpace});
+      console.log($(this).attr('id'));
+      expanded = true;
+    }
+    else {
+      $('#imagesContainer').animate({width: '100%'});
+      $('#imagesContainer').children().animate({width: 133, height: 100});
+      $('#imagesDiv').animate({scrollLeft: 0});
+      expanded = false;
+    }
   });
   // $bubble.mousemove(function(event) {
   //   console.log("x: " + event.pageX + "\ty: " + event.pageY);
@@ -79,7 +104,7 @@ function updateSizes() {
       extraSpace = window.innerWidth - 200 - $("#videoDiv iframe").width();
       $("#videoDiv").css({height: window.innerHeight - 80, width: (window.innerHeight - 60) * 1.554});
       if (mode == 0) { $("#videoDiv").css({left: ((extraSpace / 2) + 10)}); }
-      $("#controlDiv").css({right: (extraSpace / 2)});
+      $("#controlDiv").animate({right: (extraSpace / 2)});
       $("#videoDiv iframe").width((window.innerHeight - 60) * 1.554);
       $("#videoDiv iframe").height($("#videoDiv iframe").width() * 0.5294);
     }

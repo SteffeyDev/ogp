@@ -316,6 +316,7 @@ header button:hover > div {
 #mapDiv canvas {
   width:100%;
   height: 100%;
+  background-color: purple;
 }
 
 #imagesDiv {
@@ -323,9 +324,13 @@ header button:hover > div {
   top: 60px;
   border: 1px;
   background-color: green;
+  overflow: scroll;
+}
+#imagesDiv #imagesContainer {
+  height: 100%;
 }
 #imagesDiv img {
-  width: 100px;
+  width: 133px;
   height: 100px;
   margin: 10px;
   display: inline-block;
