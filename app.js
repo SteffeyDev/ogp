@@ -4,7 +4,6 @@ $(document).ready( function () {
   updateSizes();
 
   $('#log').hide();
-  $('#mapDiv').css({left: window.innerWidth + 10});
 
   $('#joystickBubble').draggable();
   $('#joystickBubble').mouseup(function() {
@@ -16,23 +15,6 @@ $(document).ready( function () {
   $('#focusBubble').draggable({ axis: "x", containment: 'parent' });
   $('#focusBubble').mousedown(function() {
     console.log("down");
-  });
-  $('#mapButton').click(function() {
-    var extraSpace = window.innerWidth - 544;
-    $('#mapDiv').animate({left: (extraSpace/2)});
-    $('#videoDiv').animate({left: 0 - (window.innerWidth + 10)});
-  });
-  $('#captureButton').click(function() {
-    var extraSpace = window.innerWidth - 220;
-
-    if (((extraSpace * 0.643) + 80) < window.innerHeight) {
-      $('#videoDiv').animate({left: 10});
-    } else {
-      extraSpace = window.innerWidth - 200 - $("#videoDiv iframe").width();
-      $('#videoDiv').animate({left: (extraSpace / 2) + 10});
-    }
-    $('#mapDiv').animate({left: window.innerWidth + 10});
-
   });
   // $bubble.mousemove(function(event) {
   //   console.log("x: " + event.pageX + "\ty: " + event.pageY);
@@ -59,8 +41,6 @@ function updateSizes() {
   }
 }
 
-/*
-var i = 0;
 while (true) {
   try {
     downloadFile('192.168.42.1/images/image' + i + '.png', function(blob) {
@@ -71,9 +51,7 @@ while (true) {
     console.log(err);
     break;
   }
-  i++;
 }
-*/
 
 var chasing = false;
 var chx = 277;
@@ -102,7 +80,7 @@ $(function() {
 
     var xpos = parseInt(x);
     var ypos = parseInt(y);
-    var c = document.getElementById("myCanvas");
+    //var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     xpos = xpos * 20;
     ypos = -ypos * 20;
@@ -365,13 +343,13 @@ function downloadFile(url, success) {
     };
     xhr.send(null);
 }
-/*
+
 window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
 window.storageInfo = window.storageInfo || window.webkitStorageInfo;
 
 // Request access to the file system
 var fileSystem = null         // DOMFileSystem instance
-  , fsType = PERSISTENT       // PERSISTENT vs. TEMPORARY storage
+  , fsType = TEMPORARY       // PERSISTENT vs. TEMPORARY storage
   , fsSize = 10 * 1024 * 1024 // size (bytes) of needed space
   ;
 
@@ -380,7 +358,7 @@ window.storageInfo.requestQuota(fsType, fsSize, function(gb) {
         fileSystem = fs;
     }, errorHandler);
 }, errorHandler);
-*/
+
 function saveFile(data, path) {
     if (!fileSystem) return;
 
