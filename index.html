@@ -18,7 +18,7 @@
   <header>
     <div id="background"></div>
     <button id="captureButton"><div></div><p>Capture</p></button>
-    <button id="matrixButton"><div></div><p>Map</p></button>
+    <button id="mapButton"><div></div><p>Map</p></button>
     <button id="imagesButton"><div></div><p>View Images</p></button>
     <button id="helpButton" href='http://www.opengimbal.net'><div></div><p>Help</p></button>
 
@@ -57,14 +57,15 @@
     </div>
     <h4 id="focusLabel">Focus</h4>
     <input type="text" id="focus"></input>
-    <button id="focusMinus" />
-    <button id="focusPlus" />
-
   </div>
 
   <div id="infoDiv">
     <div id="log" style="overflow:hidden; width:100%; height:125px; color:white; background-color:#000000; margin: 1px; text-align:left">OGP -stand by</div>
     <p id="random"></p>
+  </div>
+
+  <div id="mapDiv">
+    <canvas id="myCanvas" width="544" height="544" style="border:1px solid#000000;"></canvas>
   </div>
 
   <div id="imagesDiv">
