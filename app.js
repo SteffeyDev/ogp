@@ -26,22 +26,32 @@ function updateSizes() {
 
   var extraSpace = window.innerWidth - 220;
 
-  if (((extraSpace * 0.643) + 60) < window.innerHeight) {
+  if (((extraSpace * 0.643) + 80) < window.innerHeight) {
     $("#videoDiv").css({width: extraSpace, height: (extraSpace * 0.643), left: 10});
     $("#videoDiv iframe").width(extraSpace);
     $("#videoDiv iframe").height(extraSpace * 0.5294);
     $("#controlDiv").css({right: 10});
   }
   else {
-    extraSpace = window.innerWidth - 220 - $("#videoDiv iframe").width();
-    $("#videoDiv").css({left: (extraSpace / 2) + 10, height: window.innerHeight - 60, width: (window.innerHeight - 60) * 1.554});
-    $("#controlDiv").css({right: (extraSpace / 2) + 10});
+    extraSpace = window.innerWidth - 200 - $("#videoDiv iframe").width();
+    $("#videoDiv").css({left: ((extraSpace / 2) + 10), height: window.innerHeight - 80, width: (window.innerHeight - 60) * 1.554});
+    $("#controlDiv").css({right: (extraSpace / 2)});
     $("#videoDiv iframe").width((window.innerHeight - 60) * 1.554);
     $("#videoDiv iframe").height($("#videoDiv iframe").width() * 0.5294);
   }
 }
 
-
+while (true) {
+  try {
+    downloadFile('192.168.42.1/images/image' + i + '.png', function(blob) {
+        saveAs(blob, 'image' + i + '.png');
+    });
+  }
+  catch(err) {
+    console.log(err);
+    break;
+  }
+}
 
 var chasing = false;
 var chx = 277;
@@ -214,14 +224,14 @@ $(function() {
     }
 
   });
-  /*
-  $("#plusButton").click(function() {
+
+  $("#fucusIn").click(function() {
     ws.send('f');
   });
-  $("#minusButton").click(function() {
+  $("#focusOut").click(function() {
     ws.send('t');
   });
-  */
+
   $("#minusButton").click(function() {
     dgear = "n";
   });
@@ -321,3 +331,54 @@ $(function() {
     dgear = "s";
   });
 });
+
+function downloadFile(url, success) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.responseType = "blob";
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+            if (success) success(xhr.response);
+        }
+    };
+    xhr.send(null);
+}
+
+window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
+window.storageInfo = window.storageInfo || window.webkitStorageInfo;
+
+// Request access to the file system
+var fileSystem = null         // DOMFileSystem instance
+  , fsType = TEMPORARY       // PERSISTENT vs. TEMPORARY storage
+  , fsSize = 10 * 1024 * 1024 // size (bytes) of needed space
+  ;
+
+window.storageInfo.requestQuota(fsType, fsSize, function(gb) {
+    window.requestFileSystem(fsType, gb, function(fs) {
+        fileSystem = fs;
+    }, errorHandler);
+}, errorHandler);
+
+function saveFile(data, path) {
+    if (!fileSystem) return;
+
+    fileSystem.root.getFile(path, {create: true}, function(fileEntry) {
+        fileEntry.createWriter(function(writer) {
+            writer.write(data);
+        }, errorHandler);
+    }, errorHandler);
+}
+
+function readFile(path, success) {
+    fileSystem.root.getFile(path, {}, function(fileEntry) {
+        fileEntry.file(function(file) {
+            var reader = new FileReader();
+
+            reader.onloadend = function(e) {
+                if (success) success(this.result);
+            };
+
+            reader.readAsText(file);
+        }, errorHandler);
+    }, errorHandler);
+}
