@@ -318,6 +318,20 @@ header button:hover > div {
   height: 100%;
 }
 
+#imagesDiv {
+  position: absolute;
+  top: 60px;
+  border: 1px;
+  background-color: green;
+}
+#imagesDiv img {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  display: inline-block;
+  float: left;
+}
+
 #infoDiv {
   position: absolute;
   top: 500px;

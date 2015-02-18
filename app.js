@@ -1,3 +1,5 @@
+var mode = 0;
+
 $(document).ready( function () {
   $(window).resize(updateSizes());
   window.onresize = updateSizes;
@@ -5,6 +7,14 @@ $(document).ready( function () {
 
   $('#log').hide();
   $('#mapDiv').css({left: window.innerWidth + 10});
+  $('#imagesDiv').css({left: window.innerWidth + 10});
+  $('#imagesDiv').css({width: window.innerWidth - 20, top: 60, bottom: 10});
+
+  var images = "";
+  for (var i = 1; i < 3; i++) {
+    images += "<img src=\"image" + i + ".jpg\" />";
+  }
+  $('#imagesDiv').html(images);
 
   $('#joystickBubble').draggable();
   $('#joystickBubble').mouseup(function() {
@@ -21,6 +31,8 @@ $(document).ready( function () {
     var extraSpace = window.innerWidth - 544;
     $('#mapDiv').animate({left: (extraSpace/2)});
     $('#videoDiv').animate({left: 0 - (window.innerWidth + 10)});
+    mode = 1;
+    setTimeout(function() {updateSizes();}, 500);
   });
   $('#captureButton').click(function() {
     var extraSpace = window.innerWidth - 220;
@@ -32,7 +44,19 @@ $(document).ready( function () {
       $('#videoDiv').animate({left: (extraSpace / 2) + 10});
     }
     $('#mapDiv').animate({left: window.innerWidth + 10});
+    mode = 5;
+    updateSizes();
+    setTimeout(function() {
+      mode = 0;
+      updateSizes();
+    }, 500);
 
+  });
+  $('#imagesButton').click(function() {
+    $('#mapDiv').animate({left: 0 - (window.innerWidth + 10)});
+    $('#imagesDiv').animate({left: 10});
+    mode = 2;
+    setTimeout(function() {updateSizes();}, 500);
   });
   // $bubble.mousemove(function(event) {
   //   console.log("x: " + event.pageX + "\ty: " + event.pageY);
@@ -41,22 +65,34 @@ $(document).ready( function () {
 });
 
 function updateSizes() {
+  if (mode == 0 || mode == 5) {
+    var extraSpace = window.innerWidth - 220;
 
-  var extraSpace = window.innerWidth - 220;
+    if (((extraSpace * 0.643) + 80) < window.innerHeight) {
+      $("#videoDiv").css({width: extraSpace, height: (extraSpace * 0.643)});
+      if (mode == 0) { $("#videoDiv").css({left: 10}); }
+      $("#videoDiv iframe").width(extraSpace);
+      $("#videoDiv iframe").height(extraSpace * 0.5294);
+      $("#controlDiv").css({right: 10});
+    }
+    else {
+      extraSpace = window.innerWidth - 200 - $("#videoDiv iframe").width();
+      $("#videoDiv").css({height: window.innerHeight - 80, width: (window.innerHeight - 60) * 1.554});
+      if (mode == 0) { $("#videoDiv").css({left: ((extraSpace / 2) + 10)}); }
+      $("#controlDiv").css({right: (extraSpace / 2)});
+      $("#videoDiv iframe").width((window.innerHeight - 60) * 1.554);
+      $("#videoDiv iframe").height($("#videoDiv iframe").width() * 0.5294);
+    }
+    $("#mapDiv").css({left: window.innerWidth + 10});
+  }
+  else if (mode == 1){
+    var extraSpace = window.innerWidth - 544;
+    $('#mapDiv').css({left: (extraSpace/2)});
+  }
+  else if (mode == 2) {
+    $('#imagesDiv').css({left: 10, width: window.innerWidth - 20, top: 60, bottom: 10});
+  }
 
-  if (((extraSpace * 0.643) + 80) < window.innerHeight) {
-    $("#videoDiv").css({width: extraSpace, height: (extraSpace * 0.643), left: 10});
-    $("#videoDiv iframe").width(extraSpace);
-    $("#videoDiv iframe").height(extraSpace * 0.5294);
-    $("#controlDiv").css({right: 10});
-  }
-  else {
-    extraSpace = window.innerWidth - 200 - $("#videoDiv iframe").width();
-    $("#videoDiv").css({left: ((extraSpace / 2) + 10), height: window.innerHeight - 80, width: (window.innerHeight - 60) * 1.554});
-    $("#controlDiv").css({right: (extraSpace / 2)});
-    $("#videoDiv iframe").width((window.innerHeight - 60) * 1.554);
-    $("#videoDiv iframe").height($("#videoDiv iframe").width() * 0.5294);
-  }
 }
 
 /*
@@ -74,6 +110,7 @@ while (true) {
   i++;
 }
 */
+
 
 var chasing = false;
 var chx = 277;
@@ -353,7 +390,7 @@ $(function() {
     dgear = "s";
   });
 });
-
+/*
 function downloadFile(url, success) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
@@ -365,7 +402,7 @@ function downloadFile(url, success) {
     };
     xhr.send(null);
 }
-/*
+
 window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
 window.storageInfo = window.storageInfo || window.webkitStorageInfo;
 
@@ -380,7 +417,7 @@ window.storageInfo.requestQuota(fsType, fsSize, function(gb) {
         fileSystem = fs;
     }, errorHandler);
 }, errorHandler);
-*/
+
 function saveFile(data, path) {
     if (!fileSystem) return;
 
@@ -404,3 +441,4 @@ function readFile(path, success) {
         }, errorHandler);
     }, errorHandler);
 }
+*/
