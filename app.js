@@ -138,6 +138,13 @@ function updateSizes() {
   else if (mode == 2) {
     $('#imagesDiv').css({left: 10, width: window.innerWidth - 20, top: 60, bottom: 10});
     $('#controlDiv').css({right: (window.innerWidth + 10)});
+    if (expanded == true) {
+      var width = ($("#imagesDiv").height() - 20) * 1.3333;
+      var height = $("#imagesDiv").height() - 20;
+      var extraSpace = (window.innerWidth - width)/2;
+      $('#imagesContainer').css({width: $('#imagesContainer').children().length * (width + 20)});
+      $('#imagesContainer').children().css({width: width, height: height});
+    }
   }
 
 }
@@ -331,10 +338,10 @@ $(function() {
 
   });
 
-  $("#fucusIn").click(function() {
+  $("#focusMinus").click(function() {
     ws.send('f');
   });
-  $("#focusOut").click(function() {
+  $("#focusPlus").click(function() {
     ws.send('t');
   });
 
@@ -347,11 +354,10 @@ $(function() {
   /*
   $("#open").click(function() {
     dgear = "o";
-  });
+  });*/
   $("#map").click(function() {
     ws.send('n');
   });
-  */
   $("#chase").click(function() {
     if (chasing == false) {
 

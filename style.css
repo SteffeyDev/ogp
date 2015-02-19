@@ -3,11 +3,13 @@
 html {
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
 body {
   width: 100%;
-  height: 100%
+  height: 100%;
+  overflow: hidden;
 }
 
 header {
@@ -152,7 +154,15 @@ header button:hover > div {
   top: 60px;
   width: 180px;
   height: 450px;
-  background-color: blue;
+}
+#controlDiv #backgroundC {
+  position: absolute;
+  top: 0;
+  left: -10px;
+  right: 0;
+  bottom:0;
+  opacity: 0.4;
+  background-color: darkblue;
 }
 #controlDiv #joystickBubble {
   position: absolute;
@@ -212,6 +222,7 @@ header button:hover > div {
   left: 30px;
   text-align: center;
   margin: 0;
+  color: white;
 }
 #controlDiv #rotationLabel {
   position: absolute;
@@ -221,6 +232,7 @@ header button:hover > div {
   left: -20px;
   margin: 0;
   text-align: right;
+  color: white;
 }
 #controlDiv #rotation {
   position: absolute;
@@ -237,6 +249,7 @@ header button:hover > div {
   left: -20px;
   margin: 0;
   text-align: right;
+  color: white;
 }
 #controlDiv #angle {
   position: absolute;
@@ -253,6 +266,7 @@ header button:hover > div {
   left: -20px;
   margin: 0;
   text-align: right;
+  color: white;
 }
 #controlDiv #small {
   position: absolute;
@@ -285,10 +299,10 @@ header button:hover > div {
 }
 #controlDiv #focusContainer {
   position: absolute;
-  width: 130px;
+  width: 120px;
   height: 15px;
   top: 340px;
-  left: 10px;
+  left: 25px;
 }
 #controlDiv #focusLabel {
   position: absolute;
@@ -298,6 +312,7 @@ header button:hover > div {
   left: 40px;
   text-align: center;
   margin: 0px;
+  color: white;
 }
 #controlDiv #focus {
   position: absolute;
@@ -305,6 +320,20 @@ header button:hover > div {
   height: 15px;
   top: 390px;
   left: 70px;
+}
+#controlDiv #focusMinus {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  top: 360px;
+  left: 5px;
+}
+#controlDiv #focusPlus {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  top: 360px;
+  left: 150px;
 }
 
 #mapDiv {
@@ -317,6 +346,34 @@ header button:hover > div {
   width:100%;
   height: 100%;
   background-color: purple;
+}
+#mapDiv #map {
+  position: absolute;
+  width: 100px;
+  height: 30px;
+  bottom: 0;
+  right: 0;
+}
+#mapDiv #map2 {
+  position: absolute;
+  width: 100px;
+  height: 30px;
+  bottom: 0;
+  left: 0;
+}
+#mapDiv #mapsizea {
+  position: absolute;
+  width: 100px;
+  height: 30px;
+  top: 0;
+  right: 100px;
+}
+#mapDiv #mapsizeb {
+  position: absolute;
+  width: 100px;
+  height: 30px;
+  top: 0;
+  right: 0;
 }
 
 #imagesDiv {
