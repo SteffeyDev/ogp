@@ -1,5 +1,7 @@
 var mode = 0;
 var expanded = false;
+var exit = false;
+var images = "";
 
 $(document).ready( function () {
   $(window).resize(updateSizes());
@@ -11,11 +13,27 @@ $(document).ready( function () {
   $('#imagesDiv').css({left: (window.innerWidth * 2) + 10});
   $('#imagesDiv').css({width: window.innerWidth - 20, top: 60, bottom: 10});
 
-  var images = "";
-  for (var i = 1; i < 3; i++) {
-    images += "<img id=\"" + i + "\" src=\"image" + i + ".jpg\" />";
+  var i = 1;
+  var nextImage = "image" + i + ".jpg";
+  checkImage(nextImage);
+  function checkImage(src) {
+    var img = new Image();
+    img.onload = function() {
+        // code to set the src on success
+        console.log(i);
+        images += "<img id=\"" + i + "\" src=\"" + src + "\"></img>";
+        i++;
+        var nextImage = "image" + i + ".jpg";
+        checkImage(nextImage)
+    };
+    img.onerror = function() {
+      // doesn't exist or error loading
+      console.log("exiting");
+      console.log(images);
+      $('#imagesContainer').html(images);
+    };
+    img.src = src; // fires off loading of image
   }
-  $('#imagesContainer').html(images);
 
   $('#joystickBubble').draggable();
   $('#joystickBubble').mouseup(function() {
@@ -35,11 +53,13 @@ $(document).ready( function () {
     if (((extraSpace * 0.643) + 80) < window.innerHeight) {
       $('#videoDiv').animate({left: 10});
     } else {
-      extraSpace = window.innerWidth - 200 - $("#videoDiv iframe").width();
+      extraSpace = window.innerWidth - 200 - $("#videoDiv").width();
       $('#videoDiv').animate({left: (extraSpace / 2) + 10});
+      $("#controlDiv").animate({right: (extraSpace / 2)});
     }
     $('#mapDiv').animate({left: window.innerWidth + 10});
     $('#imagesDiv').animate({left: (window.innerWidth * 2) + 10});
+    $('#controlDiv').animate({right: 10});
     mode = 5;
     updateSizes();
     setTimeout(function() {
@@ -65,15 +85,16 @@ $(document).ready( function () {
     setTimeout(function() {updateSizes();}, 500);
   });
 
-  $("#imagesContainer img").on('click', function() {
+  $("#imagesContainer").on('click', 'img', function() {
+    console.log("clicked");
     if (expanded == false) {
       var width = ($("#imagesDiv").height() - 20) * 1.3333;
       var height = $("#imagesDiv").height() - 20;
       var extraSpace = (window.innerWidth - width)/2;
-      $('#imagesContainer').animate({width: ('#imagesDiv img').length * (width + 20)});
+      $('#imagesContainer').animate({width: $('#imagesContainer').children().length * (width + 20)});
       $('#imagesContainer').children().animate({width: width, height: height});
       $('#imagesDiv').animate({scrollLeft: (($(this).attr('id')-1) * (width + 20)) - extraSpace});
-      console.log($(this).attr('id'));
+      console.log(('#imagesContainer img').length);
       expanded = true;
     }
     else {
@@ -95,16 +116,16 @@ function updateSizes() {
 
     if (((extraSpace * 0.643) + 80) < window.innerHeight) {
       $("#videoDiv").css({width: extraSpace, height: (extraSpace * 0.643)});
-      if (mode == 0) { $("#videoDiv").css({left: 10}); }
+      if (mode == 0) { $("#videoDiv").css({left: 10}); $("#controlDiv").css({right: 10});}
       $("#videoDiv iframe").width(extraSpace);
       $("#videoDiv iframe").height(extraSpace * 0.5294);
-      $("#controlDiv").css({right: 10});
+
     }
     else {
       extraSpace = window.innerWidth - 200 - $("#videoDiv iframe").width();
       $("#videoDiv").css({height: window.innerHeight - 80, width: (window.innerHeight - 60) * 1.554});
-      if (mode == 0) { $("#videoDiv").css({left: ((extraSpace / 2) + 10)}); }
-      $("#controlDiv").animate({right: (extraSpace / 2)});
+      if (mode == 0) { $("#videoDiv").css({left: ((extraSpace / 2) + 10)}); $("#controlDiv").css({right: (extraSpace / 2)});}
+
       $("#videoDiv iframe").width((window.innerHeight - 60) * 1.554);
       $("#videoDiv iframe").height($("#videoDiv iframe").width() * 0.5294);
     }
@@ -116,6 +137,7 @@ function updateSizes() {
   }
   else if (mode == 2) {
     $('#imagesDiv').css({left: 10, width: window.innerWidth - 20, top: 60, bottom: 10});
+    $('#controlDiv').css({right: (window.innerWidth + 10)});
   }
 
 }

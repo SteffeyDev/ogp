@@ -323,7 +323,6 @@ header button:hover > div {
   position: absolute;
   top: 60px;
   border: 1px;
-  background-color: green;
   overflow: scroll;
 }
 #imagesDiv #imagesContainer {
