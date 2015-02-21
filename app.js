@@ -14,23 +14,20 @@ $(document).ready( function () {
   $('#imagesDiv').css({width: window.innerWidth - 20, top: 60, bottom: 10});
 
   var i = 1;
-  var nextImage = "ftp://ftp:banjobob@192.168.42.1/image" + i + ".png";
+  var nextImage = "ftp://pi:banjobob@192.168.42.1/images/image" + i + ".png";
   checkImage(nextImage);
   function checkImage(src) {
     var img = new Image();
     img.onload = function() {
         // code to set the src on success
-        console.log(i);
         images += "<img id=\"" + i + "\" src=\"" + src + "\"></img>";
+        $('#imagesContainer').html(images);
         i++;
-        var nextImage = "ftp://ftp:banjobob@192.168.42.1/image" + i + ".png";
+        var nextImage = "ftp://pi:banjobob@192.168.42.1/images/image" + i + ".png";
         checkImage(nextImage)
     };
     img.onerror = function() {
       // doesn't exist or error loading
-      console.log("exiting");
-      console.log(images);
-      $('#imagesContainer').html(images);
     };
     img.src = src; // fires off loading of image
   }
@@ -257,19 +254,19 @@ $(function() {
     $("#msg").val(msg);
   }
 
-  // ws = new WebSocket("ws://192.168.42.1:8888/ws");
-  // ws.onmessage = function(evt) {
-  //   logger(evt.data);
-  // };
-  // ws.onclose = function(evt) {
-  //   $("#log").text("Connection Closed");
-  //   $("#thebutton #msg").prop('disabled', true);
-  // };
-  // ws.onopen = function(evt) {
-  //   $("#log").text("OGP-- SOCKET OPEN");
-  //   ws.send('n');
-  //
-  // };
+  ws = new WebSocket("ws://192.168.42.1:8888/ws");
+  ws.onmessage = function(evt) {
+    logger(evt.data);
+  };
+  ws.onclose = function(evt) {
+    $("#log").text("Connection Closed");
+    $("#thebutton #msg").prop('disabled', true);
+  };
+  ws.onopen = function(evt) {
+    $("#log").text("OGP-- SOCKET OPEN");
+    ws.send('n');
+
+  };
   $("#msg").keypress(function(event) {
     if (event.which == 13) {
       sender();
