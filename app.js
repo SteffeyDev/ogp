@@ -14,7 +14,7 @@ $(document).ready( function () {
   $('#imagesDiv').css({width: window.innerWidth - 20, top: 60, bottom: 10});
 
   var i = 1;
-  var nextImage = "image" + i + ".jpg";
+  var nextImage = "ftp://ftp:banjobob@192.168.42.1/image" + i + ".png";
   checkImage(nextImage);
   function checkImage(src) {
     var img = new Image();
@@ -23,7 +23,7 @@ $(document).ready( function () {
         console.log(i);
         images += "<img id=\"" + i + "\" src=\"" + src + "\"></img>";
         i++;
-        var nextImage = "image" + i + ".jpg";
+        var nextImage = "ftp://ftp:banjobob@192.168.42.1/image" + i + ".png";
         checkImage(nextImage)
     };
     img.onerror = function() {
@@ -205,7 +205,7 @@ $(function() {
     var no = "n";
     var yes = "y";
     h = h.slice(0, 1);
-    var thp1 = "/images/thumbs/thumb";
+    var thp1 = "/var/www/images/thumbs/thumb";
     var thp2 = ".png";
     var thumbpath = thp1.concat(p, thp2);
 

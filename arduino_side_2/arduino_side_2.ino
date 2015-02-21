@@ -4,7 +4,7 @@
 // this config handles:  2 SERVOS, and 1 MOTOR
 
 #include <Servo.h>
-#include <AFMotor.h>
+#include "AFMotor.h"
 
 static int const SERVO_STOP = 90;
 static int const SLOW_CW = 87; //CW = Clockwise
@@ -17,7 +17,7 @@ static int const MOTOR_HALF = 128;
 
 static char const FOCUS_ONE = 'f';
 static char const FOCUS_STOP = 'c';
-static char const FOCUS_TWO - 't';
+static char const FOCUS_TWO = 't';
 static char const ALL_STOP = 'N';
 static char const FAST_CCW_1_SIGNAL = '1';
 static char const SLOW_CCW_1_SIGNAL = '2';
@@ -76,12 +76,12 @@ void loop() {
         break;
 
 
-        case FAST_CCW_SIGNAL:                         //  directionals  X
+        case FAST_CCW_1_SIGNAL:                         //  directionals  X
         myservo.write(FAST_CCW);
         Serial.println("1 - CounterClockwise Fast");
         break;
 
-        case SLOW_CCW_SIGNAL:
+        case SLOW_CCW_1_SIGNAL:
         myservo.write(SLOW_CCW);
         Serial.println("2 - CounterClockwise");
         break;
