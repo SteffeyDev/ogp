@@ -26,11 +26,11 @@ from chase2 import *
 
 s = serial.Serial('/dev/ttyACM0', 9600)                     ## serial to arduino
 
-c2 = SimpleCV.Camera(0,{ "width": 544, "height": 288 })          ## opens a camera
+#c2 = SimpleCV.Camera(0,{ "width": 544, "height": 288 })          ## opens a camera
 ##c = SimpleCV.Camera(1,{ "width": 544, "height": 288 })           ## or two
 js = SimpleCV.JpegStreamer('0.0.0.0:8080')                        ## opens socket for jpeg out
 time.sleep(4)                                               ## strategic buffering, possibly unnecessary
-c2.getImage().save(js.framebuffer)                 ## push a jpeg to the jpeg socket
+#c2.getImage().save(js.framebuffer)                 ## push a jpeg to the jpeg socket
 
 cam_mode = int(3)
 
