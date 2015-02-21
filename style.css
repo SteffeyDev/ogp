@@ -1,0 +1,527 @@
+<style type="text/css">
+
+html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 50px;
+}
+#background {
+  position: absolute;
+  top: 0;
+  height: 50px;
+  width: 100%;
+  background-color: blue;
+  opacity: 0.7;
+  z-index: 1;
+}
+header button {
+  position: relative;
+  display: inline-block;
+
+  width: 24%;
+  z-index: 3;
+  padding-top: 0;
+  height: 50px;
+  padding-left: 0;
+  padding-right: 0;
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 16pt;
+}
+header button p {
+  position: absolute;
+  z-index: 3;
+  top: -10px;
+  width: 100%;
+  text-align: center;
+  vertical-align: middle;
+}
+header button div {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+header button:hover > div {
+  background-color:darkblue;
+  opacity: 0.5;
+}
+/*
+#tabBar #captureButton, #tabBar #imagesButton {
+  style
+  border-right-width: 1px;
+  border-right-color: grey;
+  border-right: line;
+}
+*/
+
+#videoDiv {
+  position: absolute;
+  top: 60px;
+  width: 544px;
+  height: 350px;
+  left: 10px;
+  border-width: 2px;
+  border-style: line;
+  background-color: yellow;
+}
+#videoDiv iframe {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  width: 100%;
+}
+#videoDiv #spotter {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 30px;
+  width: 100px;
+}
+#videoDiv #main {
+  position: absolute;
+  left: 100px;
+  top: 0;
+  height: 30px;
+  width: 100px;
+}
+#videoDiv #longCapture {
+  position: absolute;
+  right: 0;
+  top: 30px;
+  height: 30px;
+  width: 100px;
+}
+#videoDiv #capture {
+  position: absolute;
+  right: 100px;
+  top: 30px;
+  height: 30px;
+  width: 100px;
+}
+#videoDiv #chase {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 30px;
+  width: 100px;
+}
+#videoDiv #plusButton {
+  position: absolute;
+  right: 100px;
+  bottom: 0;
+  height: 30px;
+  width: 100px;
+}
+#videoDiv #minusButton {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 30px;
+  width: 100px;
+}
+#videoDiv #coordinates {
+  position: absolute;
+  left: 0;
+  bottom: 30px;
+  height: 50px;
+  width: 300px;
+  color: white;
+  font-size: 12pt;
+  text-align: left;
+  padding-left: 5px;
+  margin-bottom: 5px;
+}
+
+#controlDiv {
+  position: absolute;
+  top: 60px;
+  width: 180px;
+  height: 450px;
+}
+#controlDiv #backgroundC {
+  position: absolute;
+  top: 0;
+  left: -10px;
+  right: 0;
+  bottom:0;
+  opacity: 0.4;
+  background-color: darkblue;
+}
+#controlDiv #joystickBubble {
+  position: absolute;
+  display: inline-block;
+  background-color: red;
+  width: 15px;
+  height: 15px;
+  top: 125px;
+  left: 75px;
+  transition:none;
+}
+#controlDiv #up {
+  position: absolute;
+  background-color: red;
+  width: 10px;
+  height: 10px;
+  top: 50px;
+  left: 75px;
+}
+#controlDiv #down {
+  position: absolute;
+  background-color: red;
+  width: 10px;
+  height: 10px;
+  top: 200px;
+  left: 75px;
+}
+#controlDiv #left {
+  position: absolute;
+  background-color: red;
+  width: 10px;
+  height: 10px;
+  top: 125px;
+  left: 0;
+}
+#controlDiv #right {
+  position: absolute;
+  background-color: red;
+  width: 10px;
+  height: 10px;
+  top: 125px;
+  left: 150px;
+}
+#controlDiv #lock {
+  position: absolute;
+  background-color: red;
+  width: 10px;
+  height: 10px;
+  top: 60px;
+  left: 150px;
+}
+#controlDiv #moveCameraLabel {
+  position: absolute;
+  width: 100px;
+  height: 10px;
+  top: 10px;
+  left: 30px;
+  text-align: center;
+  margin: 0;
+  color: white;
+}
+#controlDiv #rotationLabel {
+  position: absolute;
+  width: 100px;
+  height: 10px;
+  top: 230px;
+  left: -20px;
+  margin: 0;
+  text-align: right;
+  color: white;
+}
+#controlDiv #rotation {
+  position: absolute;
+  width: 30px;
+  height: 15px;
+  top: 230px;
+  left: 90px;
+}
+#controlDiv #angleLabel {
+  position: absolute;
+  width: 100px;
+  height: 10px;
+  top: 260px;
+  left: -20px;
+  margin: 0;
+  text-align: right;
+  color: white;
+}
+#controlDiv #angle {
+  position: absolute;
+  width: 30px;
+  height: 15px;
+  top: 260px;
+  left: 90px;
+}
+#controlDiv #stepLabel {
+  position: absolute;
+  width: 100px;
+  height: 10px;
+  top: 290px;
+  left: -20px;
+  margin: 0;
+  text-align: right;
+  color: white;
+}
+#controlDiv #small {
+  position: absolute;
+  width: 20px;
+  height: 15px;
+  top: 290px;
+  left: 90px;
+}
+#controlDiv #medium {
+  position: absolute;
+  width: 20px;
+  height: 15px;
+  top: 290px;
+  left: 110px;
+}
+#controlDiv #large {
+  position: absolute;
+  width: 20px;
+  height: 15px;
+  top: 290px;
+  left: 130px;
+}
+#controlDiv #focusBubble {
+  position: absolute;
+  background-color: red;
+  width: 15px;
+  height: 15px;
+  top: 20px;
+  left: 0px;
+}
+#controlDiv #focusContainer {
+  position: absolute;
+  width: 120px;
+  height: 15px;
+  top: 340px;
+  left: 25px;
+}
+#controlDiv #focusLabel {
+  position: absolute;
+  width: 100px;
+  height: 10px;
+  top: 330px;
+  left: 40px;
+  text-align: center;
+  margin: 0px;
+  color: white;
+}
+#controlDiv #focus {
+  position: absolute;
+  width: 30px;
+  height: 15px;
+  top: 390px;
+  left: 70px;
+}
+#controlDiv #focusMinus {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  top: 360px;
+  left: 5px;
+}
+#controlDiv #focusPlus {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  top: 360px;
+  left: 150px;
+}
+
+#mapDiv {
+  position: absolute;
+  width: 544px;
+  height: 544px;
+  top: 60px;
+}
+#mapDiv canvas {
+  width:100%;
+  height: 100%;
+  background-color: purple;
+}
+#mapDiv #map {
+  position: absolute;
+  width: 100px;
+  height: 30px;
+  bottom: 0;
+  right: 0;
+}
+#mapDiv #map2 {
+  position: absolute;
+  width: 100px;
+  height: 30px;
+  bottom: 0;
+  left: 0;
+}
+#mapDiv #mapsizea {
+  position: absolute;
+  width: 100px;
+  height: 30px;
+  top: 0;
+  right: 100px;
+}
+#mapDiv #mapsizeb {
+  position: absolute;
+  width: 100px;
+  height: 30px;
+  top: 0;
+  right: 0;
+}
+
+#imagesDiv {
+  position: absolute;
+  top: 60px;
+  border: 1px;
+  overflow: scroll;
+}
+#imagesDiv #imagesContainer {
+  height: 100%;
+}
+#imagesDiv img {
+  width: 133px;
+  height: 100px;
+  margin: 10px;
+  display: inline-block;
+  float: left;
+}
+
+#infoDiv {
+  position: absolute;
+  top: 500px;
+  left: 10px;
+  right: 10px;
+  height: 100px;
+}
+
+/*
+  #up {
+    height: 5em;
+    width: 181px;
+    background-color: transparent;
+    font-size: 80%;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  #down {
+    height: 5em;
+    width: 181px;
+    background-color: transparent;
+    font-size: 80%;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  #left {
+    height: 288px;
+    width: 145px;
+    background-color: transparent;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  #right {
+    height: 288px;
+    width: 145px;
+    background-color: transparent;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  input.stepsize {
+    height: 5em;
+    width: 100px;
+    background-color: transparent;
+    font-size: 80%;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  input.up2 {
+    height: 5em;
+    width: 177px;
+    background-color: transparent;
+    font-size: 80%;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  input.pic1 {
+    height: 5em;
+    width: 145px;
+    background-color: transparent;
+    font-size: 80%;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  input.stop1 {
+    height: 5em;
+    width: 145px;
+    background-color: transparent;
+    font-size: 80%;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  input.stop2 {
+    height: 5em;
+    width: 145px;
+    background-color: red;
+    font-size: 80%;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  div.centre {
+    background-image: url('ogp2gui.jpg');
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-height: 3000px;
+    max-width: 850px;
+    min-width: 850px;
+    min-height: 600px;
+  }
+  input.padbutton {
+    width: 80px;
+    color: white;
+    height: 100px;
+  }
+  input.padbutton2 {
+    width: 100px;
+    color: black;
+    height: 100px;
+    background-color: red;
+  }
+  input.padbutton3 {
+    width: 80px;
+    color: white;
+    height: 30px;
+  }
+  input.padbutton6 {
+    width: 80px;
+    color: white;
+    height: 100px;
+    background-color: yellow;
+  }
+  div.log {
+    box-shadow: 0px 0px 0px 0px;
+    height: 120px;
+  }
+  input.padbutton4 {
+    width: 100px;
+    color: white;
+    height: 30px;
+  }
+  div.bottom {
+    max-height: 250px;
+    columns: 200px 3;
+    -webkit-columns: 200px 3;
+    z-index: 0;
+  }
+  */
+  body {
+    text-align: center;
+    background-image: url("background_image3.jpg");
+  }
+</style>
