@@ -10,7 +10,7 @@ from SimpleCV import Camera, Image
 from ogplab import *
 
 l = int(4)
-s = serial.Serial('/dev/ttyUSB0', 9600)
+s = serial.Serial('/dev/ttyACM0', 9600)
 
 
 class chase3(object):
@@ -22,7 +22,7 @@ class chase3(object):
         self.c2=c2
         self.sqx=sqx
         self.sqy=sqy
-        
+
     def run(self):
         cam_mode=self.cam_mode
         s.write('s')
@@ -99,8 +99,8 @@ class chase3(object):
                 mov = acx(s, d, ms, acu, acd, acl, acr)
                 mov.run()
                 wsh.write_message(wsh2, "g_"+ str(d))
-         
+
             wsh.write_message(wsh2, "c")
-        
+
         else:
             wsh.write_message(wsh2, "c_" + "null" )
