@@ -14,7 +14,7 @@ brightpixels = 0
 darkpixels = 0
 
 l = int(4)
-s = serial.Serial('/dev/ttyAMC0', 9600)
+s = serial.Serial('/dev/ttyACM0', 9600)
 
 class so(object):
 
