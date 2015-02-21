@@ -254,19 +254,19 @@ $(function() {
     $("#msg").val(msg);
   }
 
-  // ws = new WebSocket("ws://192.168.42.1:8888/ws");
-  // ws.onmessage = function(evt) {
-  //   logger(evt.data);
-  // };
-  // ws.onclose = function(evt) {
-  //   $("#log").text("Connection Closed");
-  //   $("#thebutton #msg").prop('disabled', true);
-  // };
-  // ws.onopen = function(evt) {
-  //   $("#log").text("OGP-- SOCKET OPEN");
-  //   ws.send('n');
-  //
-  // };
+  ws = new WebSocket("ws://192.168.42.1:8888/ws");
+  ws.onmessage = function(evt) {
+    logger(evt.data);
+  };
+  ws.onclose = function(evt) {
+    $("#log").text("Connection Closed");
+    $("#thebutton #msg").prop('disabled', true);
+  };
+  ws.onopen = function(evt) {
+    $("#log").text("OGP-- SOCKET OPEN");
+    ws.send('n');
+
+  };
   $("#msg").keypress(function(event) {
     if (event.which == 13) {
       sender();
