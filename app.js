@@ -264,7 +264,7 @@ $(function() {
   };
   ws.onopen = function(evt) {
     $("#log").text("OGP-- SOCKET OPEN");
-    ws.send('n');
+    #ws.send('n');
 
   };
   $("#msg").keypress(function(event) {
