@@ -20,17 +20,14 @@ $(document).ready( function () {
     var img = new Image();
     img.onload = function() {
         // code to set the src on success
-        console.log(i);
         images += "<img id=\"" + i + "\" src=\"" + src + "\"></img>";
+        $('#imagesContainer').html(images);
         i++;
         var nextImage = "ftp://pi:banjobob@192.168.42.1/images/image" + i + ".png";
         checkImage(nextImage)
     };
     img.onerror = function() {
       // doesn't exist or error loading
-      console.log("exiting");
-      console.log(images);
-      $('#imagesContainer').html(images);
     };
     img.src = src; // fires off loading of image
   }
