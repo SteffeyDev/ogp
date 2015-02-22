@@ -32,17 +32,18 @@ $(document).ready( function () {
     img.src = src; // fires off loading of image
   }
 
-  $('#joystickBubble').draggable();
+  $('#joystickBubble').draggable({containment: 'parent'});
   $('#joystickBubble').mouseup(function() {
     $(this).css({ transition: '1s'});
-    $(this).css({left: 75, top: 125});
+    $(this).css({left: 75, top: 115});
     setTimeout( function() {$('#joystickBubble').css({ transition: 'none' });console.log("back");} , 1000);
+  });
+  $('#joystickBubble').mousemove(function(evt) {
+    console.log(($(this).position().left - 75) + " ~ " + (($(this).position().top - 115) * -1));
   });
 
   $('#focusBubble').draggable({ axis: "x", containment: 'parent' });
-  $('#focusBubble').mousedown(function() {
-    console.log("down");
-  });
+
 
   $('#captureButton').click(function() {
     var extraSpace = window.innerWidth - 220;
@@ -264,7 +265,7 @@ $(function() {
   };
   ws.onopen = function(evt) {
     $("#log").text("OGP-- SOCKET OPEN");
-    //ws.send('n');
+    ws.send('n');
 
   };
   $("#msg").keypress(function(event) {
