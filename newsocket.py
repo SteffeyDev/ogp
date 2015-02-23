@@ -24,7 +24,7 @@ from chase2 import *
 
 ## some important variables
 
-s = serial.Serial('/dev/ttyACM0', 9600)                     ## serial to arduino
+s = serial.Serial('/dev/ttyUSB0', 9600)                     ## serial to arduino
 
 #c2 = SimpleCV.Camera(0,{ "width": 544, "height": 288 })          ## opens a camera
 ##c = SimpleCV.Camera(1,{ "width": 544, "height": 288 })           ## or two
