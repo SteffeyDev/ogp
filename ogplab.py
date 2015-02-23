@@ -14,7 +14,7 @@ brightpixels = 0
 darkpixels = 0
 
 l = int(4)
-s = serial.Serial('/dev/ttyUSB0', 9600)
+s = serial.Serial('/dev/ttyACM0', 9600)
 
 class so(object):
 
@@ -30,7 +30,7 @@ class so(object):
         self.x = 0
         self.y = 0
         self.w = 0
-        self.p = 1        
+        self.p = 1
         c2=self.c2
         l = self.l
         x = -1
@@ -47,10 +47,10 @@ class so(object):
         cent = 0
         rgb1 = 0
         c2 = self.c2
-        wsh = self.wsh 
+        wsh = self.wsh
         wsh2 = self.wsh2
         s.write('s')
-        
+
         if cam_mode == 3:
             img1 = c2.getImage()
         if cam_mode==1:
@@ -64,8 +64,8 @@ class so(object):
                 camera.capture('imagesmall.jpg')
             img1 = Image('imagesmall.jpg')
         self.img1 = img1
-        blobs = img1.findBlobs()  
-        
+        blobs = img1.findBlobs()
+
         if blobs:
             print "blob"
             x = self.x
@@ -83,7 +83,7 @@ class so(object):
             pth = pth1 + str(p) + pth3
             print pth
             img1.save(pth)
-            
+
             thumbnail = img1.crop(150,25,250,250)
             thumbnail = thumbnail.scale(20,20)
             thumb1 = "/var/www/images/thumbs/thumb"
@@ -91,12 +91,12 @@ class so(object):
             thumbpath = thumb1 + str(p) + thumb3
             print thumbpath
             thumbnail.save(thumbpath)
-            
+
             self.p = p
-            
+
             mySet.add((p,x,y,w,cent,rgb1))
             self.mySet = mySet
-            
+
             wshx = str(self.x)
             wshy = str(self.y)
             centroidx = int(cent[0])
@@ -116,12 +116,12 @@ class so(object):
             wshx = str(self.x)
             wshy = str(self.y)
             wsh.write_message(wsh2, wshx + " " + wshy + "dark")
- 
+
             print "dark"
 
 
     def run(self):
-        wsh = self.wsh 
+        wsh = self.wsh
         wsh2 = self.wsh2
         acu = int(1)
         acd = int(1)
@@ -134,7 +134,7 @@ class so(object):
         x = self.x
         y = self.y
         if countdownA > 0:
-                
+
 
             if countdownC == 1:
                 countdownB = int(self.l)
@@ -167,11 +167,11 @@ class so(object):
                 s.write('s')
          ##       time.sleep(1)
                 wsh.write_message(wsh2, "m" )
-                        
+
                 self.countdownA = countdownA
                 self.countdownB = countdownB
                 self.countdownC = countdownC
-            
+
             if countdownB == 1:
                 countdownC = int(self.l)
                 countdownB = -1
@@ -190,7 +190,7 @@ class so(object):
                 self.countdownA = countdownA
                 self.countdownB = countdownB
                 self.countdownC = countdownC
-                
+
                 print self.l
                 print countdownC
                 print self.countdownC
@@ -209,7 +209,7 @@ class so(object):
                 elf = self.histo()
             ##    time.sleep(1)
                 wsh.write_message(wsh2, "m" )
-                
+
                 self.countdownA = countdownA
                 self.countdownB = countdownB
                 self.countdownC = countdownC
@@ -233,7 +233,7 @@ class autocal(object):
         self.wsh = wsh
         self.wsh2 = wsh2
       ##  self.c = c
-    
+
     def run(self):
 
         wsh = self.wsh
@@ -246,7 +246,7 @@ class autocal(object):
         acr = int(1)
         irpic = pinoir2(js)
 
-        img1 = Image('imagesmall.jpg')   
+        img1 = Image('imagesmall.jpg')
         blobs = img1.findBlobs()
         img1.drawCircle((blobs[-1].x,blobs[-1].y),30,color=(255,255,255))
         img1.drawCircle((blobs[-1].centroid()),10,color=(255,100,100))
@@ -258,30 +258,30 @@ class autocal(object):
         img1.drawText(str(acx1), 10, 50, color=(255,255,255), fontsize=20)
         img1.drawText(str(acy1), 10, 75, color=(255,255,255), fontsize=20)
         img1.save(js.framebuffer)
-        
+
         d = 'r'
         ms = 50
         s.write('4')
         mov = acx(s, d, ms, acu, acd, acl, acr)
         mov.run()
-            
+
         time.sleep(1)
 
-        img1 = c.getImage()   
+        img1 = c.getImage()
         blobs = img1.findBlobs()
         img1.drawCircle((blobs[-1].x,blobs[-1].y),30,color=(255,255,255))
         img1.drawCircle((blobs[-1].centroid()),10,color=(255,100,100))
         acx2 = blobs[-1].x
         acy2 = blobs[-1].y
 
-        
+
         img1.drawText("ogp: autocalibrating", 10, 10, fontsize=50)
         img1.drawText(str(acx1), 10, 50, color=(255,255,255), fontsize=20)
-        img1.drawText(str(acy1), 10, 75, color=(255,255,255), fontsize=20)        
+        img1.drawText(str(acy1), 10, 75, color=(255,255,255), fontsize=20)
         img1.drawText(str(acx2), 40, 50, color=(255,255,255), fontsize=20)
         img1.drawText(str(acy2), 40, 75, color=(255,255,255), fontsize=20)
         img1.save(js.framebuffer)
-        
+
         d = 'd'
         ms = 50
         s.write('9')
@@ -290,7 +290,7 @@ class autocal(object):
         time.sleep(1)
 
 
-        img1 = c.getImage()   
+        img1 = c.getImage()
         blobs = img1.findBlobs()
         img1.drawCircle((blobs[-1].x,blobs[-1].y),30,color=(255,255,255))
         img1.drawCircle((blobs[-1].centroid()),10,color=(255,100,100))
@@ -299,7 +299,7 @@ class autocal(object):
 
         img1.drawText("ogp: autocalibrating", 10, 10, fontsize=50)
         img1.drawText(str(acx1), 10, 50, color=(255,255,255), fontsize=20)
-        img1.drawText(str(acy1), 10, 75, color=(255,255,255), fontsize=20)        
+        img1.drawText(str(acy1), 10, 75, color=(255,255,255), fontsize=20)
         img1.drawText(str(acx2), 40, 50, color=(255,255,255), fontsize=20)
         img1.drawText(str(acy2), 40, 75, color=(255,255,255), fontsize=20)
         img1.drawText(str(acx3), 70, 50, color=(255,255,255), fontsize=20)
@@ -313,7 +313,7 @@ class autocal(object):
         time.sleep(1)
 
 
-        img1 = c.getImage()   
+        img1 = c.getImage()
         blobs = img1.findBlobs()
         img1.drawCircle((blobs[-1].x,blobs[-1].y),30,color=(255,255,255))
         img1.drawCircle((blobs[-1].centroid()),10,color=(255,100,100))
@@ -322,7 +322,7 @@ class autocal(object):
 
         img1.drawText("ogp: autocalibrating", 10, 10, fontsize=50)
         img1.drawText(str(acx1), 10, 50, color=(255,255,255), fontsize=20)
-        img1.drawText(str(acy1), 10, 75, color=(255,255,255), fontsize=20)        
+        img1.drawText(str(acy1), 10, 75, color=(255,255,255), fontsize=20)
         img1.drawText(str(acx2), 40, 50, color=(255,255,255), fontsize=20)
         img1.drawText(str(acy2), 40, 75, color=(255,255,255), fontsize=20)
         img1.drawText(str(acx3), 70, 50, color=(255,255,255), fontsize=20)
@@ -336,8 +336,8 @@ class autocal(object):
         mov = acx(s, d, ms, acu, acd, acl, acr)
         mov.run()
         time.sleep(1)
-        
-        img1 = c.getImage()   
+
+        img1 = c.getImage()
         blobs = img1.findBlobs()
         img1.drawCircle((blobs[-1].x,blobs[-1].y),30,color=(255,255,255))
         img1.drawCircle((blobs[-1].centroid()),10,color=(255,100,100))
@@ -345,7 +345,7 @@ class autocal(object):
         acy5 = blobs[-1].y
         img1.drawText("ogp: autocalibrating", 10, 10, fontsize=50)
         img1.drawText(str(acx1), 10, 50, color=(255,255,255), fontsize=20)
-        img1.drawText(str(acy1), 10, 75, color=(255,255,255), fontsize=20)        
+        img1.drawText(str(acy1), 10, 75, color=(255,255,255), fontsize=20)
         img1.drawText(str(acx2), 40, 50, color=(255,255,255), fontsize=20)
         img1.drawText(str(acy2), 40, 75, color=(255,255,255), fontsize=20)
         img1.drawText(str(acx3), 70, 50, color=(255,255,255), fontsize=20)
@@ -371,9 +371,9 @@ class hud2(object):
         self.x = x
         self.y = y
         self.z = z
-        
-    
-    def run(self):        
+
+
+    def run(self):
         img1 = self.img1
         js = self.js
         stat = self.stat
@@ -382,9 +382,9 @@ class hud2(object):
         z = self.z
         cent = 0
         rgb1 = 0
-        
 
-        
+
+
         blobs = img1.findBlobs()
         if blobs:
             crop1 = blobs[-1].x
@@ -396,12 +396,12 @@ class hud2(object):
             img1.drawCircle((blobs[-1].centroid()),10,color=(255,100,100))
             rgb1 = blobs[-1].meanColor()
             cent = blobs[-1].centroid()
-            
+
 
         img1.drawText(str(stat), 10, 10, fontsize=50)
         img1.drawText(str(x), 10, 70, color=(255,255,255), fontsize=25)
         img1.drawText(str(y), 10, 100, color=(255,255,255), fontsize=25)
-        
+
         img1.drawText(str(z), 10, 230, color=(255,255,255), fontsize=15)
         img1.drawText(str(cent), 10, 250, color=(255,255,255), fontsize=15)
         img1.drawText(str(rgb1), 10, 270, color=(255,255,255), fontsize=15)
@@ -416,8 +416,8 @@ class acx(object):
         self.acu = acu
         self.acd = acd
         self.acl = acl
-        self.acr = acr   
-    
+        self.acr = acr
+
     def run(self):
         s = self.s
         d = self.d
@@ -447,7 +447,7 @@ class acx(object):
             self.countdown = acr1
 
         acms = self.countdown
-        
+
         while i < acms:
             i = i + 1
             time.sleep(.001)
@@ -456,7 +456,7 @@ class acx(object):
             s.write('8')
         if d == 'd':
             s.write('8')
-            
+
         if d == 'l':
             s.write('3')
         if d == 'r':
@@ -471,4 +471,3 @@ if __name__ == '__main__'  :
     foo.run()
 else:
    pass
-
