@@ -304,18 +304,25 @@ header button:hover > div {
 }
 #controlDiv #focusBubble {
   position: absolute;
-  background-color: red;
-  width: 15px;
-  height: 15px;
+  background-color: white;
+  width: 20px;
+  height: 20px;
   top: 20px;
   left: 0px;
+  border-radius: 50%;
 }
 #controlDiv #focusContainer {
   position: absolute;
   width: 120px;
   height: 15px;
   top: 340px;
-  left: 25px;
+  left: 23px;
+}
+#controlDiv #line {
+  width: 100%;
+  height: 3px;
+  background-color: white;
+  margin-top: 28px;
 }
 #controlDiv #focusLabel {
   position: absolute;
@@ -336,17 +343,19 @@ header button:hover > div {
 }
 #controlDiv #focusMinus {
   position: absolute;
-  width: 15px;
-  height: 15px;
   top: 360px;
   left: 5px;
+  border-right: 10px solid white;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
 }
 #controlDiv #focusPlus {
   position: absolute;
-  width: 15px;
-  height: 15px;
   top: 360px;
   left: 150px;
+  border-left: 10px solid white;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
 }
 
 #mapDiv {
