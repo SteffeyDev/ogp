@@ -221,11 +221,29 @@ header button:hover > div {
 }
 #controlDiv #lock {
   position: absolute;
-  background-color: red;
-  width: 10px;
-  height: 10px;
-  top: 60px;
+  width: 20px;
+  height: 30px;
+  top: 40px;
   left: 150px;
+}
+#controlDiv #lock #main {
+  position: absolute;
+  background-color: white;
+  border-radius: 10%;
+  width: 20px;
+  height: 20px;
+  top: 10px;
+  left: 0;
+}
+#controlDiv #lock #handle {
+  position: absolute;
+  width: 10px;
+  height: 20px;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  border: 5px solid white;
+  background-color: transparent;
 }
 #controlDiv #moveCameraLabel {
   position: absolute;
@@ -287,20 +305,28 @@ header button:hover > div {
   height: 15px;
   top: 290px;
   left: 90px;
+  background-color: white;
+  border: 0;
+  border-bottom: 5px solid grey;
 }
 #controlDiv #medium {
   position: absolute;
   width: 20px;
   height: 15px;
   top: 290px;
-  left: 110px;
+  left: 112px;
+  background-color: white;
+  border: 0;
+  border-bottom: 9px solid grey;
 }
 #controlDiv #large {
   position: absolute;
   width: 20px;
   height: 15px;
   top: 290px;
-  left: 130px;
+  left: 134px;
+  background-color: grey;
+  border: 0;
 }
 #controlDiv #focusBubble {
   position: absolute;
