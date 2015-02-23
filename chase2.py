@@ -10,7 +10,7 @@ from SimpleCV import Camera, Image
 from ogplab import *
 
 l = int(4)
-s = serial.Serial('/dev/ttyACM0', 9600)
+s = serial.Serial('/dev/ttyUSB0', 9600)
 
 
 class chase3(object):
