@@ -147,22 +147,6 @@ function updateSizes() {
 
 }
 
-/*
-var i = 0;
-while (true) {
-  try {
-    downloadFile('192.168.42.1/images/image' + i + '.png', function(blob) {
-        saveAs(blob, 'image' + i + '.png');
-    });
-  }
-  catch(err) {
-    console.log(err);
-    break;
-  }
-  i++;
-}
-*/
-
 
 var chasing = false;
 var chx = 277;
