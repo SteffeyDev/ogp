@@ -30,8 +30,8 @@ $(document).ready( function () {
     };
     img.onerror = function() {
       // doesn't exist or error loading
+      console.log("error");
       $("#imagesDiv #loading").hide();
-      $("#imagesDiv #loading h1").hide();
     };
     img.src = src; // fires off loading of image
   }
