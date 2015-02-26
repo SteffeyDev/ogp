@@ -2,10 +2,12 @@ var mode = 0;
 var expanded = false;
 var exit = false;
 var images = "";
+var joystick = false;
 
 $(document).ready( function () {
   $(window).resize(updateSizes());
   window.onresize = updateSizes;
+  window.onscroll = function() { window.scrollTo(0,0); }
   updateSizes();
 
   $('#log').hide();
@@ -28,18 +30,29 @@ $(document).ready( function () {
     };
     img.onerror = function() {
       // doesn't exist or error loading
+      $("#imagesDiv #loading").hide();
+      $("#imagesDiv #loading h1").hide();
     };
     img.src = src; // fires off loading of image
   }
 
   $('#joystickBubble').draggable({containment: 'parent'});
-  $('#joystickBubble').mouseup(function() {
-    $(this).css({ transition: '1s'});
-    $(this).css({left: 75, top: 115});
-    setTimeout( function() {$('#joystickBubble').css({ transition: 'none' });console.log("back");} , 1000);
+  $(document).mouseup(function() {
+    if (joystick == true) {
+      $('#joystickBubble').css({ transition: '1s'});
+      $('#joystickBubble').css({left: 57.5, top: 57.5});
+      setTimeout( function() {$('#joystickBubble').css({ transition: 'none' });console.log("back");} , 1000);
+      joystick = false
+    }
   });
-  $('#joystickBubble').mousemove(function(evt) {
-    console.log(($(this).position().left - 75) + " ~ " + (($(this).position().top - 115) * -1));
+  $('#joystickBubble').mousedown(function(evt) {
+    joystick = true;
+  });
+  $(document).mousemove(function() {
+    if (joystick == true) {
+      console.log(($('#joystickBubble').position().left - 57.5) + " ~ " + (($('#joystickBubble').position().top - 57.5) * -1));
+
+    }
   });
 
   $('#focusBubble').draggable({ axis: "x", containment: 'parent' });
@@ -102,10 +115,6 @@ $(document).ready( function () {
       expanded = false;
     }
   });
-  // $bubble.mousemove(function(event) {
-  //   console.log("x: " + event.pageX + "\ty: " + event.pageY);
-  //   $(this).css({left: event.pageX, top: event.pageY, 'background-color': "green"});
-  // });
 });
 
 function updateSizes() {
@@ -146,22 +155,6 @@ function updateSizes() {
   }
 
 }
-
-/*
-var i = 0;
-while (true) {
-  try {
-    downloadFile('192.168.42.1/images/image' + i + '.png', function(blob) {
-        saveAs(blob, 'image' + i + '.png');
-    });
-  }
-  catch(err) {
-    console.log(err);
-    break;
-  }
-  i++;
-}
-*/
 
 
 var chasing = false;
