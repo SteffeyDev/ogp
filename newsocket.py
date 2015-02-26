@@ -68,7 +68,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
         self.z = 0
         self.mapsize = mapsize
         self.showimage = showimage
-        self.stepsize = stepsize
+        self.stepsize = stepsize #used for mapping
         self.cam_mode = cam_mode
         self.sqx = sqx
         self.sqy = sqy
@@ -103,7 +103,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat,sqx,sqy)
             irpic.run()
 
-        if message =='c3':
+        if message =='c3': #capture
             cam_mode = 3
             self.cam_mode = cam_mode
             img1 = c2.getImage()
@@ -125,21 +125,21 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             img1.save(js.framebuffer)
             self.write_message("echo: " + message + " " + str(cam_mode) )
 
-        if message =='c2':
+        if message =='c2': #main
             cam_mode = 2
             self.cam_mode = cam_mode
             irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat,sqx,sqy)
             irpic.run()
             self.write_message("echo: " + message + " " + str(cam_mode) )
 
-        if message =='c1':
+        if message =='c1': #spotter
             cam_mode = 1
             self.cam_mode = cam_mode
             irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat,sqx,sqy)
             irpic.run()
             self.write_message("echo: " + message + " " + str(cam_mode) )
 
-        if message =='h':
+        if message =='h': #slow CCW (nudge)
             print "h"
             s.write('h')
             x = x - 1
@@ -152,7 +152,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             mov.run()
             irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat,sqx,sqy)
             irpic.run()
-        if message == 'squ':
+        if message == 'squ': #moving sighting square
             print "squ"
             sqy = self.sqy
             sqy = sqy + 25
@@ -177,13 +177,13 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             self.write_message("echo: "+str(sqx)+" sighting square")
             self.sqx=sqx
 
-        if message =='+':
+        if message =='+': #step size
             print "+"
             stepsize = self.stepsize
             stepsize = stepsize + 25
             self.write_message("echo: " + str(stepsize) + " stepsize plus" )
             self.stepsize = stepsize
-        if message =='-':
+        if message =='-': 
             print "-"
             stepsize = self.stepsize
             stepsize = stepsize - 25

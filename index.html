@@ -22,9 +22,9 @@
     <button id="helpButton" href='http://www.opengimbal.net'><div></div><p>Help</p></button>
 
   </header>
-
+<div id="wrap">
   <div id="videoDiv">
-    <iframe src="http://192.168.42.1:8080" width="544" height="288" frameborder="0" scrolling="no">...</iframe>
+    <iframe src="http://192.168.42.1:8080" width="544" height="288" frameborder="0" scrolling="no">...<div id="sight"></div></iframe>
     <button id="spotter">Spotter</button>
     <button id="main">Telescope</button>
     <button id="longCapture">Long Capture</button>
@@ -39,8 +39,12 @@
 
   <div id="controlDiv">
     <div id="backgroundC"></div>
-    <div id="largeCircle"></div>
-    <div id="joystickBubble"></div>
+    <div id="joystickContainer">
+      <div id="verticalAxis"></div>
+      <div id="horizontalAxis"></div>
+      <div id="joystickBubble"></div>
+    </div>
+
     <div id="lock"><div id="handle"></div><div id=main></div></div>
     <input type="image" id="up" value="UP" class="direction" />
     <input type="image" id="down" value="DOWN" class="direction" />
@@ -81,6 +85,8 @@
 
   <div id="imagesDiv">
     <div id="imagesContainer"></div>
+    <div id="loading"><h1>Loading, Please Wait...</h1></div>
+
   </div>
 
 <!--
@@ -145,6 +151,7 @@
   </div>
   <input class="padbutton" type="image" id="sq" value="SITE SQ" />
 -->
+</div>
 </body>
 
 </html>

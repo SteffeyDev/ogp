@@ -1,15 +1,16 @@
 <style type="text/css">
 
-html {
+html, body {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  max-width: 100%;
 }
-
-body {
-  width: 100%;
+div#wrap {
   height: 100%;
+  width: 100%;
   overflow: hidden;
+  background-color: red;
 }
 
 header {
@@ -86,6 +87,15 @@ header button:hover > div {
   top: 30px;
   left: 0;
   width: 100%;
+}
+#videoDiv iframe #sight {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  width: 30px;
+  height: 30px;
+  border: 2px solid white;
+  background-color:red;
 }
 #videoDiv #spotter {
   position: absolute;
@@ -164,26 +174,46 @@ header button:hover > div {
   opacity: 0.4;
   background-color: darkblue;
 }
-#controlDiv #joystickBubble {
-  position: absolute;
-  background-color: white;
-  width: 20px;
-  height: 20px;
-  top: 115px;
-  left: 75px;
-  transition:none;
-  border-radius: 50%;
-}
-#controlDiv #largeCircle {
-  border-radius: 50%;
+#controlDiv #joystickContainer {
+  border-radius: 5px;
   border: 3px solid white;
   position: absolute;
   top: 55px;
   left: 15px;
   width: 135px;
   height: 135px;
+  box-shadow: inset 0 0 3px 2px  black;
 }
-
+#controlDiv #joystickContainer #verticalAxis {
+  position: absolute;
+  top: 0;
+  left: 49%;
+  width: 3px;
+  height: 100%;
+  background-color: white;
+  z-index: -2;
+}
+#controlDiv #joystickContainer #horizontalAxis {
+  position: absolute;
+  left: 0;
+  top: 49%;
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  z-index: -2;
+}
+#controlDiv #joystickBubble {
+  position: absolute;
+  background-color: white;
+  width: 20px;
+  height: 20px;
+  top: 57.5px;
+  left: 57.5px;
+  transition:none;
+  border-radius: 50%;
+  box-shadow: 0 0 4px 1px black;
+  z-index: 0;
+}
 #controlDiv .direction {
   position: absolute;
   background-color: transparent;
@@ -223,7 +253,7 @@ header button:hover > div {
   position: absolute;
   width: 20px;
   height: 30px;
-  top: 40px;
+  top: 15px;
   left: 150px;
 }
 #controlDiv #lock #main {
@@ -439,6 +469,26 @@ header button:hover > div {
   margin: 10px;
   display: inline-block;
   float: left;
+}
+#imagesDiv #loading h1 {
+  position:absolute;
+  left: 0;
+  top: 45%;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: white;
+  font-family: "Courier New" Courier Monospace;
+}
+#imagesDiv #loading {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.8;
+  border-width: 5px;
+  overflow: hidden;
 }
 
 #infoDiv {
