@@ -51,10 +51,13 @@ void setup()
 }
 
 void loop() {
-
+  mode = '';
   if( Serial.available() )       // if data is available to read
   {
     val = Serial.read();         // read it and store it in 'val'
+    if (strlen(val) > 1) {
+      //array = str_split
+    }
   }
 
   switch( val )        //switch handles incoming signal
