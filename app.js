@@ -163,7 +163,7 @@ var chy = 144;
 var mapping = false;
 var mapx = "0";
 var mapy = "0";
-var dgear = "s";
+var dgear = "n";
 $(function() {
   var ws;
   var logger = function(msg) {
@@ -269,13 +269,13 @@ $(function() {
   $("#up").click(function() {
     if (dgear == "n") {
 
-      ws.send('y');
+      ws.send('y'); //arduino 6
     }
     if (dgear == "m") {
-      ws.send('w');
+      ws.send('w'); //arduino 6 map up
     }
     if (dgear == "o") {
-      ws.send('7');
+      ws.send('7'); //arudino 6 no stop
     }
     if (dgear == "s") {
       ws.send('sqd');

@@ -52,6 +52,11 @@ s.write('8')
 # =======
 #
 # >>>>>>> FETCH_HEAD:newsocket.py
+
+
+#acx (serial, direction, time (ms), time multiplier for each direction);
+
+
 sqx = int(272)
 sqy = int(144)
 
@@ -148,6 +153,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             d = 'l'
             ms = 50
             s.write('2')
+
             mov = acx(s, d, ms, acu, acd, acl, acr)
             mov.run()
             irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat,sqx,sqy)
@@ -183,7 +189,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             stepsize = stepsize + 25
             self.write_message("echo: " + str(stepsize) + " stepsize plus" )
             self.stepsize = stepsize
-        if message =='-': 
+        if message =='-':
             print "-"
             stepsize = self.stepsize
             stepsize = stepsize - 25
