@@ -237,8 +237,10 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             d = 'u'
             ms = 50
             s.write('6')
-            mov = acx(s, d, ms, acu, acd, acl, acr)
-            mov.run()
+            time.sleep(1)
+            s.write('8')
+            #mov = acx(s, d, ms, acu, acd, acl, acr)
+            #mov.run()
             irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat,sqx,sqy)
             irpic.run()
 
@@ -250,8 +252,10 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             d = 'd'
             ms = 50
             s.write('9')
-            mov = acx(s, d, ms, acu, acd, acl, acr)
-            mov.run()
+            time.sleep(1)
+            s.write('8')
+            #mov = acx(s, d, ms, acu, acd, acl, acr)
+            #mov.run()
             irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat,sqx,sqy)
             irpic.run()
 

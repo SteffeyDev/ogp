@@ -14,6 +14,7 @@ $(document).ready( function () {
   $('#mapDiv').css({left: window.innerWidth + 10});
   $('#imagesDiv').css({left: (window.innerWidth * 2) + 10});
   $('#imagesDiv').css({width: window.innerWidth - 20, top: 60, bottom: 10});
+  $('#imagesContainer').css({scroll: 'hidden'});
 
   var i = 1;
   var nextImage = "ftp://pi:banjobob@192.168.42.1/images/image" + i + ".png";
@@ -32,6 +33,7 @@ $(document).ready( function () {
       // doesn't exist or error loading
       console.log("error");
       $("#imagesDiv #loading").hide();
+      $('#imagesContainer').css({scroll: 'scroll'});
     };
     img.src = src; // fires off loading of image
   }
@@ -270,6 +272,7 @@ $(function() {
     if (dgear == "n") {
 
       ws.send('y'); //arduino 6
+      console.log("up");
     }
     if (dgear == "m") {
       ws.send('w'); //arduino 6 map up
@@ -284,7 +287,7 @@ $(function() {
   });
   $("#down").click(function() {
     if (dgear == "n") {
-
+      console.log("down");
       ws.send('g');
     }
     if (dgear == "m") {
@@ -299,7 +302,7 @@ $(function() {
   });
   $("#left").click(function() {
     if (dgear == "n") {
-
+      console.log("left");
       ws.send('h');
     }
     if (dgear == "m") {
@@ -314,7 +317,7 @@ $(function() {
   });
   $("#right").click(function() {
     if (dgear == "n") {
-
+      console.log("right");
       ws.send('j');
     }
     if (dgear == "m") {
