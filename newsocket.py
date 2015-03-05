@@ -94,6 +94,8 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 
         cam_mode = self.cam_mode
 
+        if message.startswith('joy'):
+            s.write('j' + message[3:])
 
         if message =='j':            ##    switches for incoming socket events
             print "j"

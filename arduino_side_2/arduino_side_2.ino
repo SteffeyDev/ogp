@@ -31,11 +31,14 @@ static char const SLOW_CW_2_SIGNAL = '0';
 static char const FAST_CW_2_SIGNAL = '9';
 
 
-char val = 'n';         // variable to receive data from the serial port
+//char val[] = 'n';         // variable to receive data from the serial port
 
 Servo myservo;         // create servo objects
 Servo myservo2;
 AF_DCMotor motor(2);     //create dc motor object
+char val[5]; // Allocate some space for the string
+char inChar=-1; // Where to store the character read
+byte index = 0; // Index into array; where to store the character
 
 void setup()
 {
@@ -51,20 +54,28 @@ void setup()
 }
 
 void loop() {
-  mode = '';
   if( Serial.available() ) {      // if data is available to read
-    val = Serial.read();         // read it and store it in 'val'
-    if (val[0] == "j") {         //val needs to have 2 numbers b/w 0 and 6 (ex. j26)
+    while (Serial.available() > 0) // Don't read unless you know there is data
+    {
+      if (index < 4) {
+        inChar = Serial.read(); // Read a character
+        val[index] = inChar; // Store it
+        index++; // Increment where to write next
+        val[index] = '\0'; // Null terminate the string
+      }
+    }
+    if (val[0] == 'j') {         //val needs to have 2 numbers b/w 0 and 6 (ex. j26)
 
         int c = 0;
         int x = (val[1] - 3) * 2; //gives value between -6 & 6
         int y = (val[2] - 3) * 2;
-        
+        myservo.write(90 + x);
+        myservo2.write(90 + y);
     }
     else {
 
 
-      switch( val ) {       //switch handles incoming signal
+      switch( val[0] ) {       //switch handles incoming signal
 
 
         case FOCUS_ONE:                      //   focus  1
@@ -149,5 +160,7 @@ void loop() {
     }
 
 }
+}
+
 //hi
 // (c) Copyright 2014   C. Robert Barnett III

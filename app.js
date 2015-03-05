@@ -53,7 +53,7 @@ $(document).ready( function () {
   $(document).mousemove(function() {
     if (joystick == true) {
       console.log(($('#joystickBubble').position().left - 57.5) + " ~ " + (($('#joystickBubble').position().top - 57.5) * -1));
-
+      ws.send('joy' + ($('#joystickBubble').position().left - 57.5) + '' + (($('#joystickBubble').position().top - 57.5) * -1));
     }
   });
 
