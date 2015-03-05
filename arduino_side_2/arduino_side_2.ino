@@ -52,16 +52,20 @@ void setup()
 
 void loop() {
   mode = '';
-  if( Serial.available() )       // if data is available to read
-  {
+  if( Serial.available() ) {      // if data is available to read
     val = Serial.read();         // read it and store it in 'val'
-    if (strlen(val) > 1) {
-      //array = str_split
-    }
-  }
+    if (val[0] == "j") {         //val needs to have 2 numbers b/w 0 and 6 (ex. j26)
 
-  switch( val )        //switch handles incoming signal
-{
+        int c = 0;
+        int x = (val[1] - 3) * 2; //gives value between -6 & 6
+        int y = (val[2] - 3) * 2;
+        
+    }
+    else {
+
+
+      switch( val ) {       //switch handles incoming signal
+
 
         case FOCUS_ONE:                      //   focus  1
         motor.setSpeed(MOTOR_FULL);
@@ -141,7 +145,8 @@ void loop() {
         myservo2.write(SERVO_STOP);
         Serial.println("default");
 
-}
+      }
+    }
 
 }
 //hi
