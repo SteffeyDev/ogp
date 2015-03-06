@@ -36,7 +36,7 @@ static char const FAST_CW_2_SIGNAL = '9';
 Servo myservo;         // create servo objects
 Servo myservo2;
 AF_DCMotor motor(2);     //create dc motor object
-char val[5]; // Allocate some space for the string
+char val[5] = "NIL";// Allocate some space for the string
 char inChar=-1; // Where to store the character read
 byte index = 0; // Index into array; where to store the character
 
@@ -44,7 +44,9 @@ void setup()
 {
   myservo.attach(9);         // attaches the servo on pin 9 to the servo object
   myservo2.attach(10);
-
+  myservo.write(SERVO_STOP);
+  myservo2.write(SERVO_STOP);
+  
   motor.setSpeed(MOTOR_STOP);         // just to make sure the motor is stopped
   motor.run(RELEASE);
 

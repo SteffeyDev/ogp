@@ -50,12 +50,7 @@ $(document).ready( function () {
   $('#joystickBubble').mousedown(function(evt) {
     joystick = true;
   });
-  $(document).mousemove(function() {
-    if (joystick == true) {
-      console.log(($('#joystickBubble').position().left - 57.5) + " ~ " + (($('#joystickBubble').position().top - 57.5) * -1));
-      ws.send('joy' + ($('#joystickBubble').position().left - 57.5) + '' + (($('#joystickBubble').position().top - 57.5) * -1));
-    }
-  });
+
 
   $('#focusBubble').draggable({ axis: "x", containment: 'parent' });
 
@@ -202,6 +197,8 @@ $(function() {
     var thp2 = ".png";
     var thumbpath = thp1.concat(p, thp2);
 
+
+
     if (h == "m") {
       if (mapping == true) {
         ws.send("b");
@@ -263,6 +260,13 @@ $(function() {
     ws.send('n');
 
   };
+
+  $(document).mousemove(function() {
+    if (joystick == true) {
+      console.log(($('#joystickBubble').position().left - 57.5) + " ~ " + (($('#joystickBubble').position().top - 57.5) * -1));
+      ws.send('joy' + ((($('#joystickBubble').position().left - 57.5)/20)+3) + '' + (((($('#joystickBubble').position().top - 57.5) * -1)/20)+3));
+    }
+  });
   $("#msg").keypress(function(event) {
     if (event.which == 13) {
       sender();

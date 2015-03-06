@@ -1,6 +1,6 @@
 
-#!/usr/bin/env python2
-# newsocket.py
+##!/usr/bin/env python2
+## newsocket.py
 
 ## uncomment above for autorun at boot------
 
