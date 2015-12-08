@@ -72,35 +72,62 @@ class chase3(object):
             sqx2=sqx+20
             sqy2=sqy+20
 
-            if blobx1 > sqx2:
-                d = '_r'
-                s.write('4')
-                mov = acx(s, d, ms, acu, acd, acl, acr)
-                mov.run()
-                wsh.write_message(wsh2, "g_"+ str(d))
+            print "blob X: " + str(blobx1)
+            print "sqx: " + str(sqx + 10)
+            print "blob Y: " + str(blob1y)
+            print "sqy: " + str(sqy + 10)
 
-            if blobx1 < sqx:
-                d = 'l'
-                s.write('2')
-                mov = acx(s, d, ms, acu, acd, acl, acr)
-                mov.run()
-                wsh.write_message(wsh2, "g_"+ str(d))
+            if blobx1 > sqx2 and bloby1 > sqy2:
+                s.write('j44')
+                print 'j44'
 
-            if bloby1 > sqy2:
-                d = 'd'
-                s.write('9')
-                mov = acx(s, d, ms, acu, acd, acl, acr)
-                mov.run()
-                wsh.write_message(wsh2, "g_"+ str(d))
+            elif blobx1 < sqx and bloby1 > sqy2:
+                s.write('j24')
+                print 'j24'
 
-            if bloby1 < sqy:
-                d = 'u'
-                s.write('6')
-                mov = acx(s, d, ms, acu, acd, acl, acr)
-                mov.run()
-                wsh.write_message(wsh2, "g_"+ str(d))
+            elif blobx1 > sqx2 and bloby1 < sqy:
+                s.write('j42')
+                print 'j42'
 
+            elif blobx1 < sqx and bloby1 < sqy:
+                s.write('j22')
+                print 'j22'
+
+            else:
+                s.write('j33')
+
+            time.sleep(0.5)
             wsh.write_message(wsh2, "c")
+
+            # if blobx1 > sqx2:
+            #     d = '_r'
+            #     s.write('4')
+            #     mov = acx(s, d, ms, acu, acd, acl, acr) # sets timeout to stop moving
+            #     mov.run()
+            #     wsh.write_message(wsh2, "g_"+ str(d))
+            #
+            # if blobx1 < sqx:
+            #     d = 'l'
+            #     s.write('2')
+            #     mov = acx(s, d, ms, acu, acd, acl, acr)
+            #     mov.run()
+            #     wsh.write_message(wsh2, "g_"+ str(d))
+            #
+            # if bloby1 > sqy2:
+            #     d = 'd'
+            #     s.write('9')
+            #     mov = acx(s, d, ms, acu, acd, acl, acr)
+            #     mov.run()
+            #     wsh.write_message(wsh2, "g_"+ str(d))
+            #
+            # if bloby1 < sqy:
+            #     d = 'u'
+            #     s.write('6')
+            #     mov = acx(s, d, ms, acu, acd, acl, acr)
+            #     mov.run()
+            #     wsh.write_message(wsh2, "g_"+ str(d))
+            #
+            # wsh.write_message(wsh2, "c")
 
         else:
             wsh.write_message(wsh2, "c_" + "null" )

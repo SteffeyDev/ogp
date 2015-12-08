@@ -225,8 +225,6 @@ class so(object):
 
             print "done"
 
-
-
 class autocal(object):
     def __init__(self, js, wsh, wsh2):
         self.js = js
@@ -454,13 +452,17 @@ class acx(object):
 
         if d == 'u':
             s.write('8')
+            print "stopping - 8"
         if d == 'd':
             s.write('8')
+            print "stopping - 8"
 
         if d == 'l':
             s.write('3')
+            print "stopping - 3"
         if d == 'r':
             s.write('3')
+            print "stopping - 3"
 
 
 

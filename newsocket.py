@@ -1,6 +1,6 @@
 
-#!/usr/bin/env python2
-# newsocket.py
+##!/usr/bin/env python2
+## newsocket.py
 
 ## uncomment above for autorun at boot------
 
@@ -52,8 +52,15 @@ s.write('8')
 # =======
 #
 # >>>>>>> FETCH_HEAD:newsocket.py
+
+
+#acx (serial, direction, time (ms), time multiplier for each direction);
+
+
 sqx = int(272)
 sqy = int(144)
+
+
 
 class WSHandler(tornado.websocket.WebSocketHandler):
 
@@ -89,8 +96,10 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 
         cam_mode = self.cam_mode
 
+        if message.startswith('joy'):
+            s.write('j' + message[3:])
 
-        if message =='j':            ##    switches for incoming socket events
+        if message == 'j':            ##    switches for incoming socket events
             print "j"
             x = x + 1
             self.x = x
@@ -148,6 +157,8 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             d = 'l'
             ms = 50
             s.write('2')
+            print "moving left"
+
             mov = acx(s, d, ms, acu, acd, acl, acr)
             mov.run()
             irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat,sqx,sqy)
@@ -183,7 +194,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             stepsize = stepsize + 25
             self.write_message("echo: " + str(stepsize) + " stepsize plus" )
             self.stepsize = stepsize
-        if message =='-': 
+        if message =='-':
             print "-"
             stepsize = self.stepsize
             stepsize = stepsize - 25
@@ -231,8 +242,10 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             d = 'u'
             ms = 50
             s.write('6')
-            mov = acx(s, d, ms, acu, acd, acl, acr)
-            mov.run()
+            time.sleep(1)
+            s.write('8')
+            #mov = acx(s, d, ms, acu, acd, acl, acr)
+            #mov.run()
             irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat,sqx,sqy)
             irpic.run()
 
@@ -244,8 +257,10 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             d = 'd'
             ms = 50
             s.write('9')
-            mov = acx(s, d, ms, acu, acd, acl, acr)
-            mov.run()
+            time.sleep(1)
+            s.write('8')
+            #mov = acx(s, d, ms, acu, acd, acl, acr)
+            #mov.run()
             irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat,sqx,sqy)
             irpic.run()
 
@@ -331,6 +346,9 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             wsh2 = self                                    ## wsh2 holds the name of the instance
             cchase = chase3(js, wsh, wsh2, c2, sqx, sqy, cam_mode)
             cchase.run()
+
+        if message == 'cs':
+            s.write('j33');
 
         if message == 'k':
             wsh = tornado.websocket.WebSocketHandler        ## wsh holds some socket info
@@ -434,3 +452,11 @@ if __name__ == "__main__":                       ##    since this is the main mo
 # =======
 #
 # >>>>>>> FETCH_HEAD:newsocket.py
+
+print "starting serial listener"
+while True:
+    tdata = s.read()
+    time.sleep(1)
+    data_left = s.inWaiting()
+    tdata += s.read(data_left)
+    print tdata

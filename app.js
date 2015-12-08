@@ -3,6 +3,8 @@ var expanded = false;
 var exit = false;
 var images = "";
 var joystick = false;
+var joyx = 3;
+var joyy = 3;
 
 $(document).ready( function () {
   $(window).resize(updateSizes());
@@ -14,6 +16,7 @@ $(document).ready( function () {
   $('#mapDiv').css({left: window.innerWidth + 10});
   $('#imagesDiv').css({left: (window.innerWidth * 2) + 10});
   $('#imagesDiv').css({width: window.innerWidth - 20, top: 60, bottom: 10});
+  $('#imagesContainer').css({scroll: 'hidden'});
 
   var i = 1;
   var nextImage = "ftp://pi:banjobob@192.168.42.1/images/image" + i + ".png";
@@ -32,28 +35,17 @@ $(document).ready( function () {
       // doesn't exist or error loading
       console.log("error");
       $("#imagesDiv #loading").hide();
+      $('#imagesContainer').css({scroll: 'scroll'});
     };
     img.src = src; // fires off loading of image
   }
 
   $('#joystickBubble').draggable({containment: 'parent'});
-  $(document).mouseup(function() {
-    if (joystick == true) {
-      $('#joystickBubble').css({ transition: '1s'});
-      $('#joystickBubble').css({left: 57.5, top: 57.5});
-      setTimeout( function() {$('#joystickBubble').css({ transition: 'none' });console.log("back");} , 1000);
-      joystick = false
-    }
-  });
+
   $('#joystickBubble').mousedown(function(evt) {
     joystick = true;
   });
-  $(document).mousemove(function() {
-    if (joystick == true) {
-      console.log(($('#joystickBubble').position().left - 57.5) + " ~ " + (($('#joystickBubble').position().top - 57.5) * -1));
 
-    }
-  });
 
   $('#focusBubble').draggable({ axis: "x", containment: 'parent' });
 
@@ -163,7 +155,7 @@ var chy = 144;
 var mapping = false;
 var mapx = "0";
 var mapy = "0";
-var dgear = "s";
+var dgear = "n";
 $(function() {
   var ws;
   var logger = function(msg) {
@@ -199,6 +191,8 @@ $(function() {
     var thp1 = "/var/www/images/thumbs/thumb";
     var thp2 = ".png";
     var thumbpath = thp1.concat(p, thp2);
+
+
 
     if (h == "m") {
       if (mapping == true) {
@@ -261,6 +255,29 @@ $(function() {
     ws.send('n');
 
   };
+
+  $(document).mousemove(function() {
+    if (joystick == true) {
+      var x = Math.round((($('#joystickBubble').position().left - 57.5)/20)+3);
+      var y = Math.round(((($('#joystickBubble').position().top - 57.5) * -1)/20)+3);
+      console.log('joy' + joyx + '' + joyy);
+      if (x != joyx || y != joyy) {
+        joyx = x;
+        joyy = y;
+        ws.send('joy' + joyx + '' + joyy);
+        console.log('joy' + joyx + '' + joyy);
+      }
+    }
+  });
+  $(document).mouseup(function() {
+    if (joystick == true) {
+      $('#joystickBubble').css({ transition: '1s'});
+      $('#joystickBubble').css({left: 57.5, top: 57.5});
+      setTimeout( function() {$('#joystickBubble').css({ transition: 'none' });console.log("back");} , 1000);
+      ws.send('joy33');
+      joystick = false;
+    }
+  });
   $("#msg").keypress(function(event) {
     if (event.which == 13) {
       sender();
@@ -269,13 +286,14 @@ $(function() {
   $("#up").click(function() {
     if (dgear == "n") {
 
-      ws.send('y');
+      ws.send('y'); //arduino 6
+      console.log("up");
     }
     if (dgear == "m") {
-      ws.send('w');
+      ws.send('w'); //arduino 6 map up
     }
     if (dgear == "o") {
-      ws.send('7');
+      ws.send('7'); //arudino 6 no stop
     }
     if (dgear == "s") {
       ws.send('sqd');
@@ -284,7 +302,7 @@ $(function() {
   });
   $("#down").click(function() {
     if (dgear == "n") {
-
+      console.log("down");
       ws.send('g');
     }
     if (dgear == "m") {
@@ -299,7 +317,7 @@ $(function() {
   });
   $("#left").click(function() {
     if (dgear == "n") {
-
+      console.log("left");
       ws.send('h');
     }
     if (dgear == "m") {
@@ -314,7 +332,7 @@ $(function() {
   });
   $("#right").click(function() {
     if (dgear == "n") {
-
+      console.log("right");
       ws.send('j');
     }
     if (dgear == "m") {
@@ -357,8 +375,8 @@ $(function() {
       ws.send('c');
     } else {
       chasing = false;
+      ws.send('cs');
       ws.send('3');
-
     }
   });
   $("#map2").click(function() {
