@@ -60,6 +60,8 @@ s.write('8')
 sqx = int(272)
 sqy = int(144)
 
+
+
 class WSHandler(tornado.websocket.WebSocketHandler):
 
     def open(self):
@@ -97,7 +99,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
         if message.startswith('joy'):
             s.write('j' + message[3:])
 
-        if message =='j':            ##    switches for incoming socket events
+        if message == 'j':            ##    switches for incoming socket events
             print "j"
             x = x + 1
             self.x = x
@@ -155,6 +157,10 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             d = 'l'
             ms = 50
             s.write('2')
+<<<<<<< HEAD
+=======
+            print "moving left"
+>>>>>>> HTML-OVERHAUL
 
             mov = acx(s, d, ms, acu, acd, acl, acr)
             mov.run()
@@ -344,6 +350,9 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             cchase = chase3(js, wsh, wsh2, c2, sqx, sqy, cam_mode)
             cchase.run()
 
+        if message == 'cs':
+            s.write('j33');
+
         if message == 'k':
             wsh = tornado.websocket.WebSocketHandler        ## wsh holds some socket info
             wsh2 = self                                    ## wsh2 holds the name of the instance
@@ -446,3 +455,11 @@ if __name__ == "__main__":                       ##    since this is the main mo
 # =======
 #
 # >>>>>>> FETCH_HEAD:newsocket.py
+
+print "starting serial listener"
+while True:
+    tdata = s.read()
+    time.sleep(1)
+    data_left = s.inWaiting()
+    tdata += s.read(data_left)
+    print tdata

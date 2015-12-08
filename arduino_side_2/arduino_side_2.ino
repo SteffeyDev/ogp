@@ -46,7 +46,11 @@ void setup()
   myservo2.attach(10);
   myservo.write(SERVO_STOP);
   myservo2.write(SERVO_STOP);
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> HTML-OVERHAUL
   motor.setSpeed(MOTOR_STOP);         // just to make sure the motor is stopped
   motor.run(RELEASE);
 
@@ -57,6 +61,7 @@ void setup()
 
 void loop() {
   if( Serial.available() ) {      // if data is available to read
+<<<<<<< HEAD
     while (Serial.available() > 0) // Don't read unless you know there is data
     {
       if (index < 4) {
@@ -73,6 +78,28 @@ void loop() {
         int y = (val[2] - 3) * 2;
         myservo.write(90 + x);
         myservo2.write(90 + y);
+=======
+    if (Serial.available() > 0) // Don't read unless you know there is data
+    {
+      inChar = Serial.read(); // Read a character
+      val[index] = inChar; // Store it
+      if (inChar == 'j' || index > 0) {
+        val[index] = inChar;
+        index++; // Increment where to write next
+      }
+      else {
+        index = 0;
+      }
+    }
+    if (val[0] == 'j' && index == 3) {         //val needs to have 2 numbers b/w 0 and 6 (ex. j26)
+
+        int c = 0;
+        int x = ((val[1] - '0') - 3) * 2; //gives value between -6 & 6
+        int y = ((val[2] - '0') - 3) * 2;
+        myservo.write(90 + x);
+        myservo2.write(90 + y);
+        index = 0;
+>>>>>>> HTML-OVERHAUL
     }
     else {
 
@@ -123,12 +150,12 @@ void loop() {
         break;
 
         case FAST_CCW_2_SIGNAL:                           // Y
-        myservo2.write(FAST_CCW);
+        myservo2.write(FAST_CW);
         Serial.println("7 - down fast");
         break;
 
         case SLOW_CCW_2_SIGNAL:
-        myservo2.write(SLOW_CCW);
+        myservo2.write(SLOW_CW);
         Serial.println("7 - down");
         break;
 
@@ -137,12 +164,12 @@ void loop() {
         break;
 
         case FAST_CW_2_SIGNAL:
-        myservo2.write(FAST_CW);
+        myservo2.write(FAST_CCW);
         Serial.println("9 - up");
         break;
 
         case SLOW_CW_2_SIGNAL:
-        myservo2.write(SLOW_CW);
+        myservo2.write(SLOW_CCW);
         Serial.println("0 - up fast");
         break;
 

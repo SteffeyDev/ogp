@@ -225,8 +225,6 @@ class so(object):
 
             print "done"
 
-
-
 class autocal(object):
     def __init__(self, js, wsh, wsh2):
         self.js = js
