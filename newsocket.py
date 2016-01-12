@@ -48,14 +48,7 @@ stat = "ogp"
 s.write('3')
 s.write('8')
 
-# <<<<<<< HEAD:newsocket.py
-# =======
-#
-# >>>>>>> FETCH_HEAD:newsocket.py
-
-
 #acx (serial, direction, time (ms), time multiplier for each direction);
-
 
 sqx = int(272)
 sqy = int(144)
@@ -79,7 +72,6 @@ class WSHandler(tornado.websocket.WebSocketHandler):
         self.cam_mode = cam_mode
         self.sqx = sqx
         self.sqy = sqy
-
 
     def on_message(self, message):
 
@@ -157,10 +149,8 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             d = 'l'
             ms = 50
             s.write('2')
-<<<<<<< HEAD
-=======
+
             print "moving left"
->>>>>>> HTML-OVERHAUL
 
             mov = acx(s, d, ms, acu, acd, acl, acr)
             mov.run()

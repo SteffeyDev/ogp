@@ -20,21 +20,21 @@ class so(object):
 
     def __init__(self, side, m, js, wsh, wsh2, c2, cam_mode):
         self.cam_mode=cam_mode
-        self.c2=c2
-        self.ms = m
-        self.js = js
-        self.wsh = wsh
-        self.wsh2 = wsh2
-        self.m = m
-        self.l = side
+        self.c2=c2 # c2 = SimpleCV.Camera(0,{ "width": 544, "height": 288 })
+        self.ms = m # self.ms is stepsize
+        self.js = js # js = SimpleCV.JpegStreamer('0.0.0.0:8080')
+        self.wsh = wsh # tornado.websocket.WebSocketHandler
+        self.wsh2 = wsh2 # newSocket.py
+        self.m = m # self.m is stepsize
+        self.l = side # self.l is mapsize
         self.x = 0
         self.y = 0
         self.w = 0
         self.p = 1
-        c2=self.c2
-        l = self.l
-        x = -1
-        y = -1
+        #c2=self.c2
+        #l = self.l
+        #x = -1
+        #y = -1
         self.countdownA = int(self.l)
         self.countdownB = int(self.l)
         self.countdownC = -1
