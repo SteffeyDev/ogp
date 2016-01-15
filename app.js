@@ -168,6 +168,16 @@ $(function() {
     $("#log").scrollTop($("#log")[0].scrollHeight);
     var h = "n";
     packet = msg.toString();
+
+    //options
+    //"rgb_$redcolor_$greencolor_$bluecolor"
+    //"x_$centriodx_$centroidy" (of the blob)
+    //"d_$x_$y_$p" (where x increments & decrements, y decrements, p increments)
+    //OR
+    //"$x $y'dark'"
+
+    //"m" written after these messages in each cycle
+
     var res = packet.split("_", 4);
     var h = res.slice(0, 1);
     var x = res.slice(1, 2);
@@ -193,7 +203,7 @@ $(function() {
     var thumbpath = thp1.concat(p, thp2);
 
 
-
+    // if should continue mapping, send again
     if (h == "m") {
       if (mapping == true) {
         ws.send("b");
