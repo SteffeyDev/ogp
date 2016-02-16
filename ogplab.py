@@ -64,6 +64,8 @@ class so(object):
                 camera.capture('imagesmall.jpg')
             img1 = Image('imagesmall.jpg')
         self.img1 = img1
+
+        #SimpleCV function
         blobs = img1.findBlobs()
 
         if blobs:
