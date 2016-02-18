@@ -77,6 +77,7 @@ class chase3(object):
             print "blob Y: " + str(blob1y)
             print "sqy: " + str(sqy + 10)
 
+            #move in direction of blob
             if blobx1 > sqx2 and bloby1 > sqy2:
                 s.write('j44')
                 print 'j44'
@@ -94,6 +95,7 @@ class chase3(object):
                 print 'j22'
 
             else:
+                #stop
                 s.write('j33')
 
             time.sleep(0.5)

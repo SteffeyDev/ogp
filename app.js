@@ -376,19 +376,21 @@ $(function() {
   $("#open").click(function() {
     dgear = "o";
   });*/
+
+  //new map -> creates new so object that resets countdowns back to original value
   $("#map").click(function() {
     ws.send('n');
   });
   $("#chase").click(function() {
     if (chasing == false) {
-
       chasing = true;
       mapping = false;
       ws.send('c');
+      $("#chase").text("Stop Chasing");
     } else {
       chasing = false;
-      ws.send('cs');
       ws.send('3');
+      $("#chase").text("Start Chasing");
     }
   });
   $("#map2").click(function() {
@@ -398,9 +400,11 @@ $(function() {
       mapping = true;
       chasing = false;
       ws.send('b');
+      $("#map2").text("Stop Mapping");
     } else {
       mapping = false;
       ws.send('3');
+      $("#map2").text("Start Mapping");
     }
   });
   $("#autocal").click(function() {
@@ -408,14 +412,14 @@ $(function() {
     mapping = false;
     ws.send('k');
   });
-  $("#allstop").click(function() {
-    chasing = false;
-    ws.send('3');
-    var ch = 0;
-  });
-  $("#allstop2").click(function() {
-    ws.send('8');
-  });
+  // $("#allstop").click(function() {
+  //   chasing = false;
+  //   ws.send('3');
+  //   var ch = 0;
+  // });
+  // $("#allstop2").click(function() {
+  //   ws.send('8');
+  // });
   $("#main").click(function() {
     ws.send('c2');
   });

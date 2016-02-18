@@ -329,7 +329,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             m = stepsize
             wsh = tornado.websocket.WebSocketHandler        ## wsh holds some socket info
             wsh2 = self                                    ## wsh2 holds the name of the instance
-            map = so(mapsize, m, js, wsh, wsh2, c2, cam_mode)               ##  make an istance of the mapper --SO stands for seek out
+            map = so(mapsize, m, js, wsh, wsh2, c2, cam_mode)               ##  make a new istance of the mapper --SO stands for seek out
             self.map = map
             map.histo()                                   ##  histogram is necessary before run
            ## print map.mySet                      ## print map log data array
@@ -339,9 +339,6 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             wsh2 = self                                    ## wsh2 holds the name of the instance
             cchase = chase3(js, wsh, wsh2, c2, sqx, sqy, cam_mode)
             cchase.run()
-
-        if message == 'cs':
-            s.write('j33');
 
         if message == 'k':
             wsh = tornado.websocket.WebSocketHandler        ## wsh holds some socket info
@@ -394,13 +391,13 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             s.write('2')
             self.write_message("echo: " + message + " 2")
 
+        #stop mapping movement and other actions
         if message =='3':
-            print "3"
-            s.write('3')
+            print "All Stop, Capturing New Image"
+            s.write('j33')
             self.write_message("echo: " + message + "3")
             irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat,sqx,sqy)
             irpic.run()
-
 
         if message =='4':
             print "4"
@@ -412,15 +409,6 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             print "7"
             s.write('6')
             self.write_message("echo: " + message + " 7")
-
-
-        if message =='8':
-            print "8"
-            s.write('8')
-            self.write_message("echo: " + message + " 8")
-            irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat,sqx,sqy)
-            irpic.run()
-
 
         if message =='9':
             print "9"
