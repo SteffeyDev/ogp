@@ -296,66 +296,58 @@ $(function() {
     }
   });
   $("#up").click(function() {
-    if (dgear == "n") {
-
       ws.send('y'); //arduino 6
-      console.log("up");
-    }
-    if (dgear == "m") {
-      ws.send('w'); //arduino 6 map up
-    }
-    if (dgear == "o") {
-      ws.send('7'); //arudino 6 no stop
-    }
-    if (dgear == "s") {
-      ws.send('sqd');
+      console.log("up"); // step up
+  });
+  $("#up2").click(function() {
+      ws.send('w'); //mapping up
 
-    }
+    // if (dgear == "o") {
+    //   ws.send('7'); //arudino 6 no stop
+    // }
+    // if (dgear == "s") {
+    //   ws.send('sqd');
+    //
+    // }
   });
   $("#down").click(function() {
-    if (dgear == "n") {
       console.log("down");
-      ws.send('g');
-    }
-    if (dgear == "m") {
-      ws.send('z');
-    }
-    if (dgear == "o") {
-      ws.send('9');
-    }
-    if (dgear == "s") {
-      ws.send('squ');
-    }
+      ws.send('g'); // step down
+  });
+  $("#down2").click(function() {
+      ws.send('z'); // mapping down
+    // if (dgear == "o") {
+    //   ws.send('9');
+    // }
+    // if (dgear == "s") {
+    //   ws.send('squ');
+    // }
   });
   $("#left").click(function() {
-    if (dgear == "n") {
       console.log("left");
-      ws.send('h');
-    }
-    if (dgear == "m") {
-      ws.send('a');
-    }
-    if (dgear == "o") {
-      ws.send('2');
-    }
-    if (dgear == "s") {
-      ws.send('sqr');
-    }
+      ws.send('h'); // step left
+  });
+  $("#left2").click(function() {
+      ws.send('a'); // mapping left
+    // if (dgear == "o") {
+    //   ws.send('2');
+    // }
+    // if (dgear == "s") {
+    //   ws.send('sqr');
+    // }
   });
   $("#right").click(function() {
-    if (dgear == "n") {
       console.log("right");
-      ws.send('j');
-    }
-    if (dgear == "m") {
-      ws.send('s');
-    }
-    if (dgear == "o") {
-      ws.send('4');
-    }
-    if (dgear == "s") {
-      ws.send('sql');
-    }
+      ws.send('j'); // step right
+  });
+  $("#right2").click(function() {
+      ws.send('s'); // mapping right
+    // if (dgear == "o") {
+    //   ws.send('4');
+    // }
+    // if (dgear == "s") {
+    //   ws.send('sql');
+    // }
 
   });
 

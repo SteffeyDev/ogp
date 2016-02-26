@@ -214,41 +214,60 @@ header button:hover > div {
   box-shadow: 0 0 4px 1px black;
   z-index: 0;
 }
-#controlDiv .direction {
+.direction {
   position: absolute;
   background-color: transparent;
   width: 0;
   height: 0;
-
 }
-#controlDiv #up {
+#controlDiv #up, #mapDiv #up2 {
   top: 40px;
   left: 75px;
   border-bottom: 10px solid white;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
 }
-#controlDiv #down {
+#mapDiv #up2 {
+  top: 10px;
+  left: 30px;
+}
+
+#controlDiv #down, #mapDiv #down2 {
   top: 200px;
   left: 75px;
   border-top: 10px solid white;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
 }
-#controlDiv #left {
+#mapDiv #down2 {
+  top: 60px;
+  left: 30px;
+}
+
+#controlDiv #left, #mapDiv #left2 {
   top: 115px;
   left: 0px;
   border-right: 10px solid white;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
 }
-#controlDiv #right {
+#mapDiv #left2 {
+  top: 30px;
+  left: 10px;
+}
+
+#controlDiv #right, #mapDiv #right2 {
   top: 115px;
   left: 160px;
   border-left: 10px solid white;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
 }
+#mapDiv #right2 {
+  top: 30px;
+  left: 60px;
+}
+
 #controlDiv #lock {
   position: absolute;
   width: 20px;
