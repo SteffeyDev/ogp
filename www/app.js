@@ -153,6 +153,7 @@ var chasing = false;
 var chx = 277;
 var chy = 144;
 var mapping = false;
+var nudgeSize = 1;
 var mapx = "0";
 var mapy = "0";
 var dgear = "n";
@@ -296,8 +297,8 @@ $(function() {
     }
   });
   $("#up").click(function() {
-      ws.send('y'); //arduino 6
-      console.log("up"); // step up
+      ws.send('nu'+nudgeSize.toString()); //arduino 6
+      console.log("up"); // nudge up
   });
   $("#up2").click(function() {
       ws.send('w'); //mapping up
@@ -312,7 +313,7 @@ $(function() {
   });
   $("#down").click(function() {
       console.log("down");
-      ws.send('g'); // step down
+      ws.send('nd'+nudgeSize.toString()); // nudge down
   });
   $("#down2").click(function() {
       ws.send('z'); // mapping down
@@ -325,7 +326,7 @@ $(function() {
   });
   $("#left").click(function() {
       console.log("left");
-      ws.send('h'); // step left
+      ws.send('nl'+nudgeSize.toString()); // nudge left
   });
   $("#left2").click(function() {
       ws.send('a'); // mapping left
@@ -338,7 +339,7 @@ $(function() {
   });
   $("#right").click(function() {
       console.log("right");
-      ws.send('j'); // step right
+      ws.send('nr'+nudgeSize.toString()); // nudge right
   });
   $("#right2").click(function() {
       ws.send('s'); // mapping right
@@ -351,6 +352,13 @@ $(function() {
 
   });
 
+  $("#stepsizea").click(function() {
+    ws.send('+');
+  });
+  $("#stepsizeb").click(function() {
+    ws.send('-');
+  });
+
   $("#focusMinus").click(function() {
     ws.send('f');
   });
@@ -358,12 +366,12 @@ $(function() {
     ws.send('t');
   });
 
-  $("#minusButton").click(function() {
-    dgear = "n";
-  });
-  $("#plusButton").click(function() {
-    dgear = "m";
-  });
+  // $("#minusButton").click(function() {
+  //   dgear = "n";
+  // });
+  // $("#plusButton").click(function() {
+  //   dgear = "m";
+  // });
   /*
   $("#open").click(function() {
     dgear = "o";
@@ -432,15 +440,35 @@ $(function() {
     ws.send('l');
 
   });
-  $("#don").click(function() {
-    ws.send('9');
+
+  $("#small").click(function() {
+    nudgeSize = 1;
+    $(this).css({"border-bottom-color": "purple"});
+    $("#medium").css({"border-bottom-color": "grey"});
+    $("#large").css({"background-color": "grey"});
   });
-  $("#lon").click(function() {
-    ws.send('2');
+  $("#medium").click(function() {
+    nudgeSize = 2;
+    $("#small").css({"border-bottom-color": "grey"});
+    $(this).css({"border-bottom-color": "purple"});
+    $("#large").css({"background-color": "grey"});
   });
-  $("#ron").click(function() {
-    ws.send('4');
+  $("#large").click(function() {
+    nudgeSize = 3;
+    $("#small").css({"border-bottom-color": "grey"});
+    $("#medium").css({"border-bottom-color": "grey"});
+    $(this).css({"background-color": "purple"});
   });
+
+  // $("#don").click(function() {
+  //   ws.send('9');
+  // });
+  // $("#lon").click(function() {
+  //   ws.send('2');
+  // });
+  // $("#ron").click(function() {
+  //   ws.send('4');
+  // });
   $("#pic1").click(function() {
     ws.send('v');
   });
@@ -450,15 +478,15 @@ $(function() {
   $("#thebutton").click(function() {
     sender();
   });
-  $("#splus").click(function() {
-    ws.send('+');
-  });
-  $("#sminus").click(function() {
-    ws.send('-');
-  });
-  $("#sq").click(function() {
-    dgear = "s";
-  });
+  // $("#splus").click(function() {
+  //   ws.send('+');
+  // });
+  // $("#sminus").click(function() {
+  //   ws.send('-');
+  // });
+  // $("#sq").click(function() {
+  //   dgear = "s";
+  // });
 });
 /*
 function downloadFile(url, success) {

@@ -20,6 +20,11 @@ header {
   top: 0;
   height: 50px;
 }
+
+button {
+  cursor: pointer;
+}
+
 #background {
   position: absolute;
   top: 0;
@@ -157,6 +162,14 @@ header button:hover > div {
   text-align: left;
   padding-left: 5px;
   margin-bottom: 5px;
+}
+
+#videoDiv #autocal {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 30px;
+  width: 100px;
 }
 
 #controlDiv {
@@ -348,31 +361,29 @@ header button:hover > div {
   text-align: right;
   color: white;
 }
-#controlDiv #small {
+
+#controlDiv #small, #controlDiv #medium, #controlDiv #large {
   position: absolute;
   width: 20px;
   height: 15px;
   top: 290px;
-  left: 90px;
   background-color: white;
   border: 0;
-  border-bottom: 5px solid grey;
+  border-bottom-style: solid;
+  border-bottom-color: grey;
+  cursor: pointer;
+}
+
+#controlDiv #small {
+  left: 90px;
+  border-bottom-width: 5px;
+  border-bottom-color: purple;
 }
 #controlDiv #medium {
-  position: absolute;
-  width: 20px;
-  height: 15px;
-  top: 290px;
   left: 112px;
-  background-color: white;
-  border: 0;
-  border-bottom: 9px solid grey;
+  border-bottom-width: 9px;
 }
 #controlDiv #large {
-  position: absolute;
-  width: 20px;
-  height: 15px;
-  top: 290px;
   left: 134px;
   background-color: grey;
   border: 0;
@@ -458,19 +469,39 @@ header button:hover > div {
   bottom: 0;
   left: 0;
 }
-#mapDiv #mapsizea {
+
+#mapDiv #mapsizelabel, #mapDiv #stepsizelabel {
+  color: white;
+  position: absolute;
+  right: 210px;
+  top: -10px;
+  height: 30px;
+  vertical-align: middle;
+}
+#mapDiv #stepsizelabel {
+  top: 20px;
+}
+
+
+#mapDiv #mapsizea, #mapDiv #mapsizeb, #mapDiv #stepsizea, #mapDiv #stepsizeb {
   position: absolute;
   width: 100px;
   height: 30px;
   top: 0;
+}
+#mapDiv #mapsizea {
   right: 100px;
 }
 #mapDiv #mapsizeb {
-  position: absolute;
-  width: 100px;
-  height: 30px;
-  top: 0;
   right: 0;
+}
+#mapDiv #stepsizea {
+  top: 30px;
+  right: 100px;
+}
+#mapDiv #stepsizeb {
+  right: 0;
+  top: 30px;
 }
 
 #imagesDiv {

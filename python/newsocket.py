@@ -91,16 +91,66 @@ class WSHandler(tornado.websocket.WebSocketHandler):
         if message.startswith('joy'):
             s.write('j' + message[3:])
 
-        if message == 'j':            ##    switches for incoming socket events
+        if message.startswith('nr'):            ##    switches for incoming socket events
             print "j"
             x = x + 1
             self.x = x
             self.write_message("echo: " + message + " right " )
             d = 'r'
-            ms = 50
+            ms = int(message[2]) * 25
             s.write('4')
-            mov = acx(s, d, ms, acu, acd, acl, acr)
-            mov.run()
+            time.sleep(1)
+            s.write('3')
+            # mov = acx(s, d, ms, acu, acd, acl, acr)
+            # mov.run()
+            irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat,sqx,sqy)
+            irpic.run()
+
+        if message =='nl': #slow CCW (nudge left)
+            print "h"
+            s.write('h')
+            x = x - 1
+            self.x = x
+            self.write_message("echo: " + message + " left" )
+            d = 'l'
+            ms = int(message[2]) * 25
+            s.write('2')
+            time.sleep(1)
+            s.write('3')
+            print "moving left"
+
+            # mov = acx(s, d, ms, acu, acd, acl, acr)
+            # mov.run()
+            irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat,sqx,sqy)
+            irpic.run()
+
+        if message =='nu':
+            print "y"
+            y = y + 1
+            self.y = y
+            self.write_message("echo: " + message + " up   ")
+            d = 'u'
+            ms = int(message[2]) * 25
+            s.write('6')
+            time.sleep(1)
+            s.write('8')
+            #mov = acx(s, d, ms, acu, acd, acl, acr)
+            #mov.run()
+            irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat,sqx,sqy)
+            irpic.run()
+
+        if message =='nd':
+            print "g"
+            y = y - 1
+            self.y = y
+            self.write_message("echo: " + message + " down   ")
+            d = 'd'
+            ms = int(message[2]) * 25
+            s.write('9')
+            time.sleep(1)
+            s.write('8')
+            #mov = acx(s, d, ms, acu, acd, acl, acr)
+            #mov.run()
             irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat,sqx,sqy)
             irpic.run()
 
@@ -140,22 +190,6 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             irpic.run()
             self.write_message("echo: " + message + " " + str(cam_mode) )
 
-        if message =='h': #slow CCW (nudge)
-            print "h"
-            s.write('h')
-            x = x - 1
-            self.x = x
-            self.write_message("echo: " + message + " left" )
-            d = 'l'
-            ms = 50
-            s.write('2')
-
-            print "moving left"
-
-            mov = acx(s, d, ms, acu, acd, acl, acr)
-            mov.run()
-            irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat,sqx,sqy)
-            irpic.run()
         if message == 'squ': #moving sighting square
             print "squ"
             sqy = self.sqy
@@ -225,37 +259,6 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             map = so(mapsize, m, js, wsh, wsh2, c2, cam_mode)               ##  make an instance of the mapper --SO stands for seek out
             self.map = map
             map.histo()                                   ##  histogram is necessary before run
-
-
-        if message =='y':
-            print "y"
-            y = y + 1
-            self.y = y
-            self.write_message("echo: " + message + " up   ")
-            d = 'u'
-            ms = 50
-            s.write('6')
-            time.sleep(1)
-            s.write('8')
-            #mov = acx(s, d, ms, acu, acd, acl, acr)
-            #mov.run()
-            irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat,sqx,sqy)
-            irpic.run()
-
-        if message =='g':
-            print "g"
-            y = y - 1
-            self.y = y
-            self.write_message("echo: " + message + " down   ")
-            d = 'd'
-            ms = 50
-            s.write('9')
-            time.sleep(1)
-            s.write('8')
-            #mov = acx(s, d, ms, acu, acd, acl, acr)
-            #mov.run()
-            irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat,sqx,sqy)
-            irpic.run()
 
         if message =='z':
             stat = "mapping down"
