@@ -29,4 +29,6 @@ echo '#!/bin/bash\nsudo python ~/ogp/python/newsocket.py' > /usr/bin/start_ogp
 chmod +x start_ogp
 sudo mv start_ogp /usr/bin/
 
+echo '#!/bin/bash\ncd ~/ogp\nsudo git pull' > /usr/bin/update
+
 echo "* Type the command start_ogp to start the backend server"
