@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd ~/ogp
+sudo git pull
+sudo rm -rf /var/www/html
+sudo mv www /var/www/html
