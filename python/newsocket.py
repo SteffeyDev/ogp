@@ -53,7 +53,7 @@ s.write('8')
 sqx = int(272)
 sqy = int(144)
 
-
+print "Ready to go, just make a connection from the web socket"
 
 class WSHandler(tornado.websocket.WebSocketHandler):
 
@@ -436,11 +436,3 @@ if __name__ == "__main__":                       ##    since this is the main mo
 # =======
 #
 # >>>>>>> FETCH_HEAD:newsocket.py
-
-print "starting serial listener"
-while True:
-    tdata = s.read()
-    time.sleep(1)
-    data_left = s.inWaiting()
-    tdata += s.read(data_left)
-    print tdata

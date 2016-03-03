@@ -14,9 +14,9 @@ echo "* Installing SimpleCV, tornado, and GPIO connections...\n"
 sudo pip install https://github.com/sightmachine/SimpleCV/zipball/master
 sudo pip install tornado
 sudo pip install RPi.GPIO
+sudo pip install svgwrite
 
-sudo rm -rf /var/www
-sudo mv ../www /var/www
+sudo mv ../www /var/www/html
 
 echo "* Testing pi camera..."
 raspistill -v -o test.jpg
