@@ -19,7 +19,7 @@ $(document).ready( function () {
   $('#imagesContainer').css({scroll: 'hidden'});
 
   var i = 1;
-  var nextImage = "ftp://pi:banjobob@192.168.42.1/images/image" + i + ".png";
+  var nextImage = "ftp://pi:raspberry@192.168.42.1/images/image" + i + ".png";
   checkImage(nextImage);
   function checkImage(src) {
     var img = new Image();

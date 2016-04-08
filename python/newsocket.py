@@ -22,6 +22,8 @@ from ogplab import *
 import ircam
 from chase2 import *
 
+print "Initializing connections, please wait..."
+
 ## some important variables
 
 s = serial.Serial('/dev/ttyUSB0', 9600)                     ## serial to arduino
@@ -53,7 +55,7 @@ s.write('8')
 sqx = int(272)
 sqy = int(144)
 
-print "Ready to go, just make a connection from the web socket"
+print "* Ready to go, just make a connection from the web socket"
 
 class WSHandler(tornado.websocket.WebSocketHandler):
 

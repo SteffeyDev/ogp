@@ -15,6 +15,6 @@ sudo raspi-config
   * Expand filesystem (if new image)
 sudo apt-get install git -y
 sudo git clone https://github.com/SteffeyDev/ogp.git
-cd ~/ogp/utilities
+cd ogp/utilities
 sudo chmod +x install.bash
 sudo ./install.bash

@@ -4,13 +4,13 @@ echo "* Getting Updates..."
 sudo apt-get update
 sudo easy_install -U distribute
 
-echo "* Installing needed python libraries..."
+echo "\n* Installing needed python libraries..."
 sudo apt-get install ipython python-serial python-opencv python-picamera python-scipy python-numpy python-setuptools python-pip -y
 
-echo "* Installing NGINX web server and arduino libraries..."
+echo "\n* Installing NGINX web server and arduino libraries..."
 sudo apt-get install nginx arduino -y
 
-echo "* Installing SimpleCV, tornado, and GPIO connections..."
+echo "\n* Installing SimpleCV, tornado, and GPIO connections..."
 sudo pip install https://github.com/sightmachine/SimpleCV/zipball/master
 sudo pip install tornado
 sudo pip install RPi.GPIO
@@ -18,13 +18,14 @@ sudo pip install svgwrite
 
 sudo mv ../www /var/www/html
 
-echo "* Testing pi camera..."
+echo "\n* Testing pi camera..."
 raspistill -v -o test.jpg
 
-echo "* If you did not see the image, please run 'sudo raspi-config' and enable the camera module."
+echo "\n* If you did not see the image, please run 'sudo raspi-config' and enable the camera module."
 
 sudo mv start_ogp /usr/bin/start_ogp
+sudo chmod +x /usr/bin/start_ogp
 
 sudo mv update /usr/bin/update
 
-echo "* Type the command start_ogp to start the backend server"
+echo "\n* Type the command start_ogp to start the backend server"
