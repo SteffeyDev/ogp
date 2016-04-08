@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cd ~/ogp
-sudo git pull
-sudo rm -rf /var/www/html
-sudo mv www /var/www/html
+cd /home/pi/ogp
+git stash save --keep-index
+git pull
+sudo rm -rf /var/www/
+sudo cp -R www /var/www

@@ -27,5 +27,6 @@ sudo mv start_ogp /usr/bin/start_ogp
 sudo chmod +x /usr/bin/start_ogp
 
 sudo mv update /usr/bin/update
+sudo chmod +x /usr/bin/update
 
 echo "\n* Type the command start_ogp to start the backend server"
