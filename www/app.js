@@ -6,6 +6,8 @@ var joystick = false;
 var joyx = 3;
 var joyy = 3;
 
+var ip = "192.168.2.9";
+
 $(document).ready( function () {
   $(window).resize(updateSizes());
   window.onresize = updateSizes;
@@ -19,7 +21,7 @@ $(document).ready( function () {
   $('#imagesContainer').css({scroll: 'hidden'});
 
   var i = 1;
-  var nextImage = "ftp://pi:raspberry@192.168.42.1/images/image" + i + ".png";
+  var nextImage = "ftp://pi:raspberry@" + ip + "/images/image" + i + ".png";
   checkImage(nextImage);
   function checkImage(src) {
     var img = new Image();
@@ -28,7 +30,7 @@ $(document).ready( function () {
         images += "<img id=\"" + i + "\" src=\"" + src + "\"></img>";
         $('#imagesContainer').html(images);
         i++;
-        var nextImage = "ftp://pi:banjobob@192.168.42.1/images/image" + i + ".png";
+        var nextImage = "ftp://pi:banjobob@" + ip + "/images/image" + i + ".png";
         checkImage(nextImage)
     };
     img.onerror = function() {
@@ -253,7 +255,7 @@ $(function() {
     $("#msg").val(msg);
   }
 
-  ws = new WebSocket("ws://192.168.42.1:8888/ws");
+  ws = new WebSocket("ws://" + ip + ":8888/ws");
   ws.onmessage = function(evt) {
     logger(evt.data);
   };
