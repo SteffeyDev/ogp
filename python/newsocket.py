@@ -36,7 +36,7 @@ js = SimpleCV.JpegStreamer('0.0.0.0:8080')                        ## opens socke
 sleep(4)                                               ## strategic buffering, possibly unnecessary
 c2.getImage().save(js.framebuffer)                 ## push a jpeg to the jpeg socket
 
-cam_mode = int(3)
+cam_mode = int(1)
 
 ##autocalibration
 acu = int(1)
@@ -105,14 +105,14 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             d = 'r'
             ms = int(message[2]) * 25
             s.write('4')
-            sleep(1)
+            sleep(0.5 * int(message[2]))
             s.write('3')
             # mov = acx(s, d, ms, acu, acd, acl, acr)
             # mov.run()
             irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat,sqx,sqy)
             irpic.run()
 
-        if message =='nl': #slow CCW (nudge left)
+        if message.startswith('nl'): #slow CCW (nudge left)
             print "h"
             s.write('h')
             x = x - 1
@@ -121,7 +121,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             d = 'l'
             ms = int(message[2]) * 25
             s.write('2')
-            sleep(1)
+            sleep(0.5 * int(message[2]))
             s.write('3')
             print "moving left"
 
@@ -130,7 +130,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat,sqx,sqy)
             irpic.run()
 
-        if message =='nu':
+        if message.startswith('nu'):
             print "y"
             y = y + 1
             self.y = y
@@ -138,14 +138,14 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             d = 'u'
             ms = int(message[2]) * 25
             s.write('6')
-            sleep(1)
+            sleep(0.5 * int(message[2]))
             s.write('8')
             #mov = acx(s, d, ms, acu, acd, acl, acr)
             #mov.run()
             irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat,sqx,sqy)
             irpic.run()
 
-        if message =='nd':
+        if message.startswith('nd'):
             print "g"
             y = y - 1
             self.y = y
@@ -153,7 +153,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             d = 'd'
             ms = int(message[2]) * 25
             s.write('9')
-            sleep(1)
+            sleep(0.5 * int(message[2]))
             s.write('8')
             #mov = acx(s, d, ms, acu, acd, acl, acr)
             #mov.run()

@@ -23,10 +23,7 @@ class pinoir2(object):
         js = self.js
         print cam_mode
         if cam_mode == 1: #spotter
-            with picamera.PiCamera() as camera:
-                camera.resolution = (544, 288)
-                camera.capture('imagesmall.jpg')
-            img1 = Image('imagesmall.jpg')
+            img1 = c2.getImage()
             img1.save(js.framebuffer)
         if cam_mode == 2: #main
             with picamera.PiCamera() as camera:
@@ -49,10 +46,11 @@ class pinoir2(object):
         js = self.js
         print cam_mode
         if cam_mode == 1: #spotter
-            with picamera.PiCamera() as camera:
-                camera.resolution = (544, 288)
-                camera.capture('imagesmall.jpg')
-            img1 = Image('imagesmall.jpg')
+            #with picamera.PiCamera() as camera:
+            #    camera.resolution = (544, 288)
+            #    camera.capture('imagesmall.jpg')
+            img1 = c2.getImage()
+            #img1 = Image('imagesmall.jpg')
             self.img1 = img1
             blobs = img1.findBlobs()
             if blobs:
