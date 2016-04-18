@@ -27,14 +27,13 @@ class pinoir2(object):
                 camera.resolution = (544, 288)
                 camera.capture('imagesmall.jpg')
             img1 = Image('imagesmall.jpg')
-            self.img1 = img1
+            img1.save(js.framebuffer)
         if cam_mode == 2: #main
             with picamera.PiCamera() as camera:
                 camera.resolution = (2600, 1900)
                 camera.capture('/var/www/imagebig.jpg')
             img1 = Image('/var/www/imagebig.jpg')
-            self.img1 = img1
-        self.img1.save(js.framebuffer)
+            img1.save(js.framebuffer)
 
     def run(self):
         stat = self.stat

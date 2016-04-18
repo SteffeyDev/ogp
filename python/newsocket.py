@@ -14,11 +14,11 @@ import tornado.httpserver
 import tornado.websocket
 import tornado.ioloop
 import tornado.web
-import time
+from time import sleep
 import serial
 import picamera
 from SimpleCV import *
-import os
+from os import path
 ## our library
 from ogplab import *
 import ircam
@@ -33,7 +33,7 @@ s = serial.Serial('/dev/ttyUSB0', 9600)                     ## serial to arduino
 c2 = SimpleCV.Camera(0,{ "width": 544, "height": 288 })          ## opens a camera
 #c = SimpleCV.Camera(1,{ "width": 544, "height": 288 })           ## or two
 js = SimpleCV.JpegStreamer('0.0.0.0:8080')                        ## opens socket for jpeg out
-time.sleep(4)                                               ## strategic buffering, possibly unnecessary
+sleep(4)                                               ## strategic buffering, possibly unnecessary
 c2.getImage().save(js.framebuffer)                 ## push a jpeg to the jpeg socket
 
 cam_mode = int(3)
@@ -105,7 +105,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             d = 'r'
             ms = int(message[2]) * 25
             s.write('4')
-            time.sleep(1)
+            sleep(1)
             s.write('3')
             # mov = acx(s, d, ms, acu, acd, acl, acr)
             # mov.run()
@@ -121,7 +121,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             d = 'l'
             ms = int(message[2]) * 25
             s.write('2')
-            time.sleep(1)
+            sleep(1)
             s.write('3')
             print "moving left"
 
@@ -138,7 +138,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             d = 'u'
             ms = int(message[2]) * 25
             s.write('6')
-            time.sleep(1)
+            sleep(1)
             s.write('8')
             #mov = acx(s, d, ms, acu, acd, acl, acr)
             #mov.run()
@@ -153,7 +153,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             d = 'd'
             ms = int(message[2]) * 25
             s.write('9')
-            time.sleep(1)
+            sleep(1)
             s.write('8')
             #mov = acx(s, d, ms, acu, acd, acl, acr)
             #mov.run()
@@ -360,7 +360,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             pth1 = "/var/www/images/image"
             pth3 = ".png"
             pth = pth1 + str(showimage) + pth3
-            apath = os.path.abspath(pth)
+            apath = path.abspath(pth)
             self.write_message(pth)
             print showimage
             img1 = Image(pth)
@@ -373,7 +373,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             pth1 = "/var/www/images/image"
             pth3 = ".png"
             pth = pth1 + str(showimage) + pth3
-            apath = os.path.abspath(pth)
+            apath = path.abspath(pth)
             self.write_message(pth)
             print showimage
             img1 = Image(pth)
@@ -383,13 +383,13 @@ class WSHandler(tornado.websocket.WebSocketHandler):
         if message =='t':
             print "t"
             s.write('t')
-            time.sleep(1)
+            sleep(1)
             s.write('c')
             self.write_message("echo: " + message + " focus out")
         if message =='f':
             print "f"
             s.write('f')
-            time.sleep(1)
+            sleep(1)
             s.write('c')
 
             self.write_message("echo: " + message + " focus in")
