@@ -1,6 +1,7 @@
 #!/bin/bash
 
 cd /home/pi/ogp
+sudo chown -R pi:pi .
 git stash save --keep-index
 git pull
 sudo rm -rf /var/www/
