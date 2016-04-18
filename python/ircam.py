@@ -19,6 +19,8 @@ class pinoir2(object):
         self.sqy=sqy
 
     def update(self):
+        cam_mode = self.cam_mode
+        js = self.js
         print cam_mode
         if cam_mode == 1: #spotter
             with picamera.PiCamera() as camera:
