@@ -271,8 +271,8 @@ $(function() {
 
   $(document).mousemove(function() {
     if (joystick == true) {
-      console.log(($('#joystickBubble').position().left - 57.5) + " ~ " + (($('#joystickBubble').position().top - 57.5) * -1));
-      ws.send('joy' + round((($('#joystickBubble').position().left - 57.5)/20)+3) + '' + round(((($('#joystickBubble').position().top - 57.5) * -1)/20)+3));
+      //console.log(($('#joystickBubble').position().left - 57.5) + " ~ " + (($('#joystickBubble').position().top - 57.5) * -1));
+      //ws.send('joy' + Math.round((($('#joystickBubble').position().left - 57.5)/20)+3) + '' + round(((($('#joystickBubble').position().top - 57.5) * -1)/20)+3));
       var x = Math.round((($('#joystickBubble').position().left - 57.5)/20)+3);
       var y = Math.round(((($('#joystickBubble').position().top - 57.5) * -1)/20)+3);
       console.log('joy' + joyx + '' + joyy);
