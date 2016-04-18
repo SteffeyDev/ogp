@@ -18,3 +18,5 @@ sudo git clone https://github.com/SteffeyDev/ogp.git
 cd ogp/utilities
 sudo chmod +x install.bash
 sudo ./install.bash
+
+Changing IP Address: The IP Address has to be changed at the top of app.js and in the <frame> in index.html

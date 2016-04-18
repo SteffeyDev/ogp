@@ -425,6 +425,9 @@ class WSHandler(tornado.websocket.WebSocketHandler):
     def on_close(self):                       ##  if you lose the socket
         print 'Connection was closed...'
 
+    def check_origin(self, origin):
+        return True
+
 application = tornado.web.Application([        ##creates instance of socket
     (r'/ws', WSHandler),
 ])
