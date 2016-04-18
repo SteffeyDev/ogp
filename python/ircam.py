@@ -21,11 +21,12 @@ class pinoir2(object):
     def update(self):
         cam_mode = self.cam_mode
         js = self.js
+        c2 = self.c2
         print cam_mode
         if cam_mode == 1: #spotter
             img1 = c2.getImage()
             img1.save(js.framebuffer)
-        if cam_mode == 2: #main
+        elif cam_mode == 2: #main
             with picamera.PiCamera() as camera:
                 camera.resolution = (2600, 1900)
                 camera.capture('/var/www/imagebig.jpg')
