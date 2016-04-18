@@ -8,6 +8,8 @@
 
 ## LIBRARIES
 
+print "Loading modules..."
+
 import tornado.httpserver
 import tornado.websocket
 import tornado.ioloop
@@ -93,7 +95,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
         if message.startswith('joy'):
             s.write('j' + message[3:])
             irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat,sqx,sqy)
-            irpic.run()
+            irpic.update()
 
         if message.startswith('nr'):            ##    switches for incoming socket events
             print "j"
