@@ -103,9 +103,9 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             s.write('j' + message[3:])
             irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat,sqx,sqy)
             irpic.update()
-            if self.update_thread.isAlive() and message == "joy33":
+            if hasattr(self, "update_thread") and self.update_thread.isAlive() and message == "joy33":
                 self.update_thread.stop()
-            elif not self.update_thread.isAlive() and message != "joy33":
+            elif ((hasattr(self, "update_thread") and not self.update_thread.isAlive()) or not hasattr(self, "update_thread")) and message != "joy33":
                 update_thread = threading.Thread(target=function_that_downloads)
                 update_thread.start()
                 self.update_thread = update_thread
