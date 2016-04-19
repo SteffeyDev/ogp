@@ -102,13 +102,19 @@ class WSHandler(tornado.websocket.WebSocketHandler):
         if message.startswith('joy'):
             s.write('j' + message[3:])
             irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat,sqx,sqy)
-            irpic.update()
-            if hasattr(self, "update_thread") and self.update_thread.isAlive() and message == "joy33":
-                self.update_thread.stop()
-            elif ((hasattr(self, "update_thread") and not self.update_thread.isAlive()) or not hasattr(self, "update_thread")) and message != "joy33":
-                update_thread = threading.Thread(target=function_that_downloads)
-                update_thread.start()
-                self.update_thread = update_thread
+            if (message == 'joy33') {
+                irpic.run()
+            }
+            else {
+                irpic.update()
+            }
+
+            # if hasattr(self, "update_thread") and self.update_thread.isAlive() and message == "joy33":
+            #     self.update_thread.stop()
+            # elif ((hasattr(self, "update_thread") and not self.update_thread.isAlive()) or not hasattr(self, "update_thread")) and message != "joy33":
+            #     update_thread = threading.Thread(target=function_that_downloads)
+            #     update_thread.start()
+            #     self.update_thread = update_thread
 
         if message.startswith('nr'):            ##    switches for incoming socket events
             print "j"

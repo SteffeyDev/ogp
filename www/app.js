@@ -269,6 +269,14 @@ $(function() {
 
   };
 
+  var joyCountdown = function(x, y) {
+    if (joystick == true && joyx == x && joyy == y) {
+      setTimeout(function() {
+        joyCountdown(x, y);
+      }, 200);
+    }
+  }
+
   $(document).mousemove(function() {
     if (joystick == true) {
       //console.log(($('#joystickBubble').position().left - 57.5) + " ~ " + (($('#joystickBubble').position().top - 57.5) * -1));
@@ -281,6 +289,7 @@ $(function() {
         joyy = y;
         ws.send('joy' + joyx + '' + joyy);
         console.log('joy' + joyx + '' + joyy);
+        joyCountdown(x, y);
       }
     }
   });
