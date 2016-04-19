@@ -10,11 +10,32 @@
 
 print "Loading modules..."
 
+from time import sleep
+import threading
+
+def animateLoading:
+    def animation(counter, length):
+        stage = counter % (length * 2 + 2)
+        if stage < length + 1:
+            left_spaces = stage
+        else:
+            left_spaces = length * 2 - 1 - stage
+        return '[' + ' ' * left_spaces + '=' + ' ' * (length - left_spaces) + ']'
+
+    for i in range(100):
+        sys.stdout.write('\b\b\b')
+        sys.stdout.write(animation(i, 6))
+        sys.stdout.flush()
+        time.sleep(0.2)
+
+loading_thread = threading.Thread(target=animateLoading)
+loading_thread.start()
+
 import tornado.httpserver
 import tornado.websocket
 import tornado.ioloop
 import tornado.web
-from time import sleep
+
 import serial
 import picamera
 from SimpleCV import *
@@ -23,7 +44,9 @@ from os import path
 from ogplab import *
 import ircam
 from chase2 import *
-import threading
+
+loading_thread.stop()
+
 
 print "Initializing connections, please wait..."
 
