@@ -101,11 +101,11 @@ class WSHandler(tornado.websocket.WebSocketHandler):
         self.sqx = sqx
         self.sqy = sqy
 
-    def function_that_downloads():
-        while True:
-            sleep(0.2)
-            irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat,sqx,sqy)
-            irpic.update()
+    # def function_that_downloads():
+    #     while True:
+    #         sleep(0.2)
+    #         irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat,sqx,sqy)
+    #         irpic.update()
 
     def on_message(self, message):
 
