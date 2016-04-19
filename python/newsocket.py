@@ -12,21 +12,26 @@ print "Loading modules..."
 
 from time import sleep
 import threading
+import sys
 
-def animateLoading:
+stopLoading = False
+
+def animateLoading():
     def animation(counter, length):
         stage = counter % (length * 2 + 2)
         if stage < length + 1:
             left_spaces = stage
         else:
             left_spaces = length * 2 - 1 - stage
-        return '[' + ' ' * left_spaces + '=' + ' ' * (length - left_spaces) + ']'
+        return '[' + (' ' * left_spaces) + '=' + (' ' * (length - left_spaces)) + ']'
 
-    for i in range(100):
-        sys.stdout.write('\b\b\b')
+    i = 0
+    while stopLoading == False:
+        sys.stdout.write('\b\b\b\b\b\b\b\b\b')
         sys.stdout.write(animation(i, 6))
         sys.stdout.flush()
-        time.sleep(0.2)
+        sleep(0.2)
+        i = i + 1
 
 loading_thread = threading.Thread(target=animateLoading)
 loading_thread.start()
@@ -45,7 +50,7 @@ from ogplab import *
 import ircam
 from chase2 import *
 
-loading_thread.stop()
+stopLoading = True
 
 
 print "Initializing connections, please wait..."
@@ -125,12 +130,11 @@ class WSHandler(tornado.websocket.WebSocketHandler):
         if message.startswith('joy'):
             s.write('j' + message[3:])
             irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat,sqx,sqy)
-            if (message == 'joy33') {
+            if message == 'joy33':
                 irpic.run()
-            }
-            else {
+            else:
                 irpic.update()
-            }
+
 
             # if hasattr(self, "update_thread") and self.update_thread.isAlive() and message == "joy33":
             #     self.update_thread.stop()

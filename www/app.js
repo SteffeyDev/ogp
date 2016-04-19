@@ -270,7 +270,9 @@ $(function() {
   };
 
   var joyCountdown = function(x, y) {
-    if (joystick == true && joyx == x && joyy == y) {
+    console.log("Joy Repeat");
+    if (joystick == true && joyx == x && joyy == y && (x != 3 || y != 3)) {
+      ws.send('joy' + x + '' + y);
       setTimeout(function() {
         joyCountdown(x, y);
       }, 200);
@@ -282,7 +284,7 @@ $(function() {
       //console.log(($('#joystickBubble').position().left - 57.5) + " ~ " + (($('#joystickBubble').position().top - 57.5) * -1));
       //ws.send('joy' + Math.round((($('#joystickBubble').position().left - 57.5)/20)+3) + '' + round(((($('#joystickBubble').position().top - 57.5) * -1)/20)+3));
       var x = Math.round((($('#joystickBubble').position().left - 57.5)/20)+3);
-      var y = Math.round(((($('#joystickBubble').position().top - 57.5) * -1)/20)+3);
+      var y = 6 - Math.round(((($('#joystickBubble').position().top - 57.5) * -1)/20)+3);
       console.log('joy' + joyx + '' + joyy);
       if (x != joyx || y != joyy) {
         joyx = x;
