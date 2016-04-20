@@ -85,7 +85,7 @@ header button:hover > div {
   left: 10px;
   border-width: 2px;
   border-style: line;
-  background-color: yellow;
+  background-color: transparent;
 }
 #videoDiv iframe {
   position: absolute;
