@@ -134,7 +134,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
         if message.startswith("uc"):
             cameraWidth = int(message[2:])
             self.scaleWidth = cameraWidth
-            print "Changing scale factor to " + self.scaleWidth
+            print "Changing scale factor to " + str(self.scaleWidth)
 
         if message.startswith('joy'):
             s.write('j' + message[3:])
