@@ -84,6 +84,10 @@ sqy = int(144)
 
 print "* Ready to go, just make a connection from the web socket"
 
+def actuallyRunCamera(js, cam_mode, c2, x, y, z, stat, sqx, sqy, scaleWidth):
+    irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat, sqx, sqy, scaleWidth)
+    irpic.run()
+
 class WSHandler(tornado.websocket.WebSocketHandler):
 
     def open(self):
@@ -108,12 +112,10 @@ class WSHandler(tornado.websocket.WebSocketHandler):
     #         sleep(0.2)
     #             #         irpic.update()
 
-    def actuallyRunCamera():
-        irpic = ircam.pinoir2(js, self.cam_mode, c2, self.x, self.y, self.z, stat, self.sqx, self.sqy, self.scaleWidth)
-        irpic.run()
+
 
     def runCamera(self):
-        update_thread = threading.Thread(target=actuallyRunCamera)
+        update_thread = threading.Thread(target=actuallyRunCamera, args=(js, self.cam_mode, c2, self.x, self.y, self.z, stat, self.sqx, self.sqy, self.scaleWidth))
         update_thread.start()
 
     def updateCamera(self):
