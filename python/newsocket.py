@@ -17,10 +17,10 @@ import sys
 stopLoading = False
 
 from itertools import cycle
-animation = cycle('[=      ]', '[ =     ]', '[  =    ]', '[   =   ]',
+animation = cycle(['[=      ]', '[ =     ]', '[  =    ]', '[   =   ]',
                   '[    =  ]', '[     = ]', '[      =]', '[      =]',
                   '[     = ]', '[    =  ]', '[   =   ]', '[  =    ]',
-                  '[ =     ]', '[=      ]')
+                  '[ =     ]', '[=      ]'])
 # alternatively:
 # animation = cycle('[' + ' ' * n + '=' + ' ' * (6 - n) + ']'
 #                   for n in range(7) + range(6, -1, -1))
