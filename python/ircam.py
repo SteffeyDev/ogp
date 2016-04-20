@@ -23,6 +23,7 @@ class pinoir2(object):
         cam_mode = self.cam_mode
         js = self.js
         c2 = self.c2
+        print "scale: " + str(self.scale)
         print cam_mode
         if cam_mode == 1: #spotter
             img1 = c2.getImage()
