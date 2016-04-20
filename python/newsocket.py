@@ -16,22 +16,29 @@ import sys
 
 stopLoading = False
 
-def animateLoading():
-    def animation(counter, length):
-        stage = counter % (length * 2 + 2)
-        if stage < length + 1:
-            left_spaces = stage
-        else:
-            left_spaces = length * 2 - 1 - stage
-        return '[' + (' ' * left_spaces) + '=' + (' ' * (length - left_spaces)) + ']'
+from itertools import cycle
+animation = cycle('[=      ]', '[ =     ]', '[  =    ]', '[   =   ]',
+                  '[    =  ]', '[     = ]', '[      =]', '[      =]',
+                  '[     = ]', '[    =  ]', '[   =   ]', '[  =    ]',
+                  '[ =     ]', '[=      ]')
+# alternatively:
+# animation = cycle('[' + ' ' * n + '=' + ' ' * (6 - n) + ']'
+#                   for n in range(7) + range(6, -1, -1))
 
-    i = 0
+def animateLoading():
+    # def animation(counter, length):
+    #     stage = counter % (length * 2 + 2)
+    #     if stage < length + 1:
+    #         left_spaces = stage
+    #     else:
+    #         left_spaces = length * 2 - 1 - stage
+    #     return '[' + (' ' * left_spaces) + '=' + (' ' * (length - left_spaces)) + ']'
+
     while stopLoading == False:
         sys.stdout.write('\b\b\b\b\b\b\b\b\b')
-        sys.stdout.write(animation(i, 6))
+        sys.stdout.write(animation.next())
         sys.stdout.flush()
         sleep(0.2)
-        i = i + 1
 
 loading_thread = threading.Thread(target=animateLoading)
 loading_thread.start()

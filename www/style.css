@@ -549,125 +549,34 @@ header button:hover > div {
   height: 100px;
 }
 
-/*
-  #up {
-    height: 5em;
-    width: 181px;
-    background-color: transparent;
-    font-size: 80%;
-    font-weight: bold;
-    color: #ffffff;
-  }
-  #down {
-    height: 5em;
-    width: 181px;
-    background-color: transparent;
-    font-size: 80%;
-    font-weight: bold;
-    color: #ffffff;
-  }
-  #left {
-    height: 288px;
-    width: 145px;
-    background-color: transparent;
-    font-weight: bold;
-    color: #ffffff;
-  }
-  #right {
-    height: 288px;
-    width: 145px;
-    background-color: transparent;
-    font-weight: bold;
-    color: #ffffff;
-  }
-  input.stepsize {
-    height: 5em;
-    width: 100px;
-    background-color: transparent;
-    font-size: 80%;
-    font-weight: bold;
-    color: #ffffff;
-  }
-  input.up2 {
-    height: 5em;
-    width: 177px;
-    background-color: transparent;
-    font-size: 80%;
-    font-weight: bold;
-    color: #ffffff;
-  }
-  input.pic1 {
-    height: 5em;
-    width: 145px;
-    background-color: transparent;
-    font-size: 80%;
-    font-weight: bold;
-    color: #ffffff;
-  }
-  input.stop1 {
-    height: 5em;
-    width: 145px;
-    background-color: transparent;
-    font-size: 80%;
-    font-weight: bold;
-    color: #ffffff;
-  }
-  input.stop2 {
-    height: 5em;
-    width: 145px;
-    background-color: red;
-    font-size: 80%;
-    font-weight: bold;
-    color: #ffffff;
-  }
-  div.centre {
-    background-image: url('ogp2gui.jpg');
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    max-height: 3000px;
-    max-width: 850px;
-    min-width: 850px;
-    min-height: 600px;
-  }
-  input.padbutton {
-    width: 80px;
-    color: white;
-    height: 100px;
-  }
-  input.padbutton2 {
-    width: 100px;
-    color: black;
-    height: 100px;
-    background-color: red;
-  }
-  input.padbutton3 {
-    width: 80px;
-    color: white;
-    height: 30px;
-  }
-  input.padbutton6 {
-    width: 80px;
-    color: white;
-    height: 100px;
-    background-color: yellow;
-  }
-  div.log {
-    box-shadow: 0px 0px 0px 0px;
-    height: 120px;
-  }
-  input.padbutton4 {
-    width: 100px;
-    color: white;
-    height: 30px;
-  }
-  div.bottom {
-    max-height: 250px;
-    columns: 200px 3;
-    -webkit-columns: 200px 3;
-    z-index: 0;
-  }
-  */
+.wrap
+{
+    width: 320px;
+    height: 192px;
+    padding: 0;
+    overflow: hidden;
+}
+
+.frame
+{
+    width: 1280px;
+    height: 786px;
+    border: 0;
+
+    -ms-transform: scale(1);
+    -moz-transform: scale(1);
+    -o-transform: scale(1);
+    -webkit-transform: scale(1);
+    transform: scale(1);
+
+    -ms-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    -o-transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+
+
   body {
     text-align: center;
     background-image: url("background_image3.jpg");
