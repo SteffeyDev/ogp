@@ -6,7 +6,7 @@ from fractions import Fraction
 ##js = SimpleCV.JpegStreamer('0.0.0.0:8080')                        ## opens socket for jpeg out
 
 class pinoir2(object):
-    def __init__(self, js, cam_mode, c2, x, y, z, stat, sqx,sqy):
+    def __init__(self, js, cam_mode, c2, x, y, z, stat, sqx, sqy, scale):
         self.js = js
         self.cam_mode = cam_mode
         self.c2 =c2
@@ -17,6 +17,7 @@ class pinoir2(object):
         self.z = z
         self.sqx=sqx
         self.sqy=sqy
+        self.scale=scale
 
     def update(self):
         cam_mode = self.cam_mode
@@ -31,6 +32,7 @@ class pinoir2(object):
                 camera.resolution = (2600, 1900)
                 camera.capture('/var/www/imagebig.jpg')
             img1 = Image('/var/www/imagebig.jpg')
+            img1.scale(self.scale, self.scale * 0.53)
             img1.save(js.framebuffer)
 
     def run(self):
@@ -99,6 +101,7 @@ class pinoir2(object):
             img1.drawText(str(x), 10, 70, color=(255,255,255), fontsize=25)
             img1.drawText(str(y), 10, 100, color=(255,255,255), fontsize=25)
             img1.drawText(str(z), 10, 230, color=(255,255,255), fontsize=15)
+            img1.scale(self.scale, self.scale * 0.53)
             img1.save(js.framebuffer)
 
         if cam_mode == 3: #capture
@@ -118,6 +121,7 @@ class pinoir2(object):
 
             img1.drawRectangle(sqx,sqy,25, 25,color=(255,255,255))
             img1.drawText(str(z), 10, 230, color=(255,255,255), fontsize=15)
+            img1.scale(self.scale, self.scale * 0.53)
             img1.save(js.framebuffer)
 
         if cam_mode == 4: #long capture
@@ -155,6 +159,7 @@ class pinoir2(object):
             img1.drawText(str(x), 10, 70, color=(255,255,255), fontsize=25)
             img1.drawText(str(y), 10, 100, color=(255,255,255), fontsize=25)
             img1.drawText(str(z), 10, 230, color=(255,255,255), fontsize=15)
+            img1.scale(self.scale, self.scale * 0.53)
             img1.save(js.framebuffer)
 
         else:
