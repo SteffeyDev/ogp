@@ -114,25 +114,28 @@ $(document).ready( function () {
 function updateSizes() {
   if (mode == 0 || mode == 5) {
     var extraSpace = window.innerWidth - 220;
-    if (ws != null) {
-      ws.send("uc"+extraSpace.toString());
-    }
+
 
 
     if (((extraSpace * 0.643) + 80) < window.innerHeight) {
-      $("#videoDiv").css({width: extraSpace, height: (extraSpace * 0.643)});
+      $("#videoDiv").css({width: extraSpace, height: ((extraSpace * 0.53) + 30)});
       if (mode == 0) { $("#videoDiv").css({left: 10}); $("#controlDiv").css({right: 10});}
       $("#videoDiv iframe").width(extraSpace);
-      $("#videoDiv iframe").height(extraSpace * 0.5294);
-
+      $("#videoDiv iframe").height(extraSpace * 0.53);
+      if (ws != null) {
+        ws.send("uc"+extraSpace.toString());
+      }
     }
     else {
       extraSpace = window.innerWidth - 200 - $("#videoDiv iframe").width();
-      $("#videoDiv").css({height: window.innerHeight - 80, width: (window.innerHeight - 60) * 1.554});
+      $("#videoDiv").css({height: window.innerHeight - 80, width: (window.innerHeight - 110) * 1.93});
       if (mode == 0) { $("#videoDiv").css({left: ((extraSpace / 2) + 10)}); $("#controlDiv").css({right: (extraSpace / 2)});}
 
-      $("#videoDiv iframe").width((window.innerHeight - 60) * 1.554);
-      $("#videoDiv iframe").height($("#videoDiv iframe").width() * 0.5294);
+      $("#videoDiv iframe").width((window.innerHeight - 80) * 1.93);
+      $("#videoDiv iframe").height($("#videoDiv iframe").width() * 0.53 + 30);
+      if (ws != null) {
+        ws.send("uc"+$("#videoDiv iframe").width().toString());
+      }
     }
     $("#mapDiv").css({left: window.innerWidth + 10});
   }
