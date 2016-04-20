@@ -107,13 +107,6 @@ class WSHandler(tornado.websocket.WebSocketHandler):
         self.sqy = sqy
         self.scaleWidth = 544
 
-    # def function_that_downloads():
-    #     while True:
-    #         sleep(0.2)
-    #             #         irpic.update()
-
-
-
     def runCamera(self):
         update_thread = threading.Thread(target=actuallyRunCamera, args=(js, self.cam_mode, c2, self.x, self.y, self.z, stat, self.sqx, self.sqy, self.scaleWidth))
         update_thread.start()
@@ -145,7 +138,8 @@ class WSHandler(tornado.websocket.WebSocketHandler):
         if message.startswith('joy'):
             s.write('j' + message[3:])
             if message == 'joy33':
-                self.updateCamera()
+                irpic = ircam.pinoir2(js, self.cam_mode, c2, 0, 0, 0, "", 0, 0, self.scaleWidth)
+                irpic.update()
             else:
                 self.runCamera()
 
