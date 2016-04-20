@@ -110,7 +110,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 
     def runCamera():
         irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat,sqx,sqy, self.scaleWidth)
-        runCamera()
+        irpic.run()
 
     def updateCamera():
         irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat,sqx,sqy, self.scaleWidth)
@@ -139,9 +139,9 @@ class WSHandler(tornado.websocket.WebSocketHandler):
         if message.startswith('joy'):
             s.write('j' + message[3:])
             if message == 'joy33':
-                updateCamera()
+                self.updateCamera()
             else:
-                runCamera()
+                self.runCamera()
 
         if message.startswith('nr'):            ##    switches for incoming socket events
             print "j"
@@ -172,7 +172,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 
             # mov = acx(s, d, ms, acu, acd, acl, acr)
             # mov.run()
-            runCamera()
+            self.runCamera()
 
         if message.startswith('nu'):
             print "y"
@@ -186,7 +186,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             s.write('8')
             #mov = acx(s, d, ms, acu, acd, acl, acr)
             #mov.run()
-            runCamera()
+            self.runCamera()
 
         if message.startswith('nd'):
             print "g"
@@ -200,7 +200,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             s.write('8')
             #mov = acx(s, d, ms, acu, acd, acl, acr)
             #mov.run()
-            runCamera()
+            self.runCamera()
 
         if message =='c3': #capture
             cam_mode = 3
@@ -227,13 +227,13 @@ class WSHandler(tornado.websocket.WebSocketHandler):
         if message =='c2': #main
             cam_mode = 2
             self.cam_mode = cam_mode
-            runCamera()
+            self.runCamera()
             self.write_message("echo: " + message + " " + str(cam_mode) )
 
         if message =='c1': #spotter
             cam_mode = 1
             self.cam_mode = cam_mode
-            runCamera()
+            self.runCamera()
             self.write_message("echo: " + message + " " + str(cam_mode) )
 
         if message == 'squ': #moving sighting square
@@ -317,7 +317,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             s.write('9')
             mov = acx(s, d, ms, acu, acd, acl, acr)
             mov.run()
-            runCamera()
+            self.runCamera()
 
         if message =='a':
             stat = "mapping left"
@@ -330,7 +330,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             s.write('2')
             mov = acx(s, d, ms, acu, acd, acl, acr)
             mov.run()
-            runCamera()
+            self.runCamera()
 
         if message =='w':
             stat = "mapping up"
@@ -343,7 +343,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             s.write('6')
             mov = acx(s, d, ms, acu, acd, acl, acr)
             mov.run()
-            runCamera()
+            self.runCamera()
 
         if message =='s':
             stat = "mapping right"
@@ -356,7 +356,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             s.write('4')
             mov = acx(s, d, ms, acu, acd, acl, acr)
             mov.run()
-            runCamera()
+            self.runCamera()
 
         if message =='b':           ## MAPPER
             print "b"
@@ -441,7 +441,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             print "All Stop, Capturing New Image"
             s.write('j33')
             self.write_message("echo: " + message + "3")
-            runCamera()
+            self.runCamera()
 
         if message =='4':
             print "4"
