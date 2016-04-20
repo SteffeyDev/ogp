@@ -26,14 +26,14 @@ class pinoir2(object):
         print cam_mode
         if cam_mode == 1: #spotter
             img1 = c2.getImage()
-            img1.scale(self.scale, self.scale * 0.53)
+            img1.scale(self.scale, int(self.scale * 0.53))
             img1.save(js.framebuffer)
         elif cam_mode == 2: #main
             with picamera.PiCamera() as camera:
                 camera.resolution = (2600, 1900)
                 camera.capture('/var/www/imagebig.jpg')
             img1 = Image('/var/www/imagebig.jpg')
-            img1.scale(self.scale, self.scale * 0.53)
+            img1.scale(self.scale, int(self.scale * 0.53))
             img1.save(js.framebuffer)
 
     def run(self):
