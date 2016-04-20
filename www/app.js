@@ -114,6 +114,7 @@ $(document).ready( function () {
 function updateSizes() {
   if (mode == 0 || mode == 5) {
     var extraSpace = window.innerWidth - 220;
+    ws.send("uc"+extraSpace.toString());
 
     if (((extraSpace * 0.643) + 80) < window.innerHeight) {
       $("#videoDiv").css({width: extraSpace, height: (extraSpace * 0.643)});

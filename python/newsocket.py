@@ -21,19 +21,8 @@ animation = cycle(['[=      ]', '[ =     ]', '[  =    ]', '[   =   ]',
                   '[    =  ]', '[     = ]', '[      =]', '[      =]',
                   '[     = ]', '[    =  ]', '[   =   ]', '[  =    ]',
                   '[ =     ]', '[=      ]'])
-# alternatively:
-# animation = cycle('[' + ' ' * n + '=' + ' ' * (6 - n) + ']'
-#                   for n in range(7) + range(6, -1, -1))
 
 def animateLoading():
-    # def animation(counter, length):
-    #     stage = counter % (length * 2 + 2)
-    #     if stage < length + 1:
-    #         left_spaces = stage
-    #     else:
-    #         left_spaces = length * 2 - 1 - stage
-    #     return '[' + (' ' * left_spaces) + '=' + (' ' * (length - left_spaces)) + ']'
-
     while stopLoading == False:
         sys.stdout.write('\b\b\b\b\b\b\b\b\b')
         sys.stdout.write(animation.next())
@@ -60,7 +49,7 @@ from chase2 import *
 stopLoading = True
 
 
-print "Initializing connections, please wait..."
+print "\nInitializing connections, please wait..."
 
 ## some important variables
 
@@ -133,6 +122,11 @@ class WSHandler(tornado.websocket.WebSocketHandler):
         sqy=self.sqy
 
         cam_mode = self.cam_mode
+
+        if message.startswith("uc"):
+            cameraWidth = int(message[2:])
+            cameraHeight = cameraWidth * 0.53
+            c2 = SimpleCV.Camera(0,{ "width": cameraWidth, "height": cameraHeight }) 
 
         if message.startswith('joy'):
             s.write('j' + message[3:])
