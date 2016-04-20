@@ -5,7 +5,7 @@ var images = "";
 var joystick = false;
 var joyx = 3;
 var joyy = 3;
-
+var ws;
 var ip = "192.168.2.9";
 
 $(document).ready( function () {
@@ -114,7 +114,10 @@ $(document).ready( function () {
 function updateSizes() {
   if (mode == 0 || mode == 5) {
     var extraSpace = window.innerWidth - 220;
-    ws.send("uc"+extraSpace.toString());
+    if (ws != null) {
+      ws.send("uc"+extraSpace.toString());
+    }
+
 
     if (((extraSpace * 0.643) + 80) < window.innerHeight) {
       $("#videoDiv").css({width: extraSpace, height: (extraSpace * 0.643)});
@@ -161,7 +164,7 @@ var mapx = "0";
 var mapy = "0";
 var dgear = "n";
 $(function() {
-  var ws;
+
   var logger = function(msg) {
     var now = new Date();
     var sec = now.getSeconds();
