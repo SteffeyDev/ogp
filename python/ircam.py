@@ -70,7 +70,7 @@ class pinoir2(object):
             img1.drawText(str(z), 10, 230, color=(255,255,255), fontsize=15)
             img1.drawText(str(cent), 10, 250, color=(255,255,255), fontsize=15)
             img1.drawText(str(rgb1), 10, 270, color=(255,255,255), fontsize=15)
-            img1.save(js.framebuffer)
+            img1.scale(self.scale, int(self.scale * 0.53)).save(js.framebuffer)
 
         if cam_mode == 2: #main
             with picamera.PiCamera() as camera:
@@ -102,7 +102,7 @@ class pinoir2(object):
             img1.drawText(str(x), 10, 70, color=(255,255,255), fontsize=25)
             img1.drawText(str(y), 10, 100, color=(255,255,255), fontsize=25)
             img1.drawText(str(z), 10, 230, color=(255,255,255), fontsize=15)
-            img1.scale(self.scale, self.scale * 0.53)
+            img1.scale(self.scale, int(self.scale * 0.53))
             img1.save(js.framebuffer)
 
         if cam_mode == 3: #capture
@@ -122,7 +122,7 @@ class pinoir2(object):
 
             img1.drawRectangle(sqx,sqy,25, 25,color=(255,255,255))
             img1.drawText(str(z), 10, 230, color=(255,255,255), fontsize=15)
-            img1.scale(self.scale, self.scale * 0.53)
+            img1.scale(self.scale, int(self.scale * 0.53))
             img1.save(js.framebuffer)
 
         if cam_mode == 4: #long capture
@@ -160,7 +160,7 @@ class pinoir2(object):
             img1.drawText(str(x), 10, 70, color=(255,255,255), fontsize=25)
             img1.drawText(str(y), 10, 100, color=(255,255,255), fontsize=25)
             img1.drawText(str(z), 10, 230, color=(255,255,255), fontsize=15)
-            img1.scale(self.scale, self.scale * 0.53)
+            img1.scale(self.scale, int(self.scale * 0.53))
             img1.save(js.framebuffer)
 
         else:
