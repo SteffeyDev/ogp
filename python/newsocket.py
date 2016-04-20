@@ -108,11 +108,11 @@ class WSHandler(tornado.websocket.WebSocketHandler):
     #         sleep(0.2)
     #             #         irpic.update()
 
-    def runCamera():
+    def runCamera(self):
         irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat,sqx,sqy, self.scaleWidth)
         irpic.run()
 
-    def updateCamera():
+    def updateCamera(self):
         irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat,sqx,sqy, self.scaleWidth)
         irpic.update()
 
