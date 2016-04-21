@@ -146,10 +146,11 @@ class WSHandler(tornado.websocket.WebSocketHandler):
         if message.startswith('joy'):
             s.write('j' + message[3:])
             if message == 'joy33':
+                self.runCamera()
+            else:
                 irpic = ircam.pinoir2(js, self.cam_mode, c2, 0, 0, 0, "", 0, 0, self.scaleWidth)
                 irpic.update()
-            else:
-                self.runCamera()
+
 
         if message.startswith('nr'):            ##    switches for incoming socket events
             print "j"
