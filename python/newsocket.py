@@ -159,9 +159,9 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             self.write_message("echo: " + message + " right " )
             d = 'r'
             ms = int(message[2]) * 25
-            s.write('4')
+            s.write('j43')
             sleep(0.5 * int(message[2]))
-            s.write('3')
+            s.write('j33')
             # mov = acx(s, d, ms, acu, acd, acl, acr)
             # mov.run()
 
@@ -174,9 +174,9 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             self.write_message("echo: " + message + " left" )
             d = 'l'
             ms = int(message[2]) * 25
-            s.write('2')
+            s.write('j23')
             sleep(0.5 * int(message[2]))
-            s.write('3')
+            s.write('j33')
             print "moving left"
 
             # mov = acx(s, d, ms, acu, acd, acl, acr)
@@ -190,9 +190,9 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             self.write_message("echo: " + message + " up   ")
             d = 'u'
             ms = int(message[2]) * 25
-            s.write('6')
+            s.write('j34')
             sleep(0.5 * int(message[2]))
-            s.write('8')
+            s.write('j33')
             #mov = acx(s, d, ms, acu, acd, acl, acr)
             #mov.run()
             self.runCamera()
@@ -204,9 +204,9 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             self.write_message("echo: " + message + " down   ")
             d = 'd'
             ms = int(message[2]) * 25
-            s.write('9')
+            s.write('j32')
             sleep(0.5 * int(message[2]))
-            s.write('8')
+            s.write('j33')
             #mov = acx(s, d, ms, acu, acd, acl, acr)
             #mov.run()
             self.runCamera()
