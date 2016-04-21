@@ -48,8 +48,11 @@ from chase2 import *
 
 stopLoading = True
 
-
+sys.stdout.write('\b\b\b\b\b\b\b\b\b')
 print "\nInitializing connections, please wait..."
+stopLoading = False
+loading_thread = threading.Thread(target=animateLoading)
+loading_thread.start()
 
 ## some important variables
 
