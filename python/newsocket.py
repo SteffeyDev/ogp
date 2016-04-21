@@ -134,6 +134,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             cameraWidth = int(message[2:])
             self.scaleWidth = cameraWidth
             print "Changing scale factor to " + str(self.scaleWidth)
+            self.runCamera()
 
         if message.startswith('joy'):
             s.write('j' + message[3:])
@@ -382,14 +383,14 @@ class WSHandler(tornado.websocket.WebSocketHandler):
         if message == 'c':
             wsh = tornado.websocket.WebSocketHandler        ## wsh holds some socket info
             wsh2 = self                                    ## wsh2 holds the name of the instance
-            cchase = chase3(js, wsh, wsh2, c2, sqx, sqy, cam_mode)
+            cchase = chase3(js, wsh, wsh2, c2, sqx, sqy, cam_mode, self.scaleWidth)
             cchase.run()
 
         if message == 'k':
             wsh = tornado.websocket.WebSocketHandler        ## wsh holds some socket info
             wsh2 = self                                    ## wsh2 holds the name of the instance
-       ##     ac = autocal(c, js, wsh, wsh2)
-      ##      ac.run()
+            ac = autocal(c, js, wsh, wsh2, self.scaleWidth)
+            ac.run()
         if message == 'x':
             showimage = showimage - 1
             self.showimage = showimage

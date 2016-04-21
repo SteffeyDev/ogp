@@ -112,7 +112,7 @@ class so(object):
             #pass back to app.js through newSocket.py
             wsh.write_message(wsh2, "rgb_" + str(rcolor)+"_"+str(gcolor)+"_"+str(bcolor))
             wsh.write_message(wsh2, "x_" + str(centroidx)+"_"+str(centroidy))
-            img1.save(js.framebuffer)
+            img1.scale(self.scale, int(self.scale * 0.53)).save(js.framebuffer)
             wsh.write_message(wsh2, "d_" + wshx + "_" + wshy + "_" + str(p) )
 
         else:
@@ -277,10 +277,11 @@ class so(object):
 
 # not called from newsocket
 class autocal(object):
-    def __init__(self, js, wsh, wsh2):
+    def __init__(self, js, wsh, wsh2, scale):
         self.js = js
         self.wsh = wsh
         self.wsh2 = wsh2
+        self.scale = scale
       ##  self.c = c
 
     def run(self):
@@ -306,7 +307,7 @@ class autocal(object):
         img1.drawText("ogp: autocalibrating", 10, 10, fontsize=50)
         img1.drawText(str(acx1), 10, 50, color=(255,255,255), fontsize=20)
         img1.drawText(str(acy1), 10, 75, color=(255,255,255), fontsize=20)
-        img1.save(js.framebuffer)
+        img1.scale(self.scale, int(self.scale * 0.53)).save(js.framebuffer)
 
         d = 'r'
         ms = 50
@@ -329,7 +330,7 @@ class autocal(object):
         img1.drawText(str(acy1), 10, 75, color=(255,255,255), fontsize=20)
         img1.drawText(str(acx2), 40, 50, color=(255,255,255), fontsize=20)
         img1.drawText(str(acy2), 40, 75, color=(255,255,255), fontsize=20)
-        img1.save(js.framebuffer)
+        img1.scale(self.scale, int(self.scale * 0.53)).save(js.framebuffer)
 
         d = 'd'
         ms = 50
@@ -353,7 +354,7 @@ class autocal(object):
         img1.drawText(str(acy2), 40, 75, color=(255,255,255), fontsize=20)
         img1.drawText(str(acx3), 70, 50, color=(255,255,255), fontsize=20)
         img1.drawText(str(acy3), 70, 75, color=(255,255,255), fontsize=20)
-        img1.save(js.framebuffer)
+        img1.scale(self.scale, int(self.scale * 0.53)).save(js.framebuffer)
         d = 'l'
         ms = 50
         s.write('2')
@@ -378,7 +379,7 @@ class autocal(object):
         img1.drawText(str(acy3), 70, 75, color=(255,255,255), fontsize=20)
         img1.drawText(str(acx4), 100, 50, color=(255,255,255), fontsize=20)
         img1.drawText(str(acy4), 100, 75, color=(255,255,255), fontsize=20)
-        img1.save(js.framebuffer)
+        img1.scale(self.scale, int(self.scale * 0.53)).save(js.framebuffer)
         d = 'u'
         ms = 50
         s.write('6')
@@ -403,7 +404,7 @@ class autocal(object):
         img1.drawText(str(acy4), 100, 75, color=(255,255,255), fontsize=20)
         img1.drawText(str(acx5), 130, 50, color=(255,255,255), fontsize=20)
         img1.drawText(str(acy5), 130, 75, color=(255,255,255), fontsize=20)
-        img1.save(js.framebuffer)
+        img1.scale(self.scale, int(self.scale * 0.53)).save(js.framebuffer)
         cal1 = acx1 - acx2
         cal2 = acy2 - acy3
         cal3 = acx3 - acx4
@@ -454,7 +455,7 @@ class hud2(object):
         img1.drawText(str(z), 10, 230, color=(255,255,255), fontsize=15)
         img1.drawText(str(cent), 10, 250, color=(255,255,255), fontsize=15)
         img1.drawText(str(rgb1), 10, 270, color=(255,255,255), fontsize=15)
-        img1.save(js.framebuffer)
+        img1.scale(self.scale, int(self.scale * 0.53)).save(js.framebuffer)
 
 # called to stop movement after designated amount of time
 class acx(object):

@@ -14,7 +14,7 @@ s = serial.Serial('/dev/ttyUSB0', 9600)
 
 
 class chase3(object):
-    def __init__(self, js, wsh, wsh2, c2, sqx, sqy, cam_mode):
+    def __init__(self, js, wsh, wsh2, c2, sqx, sqy, cam_mode, scale):
         self.cam_mode=cam_mode
         self.js = js
         self.wsh = wsh
@@ -22,6 +22,7 @@ class chase3(object):
         self.c2=c2
         self.sqx=sqx
         self.sqy=sqy
+        self.scale = scale
 
     def run(self):
         cam_mode=self.cam_mode
@@ -68,7 +69,7 @@ class chase3(object):
             img1.drawText(str(blobx1), 10, 200, color=(255,255,255), fontsize=50)
             ##img1.drawText(str(bloby1), 50, 200, color=(255,255,255), fontsize=50)
             img1.drawText(str(bloby1), 10, 250, color=(255,255,255), fontsize=50)
-            img1.save(js.framebuffer)
+            img1.scale(self.scale, int(self.scale * 0.53)).save(js.framebuffer)
             sqx2=sqx+20
             sqy2=sqy+20
 

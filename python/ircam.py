@@ -27,15 +27,13 @@ class pinoir2(object):
         print cam_mode
         if cam_mode == 1: #spotter
             img1 = c2.getImage()
-            img1.scale(self.scale, int(self.scale * 0.53))
-            img1.save(js.framebuffer)
+            img1.scale(self.scale, int(self.scale * 0.53)).save(js.framebuffer)
         elif cam_mode == 2: #main
             with picamera.PiCamera() as camera:
                 camera.resolution = (2600, 1900)
                 camera.capture('/var/www/imagebig.jpg')
             img1 = Image('/var/www/imagebig.jpg')
-            img1.scale(self.scale, int(self.scale * 0.53))
-            img1.save(js.framebuffer)
+            img1.scale(self.scale, int(self.scale * 0.53)).save(js.framebuffer)
 
     def run(self):
         stat = self.stat
@@ -103,8 +101,7 @@ class pinoir2(object):
             img1.drawText(str(x), 10, 70, color=(255,255,255), fontsize=25)
             img1.drawText(str(y), 10, 100, color=(255,255,255), fontsize=25)
             img1.drawText(str(z), 10, 230, color=(255,255,255), fontsize=15)
-            img1.scale(self.scale, int(self.scale * 0.53))
-            img1.save(js.framebuffer)
+            img1.scale(self.scale, int(self.scale * 0.53)).save(js.framebuffer)
 
         if cam_mode == 3: #capture
             img1 = c2.getImage()
@@ -123,8 +120,7 @@ class pinoir2(object):
 
             img1.drawRectangle(sqx,sqy,25, 25,color=(255,255,255))
             img1.drawText(str(z), 10, 230, color=(255,255,255), fontsize=15)
-            img1.scale(self.scale, int(self.scale * 0.53))
-            img1.save(js.framebuffer)
+            img1.scale(self.scale, int(self.scale * 0.53)).save(js.framebuffer)
 
         if cam_mode == 4: #long capture
             with picamera.PiCamera() as camera:
@@ -161,8 +157,7 @@ class pinoir2(object):
             img1.drawText(str(x), 10, 70, color=(255,255,255), fontsize=25)
             img1.drawText(str(y), 10, 100, color=(255,255,255), fontsize=25)
             img1.drawText(str(z), 10, 230, color=(255,255,255), fontsize=15)
-            img1.scale(self.scale, int(self.scale * 0.53))
-            img1.save(js.framebuffer)
+            img1.scale(self.scale, int(self.scale * 0.53)).save(js.framebuffer)
 
         else:
             pass
