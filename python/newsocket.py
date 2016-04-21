@@ -23,11 +23,12 @@ animation = cycle(['[=      ]', '[ =     ]', '[  =    ]', '[   =   ]',
                   '[ =     ]', '[=      ]'])
 
 def animateLoading():
-    while stopLoading == False:
+    while True:
         sys.stdout.write('\b\b\b\b\b\b\b\b\b')
-        sys.stdout.write(animation.next())
-        sys.stdout.flush()
-        sleep(0.2)
+        if stopLoading == False:
+            sys.stdout.write(animation.next())
+            sys.stdout.flush()
+            sleep(0.2)
 
 loading_thread = threading.Thread(target=animateLoading)
 loading_thread.start()
@@ -86,6 +87,7 @@ sqx = int(272)
 sqy = int(144)
 
 print "* Ready to go, just make a connection from the web socket"
+stopLoading == True
 
 def actuallyRunCamera(js, cam_mode, c2, x, y, z, stat, sqx, sqy, scaleWidth):
     irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat, sqx, sqy, scaleWidth)
