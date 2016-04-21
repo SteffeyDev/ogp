@@ -85,14 +85,17 @@ header button:hover > div {
   left: 10px;
   border-width: 2px;
   border-style: line;
+  border-color: grey;
   background-color: transparent;
 }
+
 #videoDiv iframe {
   position: absolute;
   top: 30px;
   left: 0;
   width: 100%;
 }
+
 #videoDiv iframe #sight {
   position: absolute;
   top: 30px;
@@ -102,6 +105,7 @@ header button:hover > div {
   border: 2px solid white;
   background-color:red;
 }
+
 #videoDiv #spotter {
   position: absolute;
   left: 0;
