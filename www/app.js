@@ -273,7 +273,7 @@ $(function() {
   ws.onopen = function(evt) {
     $("#log").text("OGP-- SOCKET OPEN");
     ws.send('n');
-
+    ws.send("uc"+$("#videoDiv iframe").width().toString());
   };
 
   var joyCountdown = function(x, y) {
