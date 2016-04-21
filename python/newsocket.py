@@ -29,6 +29,8 @@ def animateLoading():
             sys.stdout.write(animation.next())
             sys.stdout.flush()
             sleep(0.2)
+        else:
+            break
 
 loading_thread = threading.Thread(target=animateLoading)
 loading_thread.start()
@@ -86,8 +88,8 @@ s.write('8')
 sqx = int(272)
 sqy = int(144)
 
-print "* Ready to go, just make a connection from the web socket"
 stopLoading == True
+print "* Ready to go, just make a connection from the web socket"
 
 def actuallyRunCamera(js, cam_mode, c2, x, y, z, stat, sqx, sqy, scaleWidth):
     irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat, sqx, sqy, scaleWidth)
@@ -292,7 +294,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             m = stepsize
             wsh = tornado.websocket.WebSocketHandler        ## wsh holds some socket info
             wsh2 = self                                    ## wsh2 holds the name of the instance
-            map = so(mapsize, m, js, wsh, wsh2, c2, cam_mode)               ##  make an istance of the mapper --SO stands for seek out
+            map = so(mapsize, m, js, wsh, wsh2, c2, cam_mode, self.scaleWidth)               ##  make an istance of the mapper --SO stands for seek out
             self.map = map
             map.histo()                                   ##  histogram is necessary before run
 
@@ -308,7 +310,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             m = stepsize
             wsh = tornado.websocket.WebSocketHandler        ## wsh holds some socket info
             wsh2 = self                                    ## wsh2 holds the name of the instance
-            map = so(mapsize, m, js, wsh, wsh2, c2, cam_mode)               ##  make an instance of the mapper --SO stands for seek out
+            map = so(mapsize, m, js, wsh, wsh2, c2, cam_mode, self.scaleWidth)               ##  make an instance of the mapper --SO stands for seek out
             self.map = map
             map.histo()                                   ##  histogram is necessary before run
 
@@ -380,7 +382,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             m = stepsize
             wsh = tornado.websocket.WebSocketHandler        ## wsh holds some socket info
             wsh2 = self                                    ## wsh2 holds the name of the instance
-            map = so(mapsize, m, js, wsh, wsh2, c2, cam_mode)               ##  make a new istance of the mapper --SO stands for seek out
+            map = so(mapsize, m, js, wsh, wsh2, c2, cam_mode, self.scaleWidth)               ##  make a new istance of the mapper --SO stands for seek out
             self.map = map
             map.histo()                                   ##  histogram is necessary before run
            ## print map.mySet                      ## print map log data array

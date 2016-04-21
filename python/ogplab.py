@@ -19,7 +19,7 @@ s = serial.Serial('/dev/ttyUSB0', 9600)
 # Seek Object
 class so(object):
 
-    def __init__(self, side, m, js, wsh, wsh2, c2, cam_mode):
+    def __init__(self, side, m, js, wsh, wsh2, c2, cam_mode, scale):
         self.cam_mode=cam_mode
         self.c2=c2 # c2 = SimpleCV.Camera(0,{ "width": 544, "height": 288 })
         self.ms = m # self.ms is stepsize
@@ -39,6 +39,7 @@ class so(object):
         self.countdownA = int(self.l) #countdownA is initially mapsize
         self.countdownB = int(self.l) #countdownB is initially mapsize
         self.countdownC = -1 #countdownC is initially -1
+        self.scale = scale
 
     def histo(self):
         cam_mode = self.cam_mode
