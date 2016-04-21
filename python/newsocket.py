@@ -89,7 +89,7 @@ sqx = int(272)
 sqy = int(144)
 
 stopLoading = True
-print "* Ready to go, just make a connection from the web socket"
+print "\n * Ready to go, just make a connection from the web socket"
 
 def actuallyRunCamera(js, cam_mode, c2, x, y, z, stat, sqx, sqy, scaleWidth):
     irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat, sqx, sqy, scaleWidth)

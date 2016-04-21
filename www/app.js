@@ -111,20 +111,27 @@ $(document).ready( function () {
   });
 });
 
+var rtime;
+var timeout = false;
+var delta = 200;
+
 function updateSizes() {
+
+  // triggers resize end event
+  rtime = new Date();
+  if (timeout === false) {
+      timeout = true;
+      setTimeout(resizeend, delta);
+  }
+
   if (mode == 0 || mode == 5) {
     var extraSpace = window.innerWidth - 220;
-
-
 
     if (((extraSpace * 0.643) + 80) < window.innerHeight) {
       $("#videoDiv").css({width: extraSpace, height: ((extraSpace * 0.53) + 30)});
       if (mode == 0) { $("#videoDiv").css({left: 10}); $("#controlDiv").css({right: 10});}
       $("#videoDiv iframe").width(extraSpace);
       $("#videoDiv iframe").height(extraSpace * 0.53);
-      if (ws != null) {
-        ws.send("uc"+extraSpace.toString());
-      }
     }
     else {
       extraSpace = window.innerWidth - 200 - $("#videoDiv iframe").width();
@@ -133,9 +140,7 @@ function updateSizes() {
 
       $("#videoDiv iframe").width((window.innerHeight - 80) * 1.93);
       $("#videoDiv iframe").height($("#videoDiv iframe").width() * 0.53 + 30);
-      if (ws != null) {
-        ws.send("uc"+$("#videoDiv iframe").width().toString());
-      }
+
     }
     $("#mapDiv").css({left: window.innerWidth + 10});
   }
@@ -157,6 +162,16 @@ function updateSizes() {
 
 }
 
+function resizeend() {
+    if (new Date() - rtime < delta) {
+        setTimeout(resizeend, delta);
+    } else {
+        timeout = false;
+        if (ws != null) {
+          ws.send("uc"+$("#videoDiv iframe").width().toString());
+        }
+    }
+}
 
 var chasing = false;
 var chx = 277;
