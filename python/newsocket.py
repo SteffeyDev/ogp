@@ -115,8 +115,10 @@ class WSHandler(tornado.websocket.WebSocketHandler):
         self.scaleWidth = 544
 
     def runCamera(self):
-        update_thread = threading.Thread(target=actuallyRunCamera, args=(js, self.cam_mode, c2, self.x, self.y, self.z, stat, self.sqx, self.sqy, self.scaleWidth))
-        update_thread.start()
+        #update_thread = threading.Thread(target=actuallyRunCamera, args=(js, self.cam_mode, c2, self.x, self.y, self.z, stat, self.sqx, self.sqy, self.scaleWidth))
+        #update_thread.start()
+        irpic = ircam.pinoir2(js, self.cam_mode, c2, self.x, self.y, self.z, stat, self.sqx, self.sqy, self.scaleWidth)
+        irpic.run()
 
     def updateCamera(self):
         irpic = ircam.pinoir2(js, self.cam_mode, c2, 0, 0, 0, "", 0, 0, self.scaleWidth)
