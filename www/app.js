@@ -6,7 +6,7 @@ var joystick = false;
 var joyx = 3;
 var joyy = 3;
 var ws;
-var ip = "192.168.2.11";
+var ip = "192.168.2.9";
 
 $(document).ready( function () {
   $(window).resize(updateSizes());
