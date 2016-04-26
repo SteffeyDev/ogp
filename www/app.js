@@ -182,7 +182,8 @@ function resizeFrame(width) {
     "-moz-transform": "scale(" + scaleFactor.toString() + ")",
     "-o-transform": "scale(" + scaleFactor.toString() + ")",
     "-webkit-transform": "scale(" + scaleFactor.toString() + ")",
-    "transform": "scale(" + scaleFactor.toString() + ")"
+    "transform": "scale(" + scaleFactor.toString() + ")",
+    "width": width.toString() + "px"
   });
 }
 

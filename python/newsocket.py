@@ -232,7 +232,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             img1.drawText(str(z), 10, 230, color=(255,255,255), fontsize=15)
             img1.drawText(str(cent), 10, 250, color=(255,255,255), fontsize=15)
             img1.drawText(str(rgb1), 10, 270, color=(255,255,255), fontsize=15)
-            img1.scale(self.scaleWidth, int(self.scaleWidth * 0.53)).save(js.framebuffer)
+            img1.save(js.framebuffer)
             self.write_message("echo: " + message + " " + str(cam_mode) )
 
         if message =='c2': #main
@@ -411,7 +411,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             self.write_message(pth)
             print showimage
             img1 = Image(pth)
-            img1.scale(self.scaleWidth, int(self.scaleWidth * 0.53)).save(js.framebuffer)
+            img1.save(js.framebuffer)
 
 
         if message == 'v':
@@ -424,7 +424,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             self.write_message(pth)
             print showimage
             img1 = Image(pth)
-            img1.scale(self.scaleWidth, int(self.scaleWidth * 0.53)).save(js.framebuffer)
+            img1.save(js.framebuffer)
 ##
 
         if message =='t':
