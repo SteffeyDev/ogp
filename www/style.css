@@ -563,7 +563,7 @@ header button:hover > div {
 
 .frame
 {
-    width: 1280px;
+    width: 100%;
     height: 786px;
     border: 0;
 
