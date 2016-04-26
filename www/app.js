@@ -185,7 +185,7 @@ function resizeFrame(width) {
     "-webkit-transform": "scale(" + scaleFactor.toString() + ")",
     "transform": "scale(" + scaleFactor.toString() + ")",
     "width": width.toString() + "px",
-    "marginLeft": offsetFactor.toString() + "px"
+    "marginLeft": (-1 * offsetFactor).toString() + "px"
   });
 }
 
