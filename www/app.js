@@ -160,7 +160,7 @@ function updateSizes() {
     }
   }
 
-  resizeFrame($("#videoDiv iframe").width());
+  resizeFrame($("#videoDiv").width());
 
 }
 
@@ -170,20 +170,22 @@ function resizeend() {
     } else {
         timeout = false;
         if (ws != null) {
-          ws.send("uc"+$("#videoDiv iframe").width().toString());
+          ws.send("uc"+$("#videoDiv").width().toString());
         }
     }
 }
 
 function resizeFrame(width) {
   var scaleFactor = width/544;
+  var offsetFactor = ((width*scaleFactor) - width) / 2;
   $('.frame').css({
     "-ms-transform": "scale(" + scaleFactor.toString() + ")",
     "-moz-transform": "scale(" + scaleFactor.toString() + ")",
     "-o-transform": "scale(" + scaleFactor.toString() + ")",
     "-webkit-transform": "scale(" + scaleFactor.toString() + ")",
     "transform": "scale(" + scaleFactor.toString() + ")",
-    "width": width.toString() + "px"
+    "width": width.toString() + "px",
+    "marginLeft": offsetFactor.toString() + "px"
   });
 }
 
