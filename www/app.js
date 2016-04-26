@@ -118,11 +118,11 @@ var delta = 200;
 function updateSizes() {
 
   // triggers resize end event
-  rtime = new Date();
-  if (timeout === false) {
-      timeout = true;
-      setTimeout(resizeend, delta);
-  }
+  // rtime = new Date();
+  // if (timeout === false) {
+  //     timeout = true;
+  //     setTimeout(resizeend, delta);
+  // }
 
   if (mode == 0 || mode == 5) {
     var extraSpace = window.innerWidth - 220;
@@ -160,6 +160,8 @@ function updateSizes() {
     }
   }
 
+  resizeFrame($("#videoDiv iframe").width());
+
 }
 
 function resizeend() {
@@ -171,6 +173,17 @@ function resizeend() {
           ws.send("uc"+$("#videoDiv iframe").width().toString());
         }
     }
+}
+
+function resizeFrame(width) {
+  var scaleFactor = width/544;
+  $('.frame').css({
+    "-ms-transform": "scale(" + scaleFactor.toString() + ")",
+    "-moz-transform": "scale(" + scaleFactor.toString() + ")",
+    "-o-transform": "scale(" + scaleFactor.toString() + ")",
+    "-webkit-transform": "scale(" + scaleFactor.toString() + ")",
+    "transform": "scale(" + scaleFactor.toString() + ")"
+  });
 }
 
 var chasing = false;

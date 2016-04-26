@@ -65,7 +65,7 @@ c2 = SimpleCV.Camera(0,{ "width": 544, "height": 288 })          ## opens a came
 #c = SimpleCV.Camera(1,{ "width": 544, "height": 288 })           ## or two
 js = SimpleCV.JpegStreamer('0.0.0.0:8080')                        ## opens socket for jpeg out
 sleep(4)                                               ## strategic buffering, possibly unnecessary
-c2.getImage().scale(800, int(800* 0.53)).save(js.framebuffer)      ## push a jpeg to the jpeg socket
+c2.getImage().save(js.framebuffer)      ## push a jpeg to the jpeg socket
 
 cam_mode = int(1)
 

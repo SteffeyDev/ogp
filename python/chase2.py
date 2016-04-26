@@ -69,7 +69,7 @@ class chase3(object):
             img1.drawText(str(blobx1), 10, 200, color=(255,255,255), fontsize=50)
             ##img1.drawText(str(bloby1), 50, 200, color=(255,255,255), fontsize=50)
             img1.drawText(str(bloby1), 10, 250, color=(255,255,255), fontsize=50)
-            img1.scale(self.scale, int(self.scale * 0.53)).save(js.framebuffer)
+            img1.save(js.framebuffer)
             sqx2=sqx+20
             sqy2=sqy+20
 
