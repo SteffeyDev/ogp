@@ -42,14 +42,14 @@ class chase3(object):
         x=0
         y=0
         stat="centering"
-        if cam_mode == 3:
+        if cam_mode == 1:
             img1 = c2.getImage()
-        if cam_mode==1:
+        if cam_mode == 3:
             with picamera.PiCamera() as camera:
                 camera.resolution = (544, 288)
                 camera.capture('imagesmall.jpg')
             img1 = Image('imagesmall.jpg')
-        if cam_mode==2:
+        if cam_mode == 2:
             with picamera.PiCamera() as camera:
                 camera.resolution = (544, 288)
                 camera.capture('imagesmall.jpg')
@@ -81,19 +81,19 @@ class chase3(object):
             #move in direction of blob
             if blobx1 > sqx2 and bloby1 > sqy2:
                 s.write('j55')
-                print 'j44'
+                print 'j55'
 
             elif blobx1 < sqx and bloby1 > sqy2:
                 s.write('j15')
-                print 'j24'
+                print 'j15'
 
             elif blobx1 > sqx2 and bloby1 < sqy:
                 s.write('j51')
-                print 'j42'
+                print 'j51'
 
             elif blobx1 < sqx and bloby1 < sqy:
                 s.write('j11')
-                print 'j22'
+                print 'j11'
 
             else:
                 #stop
