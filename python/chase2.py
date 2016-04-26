@@ -75,7 +75,7 @@ class chase3(object):
 
             print "blob X: " + str(blobx1)
             print "sqx: " + str(sqx + 10)
-            print "blob Y: " + str(blob1y)
+            print "blob Y: " + str(bloby1)
             print "sqy: " + str(sqy + 10)
 
             #move in direction of blob
