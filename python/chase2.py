@@ -80,19 +80,19 @@ class chase3(object):
 
             #move in direction of blob
             if blobx1 > sqx2 and bloby1 > sqy2:
-                s.write('j44')
+                s.write('j55')
                 print 'j44'
 
             elif blobx1 < sqx and bloby1 > sqy2:
-                s.write('j24')
+                s.write('j15')
                 print 'j24'
 
             elif blobx1 > sqx2 and bloby1 < sqy:
-                s.write('j42')
+                s.write('j51')
                 print 'j42'
 
             elif blobx1 < sqx and bloby1 < sqy:
-                s.write('j22')
+                s.write('j11')
                 print 'j22'
 
             else:
