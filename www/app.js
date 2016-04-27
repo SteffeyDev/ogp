@@ -30,7 +30,7 @@ $(document).ready( function () {
         images += "<img id=\"" + i + "\" src=\"" + src + "\"></img>";
         $('#imagesContainer').html(images);
         i++;
-        var nextImage = "ftp://pi:banjobob@" + ip + "/images/image" + i + ".png";
+        var nextImage = "ftp://pi:raspberry@" + ip + "/images/image" + i + ".png";
         checkImage(nextImage)
     };
     img.onerror = function() {

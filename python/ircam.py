@@ -124,6 +124,10 @@ class pinoir2(object):
             img1.drawText(str(z), 10, 230, color=(255,255,255), fontsize=15)
             img1.save(js.framebuffer)
 
+            i = 0
+            while(os.path.isFile("/var/images/image" + str(i) + ".png")) {}
+            img1.save("/var/images/image" + str(i) + ".png")
+
         if cam_mode == 4: #long capture
             with picamera.PiCamera() as camera:
                 camera.resolution = (2600, 1900)
@@ -160,6 +164,10 @@ class pinoir2(object):
             img1.drawText(str(y), 10, 100, color=(255,255,255), fontsize=25)
             img1.drawText(str(z), 10, 230, color=(255,255,255), fontsize=15)
             img1.save(js.framebuffer)
+
+            i = 0
+            while(os.path.isFile("/var/images/image" + str(i) + ".png")) {}
+            img1.save("/var/images/image" + str(i) + ".png")
 
         else:
             pass
