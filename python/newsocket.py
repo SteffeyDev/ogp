@@ -115,13 +115,13 @@ class WSHandler(tornado.websocket.WebSocketHandler):
         self.scaleWidth = 544
 
     def runCamera(self):
-        #update_thread = threading.Thread(target=actuallyRunCamera, args=(js, self.cam_mode, c2, self.x, self.y, self.z, stat, self.sqx, self.sqy, self.scaleWidth))
+        #update_thread = threading.Thread(target=actuallyRunCamera, args=(js, self.cam_mode, c2, self.x, self.y, self.z, stat, self.sqx, self.sqy))
         #update_thread.start()
-        irpic = ircam.pinoir2(js, self.cam_mode, c2, self.x, self.y, self.z, stat, self.sqx, self.sqy, self.scaleWidth)
+        irpic = ircam.pinoir2(js, self.cam_mode, c2, self.x, self.y, self.z, stat, self.sqx, self.sqy)
         irpic.run()
 
     def updateCamera(self):
-        irpic = ircam.pinoir2(js, self.cam_mode, c2, 0, 0, 0, "", 0, 0, self.scaleWidth)
+        irpic = ircam.pinoir2(js, self.cam_mode, c2, 0, 0, 0, "", 0, 0)
         irpic.update()
 
     def on_message(self, message):
@@ -150,7 +150,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             if message == 'joy33':
                 self.runCamera()
             else:
-                irpic = ircam.pinoir2(js, self.cam_mode, c2, 0, 0, 0, "", 0, 0, self.scaleWidth)
+                irpic = ircam.pinoir2(js, self.cam_mode, c2, 0, 0, 0, "", 0, 0)
                 irpic.update()
 
 
@@ -297,7 +297,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             m = stepsize
             wsh = tornado.websocket.WebSocketHandler        ## wsh holds some socket info
             wsh2 = self                                    ## wsh2 holds the name of the instance
-            map = so(mapsize, m, js, wsh, wsh2, c2, cam_mode, self.scaleWidth)               ##  make an istance of the mapper --SO stands for seek out
+            map = so(mapsize, m, js, wsh, wsh2, c2, cam_mode)               ##  make an istance of the mapper --SO stands for seek out
             self.map = map
             map.histo()                                   ##  histogram is necessary before run
 
@@ -313,7 +313,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             m = stepsize
             wsh = tornado.websocket.WebSocketHandler        ## wsh holds some socket info
             wsh2 = self                                    ## wsh2 holds the name of the instance
-            map = so(mapsize, m, js, wsh, wsh2, c2, cam_mode, self.scaleWidth)               ##  make an instance of the mapper --SO stands for seek out
+            map = so(mapsize, m, js, wsh, wsh2, c2, cam_mode)               ##  make an instance of the mapper --SO stands for seek out
             self.map = map
             map.histo()                                   ##  histogram is necessary before run
 
@@ -385,7 +385,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             m = stepsize
             wsh = tornado.websocket.WebSocketHandler        ## wsh holds some socket info
             wsh2 = self                                    ## wsh2 holds the name of the instance
-            map = so(mapsize, m, js, wsh, wsh2, c2, cam_mode, self.scaleWidth)               ##  make a new istance of the mapper --SO stands for seek out
+            map = so(mapsize, m, js, wsh, wsh2, c2, cam_mode)               ##  make a new istance of the mapper --SO stands for seek out
             self.map = map
             map.histo()                                   ##  histogram is necessary before run
            ## print map.mySet                      ## print map log data array
@@ -393,13 +393,13 @@ class WSHandler(tornado.websocket.WebSocketHandler):
         if message == 'c':
             wsh = tornado.websocket.WebSocketHandler        ## wsh holds some socket info
             wsh2 = self                                    ## wsh2 holds the name of the instance
-            cchase = chase3(js, wsh, wsh2, c2, sqx, sqy, cam_mode, self.scaleWidth)
+            cchase = chase3(js, wsh, wsh2, c2, sqx, sqy, cam_mode)
             cchase.run()
 
         if message == 'k':
             wsh = tornado.websocket.WebSocketHandler        ## wsh holds some socket info
             wsh2 = self                                    ## wsh2 holds the name of the instance
-            ac = autocal(c, js, wsh, wsh2, self.scaleWidth)
+            ac = autocal(c, js, wsh, wsh2)
             ac.run()
         if message == 'x':
             showimage = showimage - 1

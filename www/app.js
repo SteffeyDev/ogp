@@ -3,6 +3,7 @@ var expanded = false;
 var exit = false;
 var images = "";
 var joystick = false;
+var focus = false;
 var joyx = 3;
 var joyy = 3;
 var ws;
@@ -46,6 +47,9 @@ $(document).ready( function () {
 
   $('#joystickBubble').mousedown(function(evt) {
     joystick = true;
+  });
+  $('#focusBubble').mousedown(function(evt) {
+    focus = true;
   });
 
 
@@ -332,6 +336,11 @@ $(function() {
         joyCountdown(x, y);
       }
     }
+    else if (focus == true) {
+      console.log("focus: " + $('#focusBubble').position().left.toString());
+      var pos = $('#focusBubble').position().left;
+      
+    }
   });
   $(document).mouseup(function() {
     if (joystick == true) {
@@ -340,6 +349,9 @@ $(function() {
       setTimeout( function() {$('#joystickBubble').css({ transition: 'none' });console.log("back");} , 1000);
       ws.send('joy33');
       joystick = false;
+    }
+    else if (focus == true) {
+      focus = false;
     }
   });
   $("#msg").keypress(function(event) {

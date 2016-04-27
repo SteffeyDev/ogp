@@ -46,7 +46,7 @@ void setup()
   myservo2.attach(10);
   myservo.write(SERVO_STOP);
   myservo2.write(SERVO_STOP);
-  
+
   motor.setSpeed(MOTOR_STOP);         // just to make sure the motor is stopped
   motor.run(RELEASE);
 
@@ -73,7 +73,7 @@ void loop() {
         int y = (val[2] - 3) * 2;
         myservo.write(90 + x);
         myservo2.write(90 + y);
-        
+
         if (Serial.available() > 0) // Don't read unless you know there is data
         {
           inChar = Serial.read(); // Read a character
@@ -87,7 +87,7 @@ void loop() {
           }
         }
         if (val[0] == 'j' && index == 3) {         //val needs to have 2 numbers b/w 0 and 6 (ex. j26)
-    
+
             int c = 0;
             int x = ((val[1] - '0') - 3) * 2; //gives value between -6 & 6
             int y = ((val[2] - '0') - 3) * 2;
@@ -100,7 +100,6 @@ void loop() {
 
 
       switch( val[0] ) {       //switch handles incoming signal
-
 
         case FOCUS_ONE:                      //   focus  1
         motor.setSpeed(MOTOR_FULL);

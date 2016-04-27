@@ -124,8 +124,9 @@ class pinoir2(object):
             img1.drawText(str(z), 10, 230, color=(255,255,255), fontsize=15)
             img1.save(js.framebuffer)
 
-            i = 0
-            while(os.path.isFile("/var/images/image" + str(i) + ".png")) {}
+            i = 1
+            while os.path.isFile("/var/images/image" + str(i) + ".png"):
+                i = i + 1
             img1.save("/var/images/image" + str(i) + ".png")
 
         if cam_mode == 4: #long capture
@@ -165,8 +166,9 @@ class pinoir2(object):
             img1.drawText(str(z), 10, 230, color=(255,255,255), fontsize=15)
             img1.save(js.framebuffer)
 
-            i = 0
-            while(os.path.isFile("/var/images/image" + str(i) + ".png")) {}
+            i = 1
+            while os.path.isFile("/var/images/image" + str(i) + ".png"):
+                i = i + 1
             img1.save("/var/images/image" + str(i) + ".png")
 
         else:

@@ -14,7 +14,7 @@ s = serial.Serial('/dev/ttyUSB0', 9600)
 
 
 class chase3(object):
-    def __init__(self, js, wsh, wsh2, c2, sqx, sqy, cam_mode, scale):
+    def __init__(self, js, wsh, wsh2, c2, sqx, sqy, cam_mode):
         self.cam_mode=cam_mode
         self.js = js
         self.wsh = wsh
@@ -22,7 +22,6 @@ class chase3(object):
         self.c2=c2
         self.sqx=sqx
         self.sqy=sqy
-        self.scale = scale
 
     def run(self):
         cam_mode=self.cam_mode
