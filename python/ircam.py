@@ -6,7 +6,7 @@ from fractions import Fraction
 ##js = SimpleCV.JpegStreamer('0.0.0.0:8080')                        ## opens socket for jpeg out
 
 class pinoir2(object):
-    def __init__(self, js, cam_mode, c2, x, y, z, stat, sqx, sqy, scale):
+    def __init__(self, js, cam_mode, c2, x, y, z, stat, sqx, sqy):
         self.js = js
         self.cam_mode = cam_mode
         self.c2 =c2
@@ -17,13 +17,11 @@ class pinoir2(object):
         self.z = z
         self.sqx=sqx
         self.sqy=sqy
-        self.scale=scale
 
     def update(self):
         cam_mode = self.cam_mode
         js = self.js
         c2 = self.c2
-        print "scale: " + str(self.scale)
         print cam_mode
         if cam_mode == 1: #spotter
             img1 = c2.getImage()
