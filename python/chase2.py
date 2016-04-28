@@ -73,9 +73,9 @@ class chase3(object):
             sqy2=sqy+20
 
             print "blob X: " + str(blobx1)
-            print "sqx: " + str(sqx + 10)
+            print "sqx: " + str(sqx) + " - " + str(sqx2)
             print "blob Y: " + str(bloby1)
-            print "sqy: " + str(sqy + 10)
+            print "sqy: " + str(sqy) + " - " + str(sqy2)
 
             stop = False
 
@@ -96,6 +96,7 @@ class chase3(object):
                 writeString += "5"
 
             s.write(writeString);
+            print writeString
 
             if writeString != "j33":
                 time.sleep(0.5)
