@@ -339,7 +339,7 @@ $(function() {
     else if (focus == true) {
       console.log("focus: " + $('#focusBubble').position().left.toString());
       var pos = $('#focusBubble').position().left;
-      
+
     }
   });
   $(document).mouseup(function() {
@@ -485,9 +485,13 @@ $(function() {
   // });
   $("#main").click(function() {
     ws.send('c2');
+    $("#spotter").css({"background-color":"darkgrey"});
+    $("#main").css({"background-color":"white"});
   });
   $("#spotter").click(function() {
     ws.send('c1');
+    $("#spotter").css({"background-color":"white"});
+    $("#main").css({"background-color":"darkgrey"});
   });
   $("#longCapture").click(function() {
     ws.send('c4');
