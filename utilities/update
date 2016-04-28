@@ -4,5 +4,7 @@ cd /home/pi/ogp
 sudo chown -R pi:pi .
 git stash save --keep-index
 git pull
-sudo rm -rf /var/www/
-sudo cp -R www /var/www
+sudo rm /var/www/app.js
+sudo mv www/app.js /var/www/app.js
+sudo rm /var/www/style.css
+sudo mv www/app.js /var/www/style.css

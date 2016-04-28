@@ -236,7 +236,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             self.write_message("echo: " + message + " " + str(cam_mode) )
 
             i = 1
-            while os.path.isFile("/var/images/image" + str(i) + ".png"):
+            while path.isFile("/var/images/image" + str(i) + ".png"):
                 i = i + 1
             img1.save("/var/images/image" + str(i) + ".png")
 
