@@ -77,29 +77,29 @@ class chase3(object):
             print "blob Y: " + str(bloby1)
             print "sqy: " + str(sqy + 10)
 
-            #move in direction of blob
-            if blobx1 > sqx2 and bloby1 > sqy2:
-                s.write('j55')
-                print 'j55'
+            stop = False
 
-            elif blobx1 < sqx and bloby1 > sqy2:
-                s.write('j15')
-                print 'j15'
+            writeString = "j"
 
-            elif blobx1 > sqx2 and bloby1 < sqy:
-                s.write('j51')
-                print 'j51'
+            if blobx1 > sqx2:
+                writeString += "1"
+            elif (blobx1 > sqx and blobx1 < sqx2):
+                writeString += "3"
+            elif blobx1 < sqx:
+                writeString += "5"
 
-            elif blobx1 < sqx and bloby1 < sqy:
-                s.write('j11')
-                print 'j11'
+            if bloby1 > sqy2:
+                writeString += "1"
+            elif (bloby1 > sqy and bloby1 < sqy2):
+                writeString += "3"
+            elif bloby1 < sqy:
+                writeString += "5"
 
-            else:
-                #stop
-                s.write('j33')
+            s.write(writeString);
 
-            time.sleep(0.5)
-            wsh.write_message(wsh2, "c")
+            if writeString != "j33":
+                time.sleep(0.5)
+                wsh.write_message(wsh2, "c")
 
             # if blobx1 > sqx2:
             #     d = '_r'

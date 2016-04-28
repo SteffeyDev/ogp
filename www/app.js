@@ -115,9 +115,9 @@ $(document).ready( function () {
   });
 });
 
-var rtime;
-var timeout = false;
-var delta = 200;
+// var rtime;
+// var timeout = false;
+// var delta = 200;
 
 function updateSizes() {
 
@@ -168,16 +168,16 @@ function updateSizes() {
 
 }
 
-function resizeend() {
-    if (new Date() - rtime < delta) {
-        setTimeout(resizeend, delta);
-    } else {
-        timeout = false;
-        if (ws != null) {
-          ws.send("uc"+$("#videoDiv").width().toString());
-        }
-    }
-}
+// function resizeend() {
+//     if (new Date() - rtime < delta) {
+//         setTimeout(resizeend, delta);
+//     } else {
+//         timeout = false;
+//         if (ws != null) {
+//           ws.send("uc"+$("#videoDiv").width().toString());
+//         }
+//     }
+// }
 
 function resizeFrame(width) {
   var scaleFactor = width/544;
@@ -308,7 +308,6 @@ $(function() {
   ws.onopen = function(evt) {
     $("#log").text("OGP-- SOCKET OPEN");
     ws.send('n');
-    ws.send("uc"+$("#videoDiv iframe").width().toString());
   };
 
   var joyCountdown = function(x, y) {
