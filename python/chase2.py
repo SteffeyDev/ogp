@@ -83,16 +83,16 @@ class chase3(object):
 
             if blobx1 > sqx2:
                 writeString += "1"
-            elif (blobx1 > sqx and blobx1 < sqx2):
+            elif (blobx1 >= sqx and blobx1 <= sqx2):
                 writeString += "3"
-            elif blobx1 < sqx:
+            else:
                 writeString += "5"
 
             if bloby1 > sqy2:
                 writeString += "1"
-            elif (bloby1 > sqy and bloby1 < sqy2):
+            elif (bloby1 >= sqy and bloby1 <= sqy2):
                 writeString += "3"
-            elif bloby1 < sqy:
+            else:
                 writeString += "5"
 
             s.write(writeString);
