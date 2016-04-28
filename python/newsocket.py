@@ -91,8 +91,8 @@ sqy = int(144)
 stopLoading = True
 print "\n * Ready to go, just make a connection from the web socket"
 
-def actuallyRunCamera(js, cam_mode, c2, x, y, z, stat, sqx, sqy, scaleWidth):
-    irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat, sqx, sqy, scaleWidth)
+def actuallyRunCamera(js, cam_mode, c2, x, y, z, stat, sqx, sqy):
+    irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat, sqx, sqy)
     irpic.run()
 
 class WSHandler(tornado.websocket.WebSocketHandler):
@@ -112,13 +112,13 @@ class WSHandler(tornado.websocket.WebSocketHandler):
         self.cam_mode = cam_mode
         self.sqx = sqx
         self.sqy = sqy
-        self.scaleWidth = 544
 
     def runCamera(self):
         #update_thread = threading.Thread(target=actuallyRunCamera, args=(js, self.cam_mode, c2, self.x, self.y, self.z, stat, self.sqx, self.sqy))
         #update_thread.start()
         irpic = ircam.pinoir2(js, self.cam_mode, c2, self.x, self.y, self.z, stat, self.sqx, self.sqy)
         irpic.run()
+
 
     def updateCamera(self):
         irpic = ircam.pinoir2(js, self.cam_mode, c2, 0, 0, 0, "", 0, 0)
@@ -139,11 +139,11 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 
         cam_mode = self.cam_mode
 
-        if message.startswith("uc"):
-            cameraWidth = int(message[2:])
-            self.scaleWidth = cameraWidth
-            print "Changing scale factor to " + str(self.scaleWidth)
-            self.runCamera()
+        # if message.startswith("uc"):
+        #     cameraWidth = int(message[2:])
+        #     self.scaleWidth = cameraWidth
+        #     print "Changing scale factor to " + str(self.scaleWidth)
+        #     self.runCamera()
 
         if message.startswith('joy'):
             s.write('j' + message[3:])
