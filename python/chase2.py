@@ -101,6 +101,8 @@ class chase3(object):
             if writeString != "j33":
                 time.sleep(0.5)
                 wsh.write_message(wsh2, "c")
+            else:
+                wsh.write_message(wsh2, "s")
 
             # if blobx1 > sqx2:
             #     d = '_r'

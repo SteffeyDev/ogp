@@ -288,6 +288,11 @@ $(function() {
       if (h == "c") {
         ws.send("c");
       }
+      else if (h == "s") {
+        chasing = false;
+        ws.send('j33');
+        $("#chase").text("Start Chasing");
+      }
     }
   }
   var sender = function() {
@@ -451,7 +456,7 @@ $(function() {
       $("#chase").text("Stop Chasing");
     } else {
       chasing = false;
-      ws.send('3');
+      ws.send('j33');
       $("#chase").text("Start Chasing");
     }
   });
