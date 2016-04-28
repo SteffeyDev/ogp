@@ -89,11 +89,11 @@ class chase3(object):
                 writeString += "3"
 
             if bloby1 > sqy2:
-                writeString += "1"
+                writeString += "5"
             elif (bloby1 >= sqy and bloby1 <= sqy2):
                 writeString += "3"
             else:
-                writeString += "5"
+                writeString += "1"
 
             s.write(writeString);
             print writeString
