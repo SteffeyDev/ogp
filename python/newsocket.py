@@ -235,6 +235,11 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             img1.save(js.framebuffer)
             self.write_message("echo: " + message + " " + str(cam_mode) )
 
+            i = 1
+            while os.path.isFile("/var/images/image" + str(i) + ".png"):
+                i = i + 1
+            img1.save("/var/images/image" + str(i) + ".png")
+
         if message =='c2': #main
             cam_mode = 2
             self.cam_mode = cam_mode
