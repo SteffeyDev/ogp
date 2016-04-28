@@ -414,6 +414,7 @@ header button:hover > div {
   background-color: white;
   margin-top: 28px;
 }
+
 #controlDiv #focusLabel {
   position: absolute;
   width: 100px;
