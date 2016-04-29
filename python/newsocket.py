@@ -215,6 +215,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 
         if message =='c3': #capture
             cam_mode = 3
+            print "capturing image"
             self.cam_mode = cam_mode
             img1 = c2.getImage()
             blobs = img1.findBlobs()
@@ -237,6 +238,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 
             i = 1
             while os.path.isfile("/var/images/image" + str(i) + ".png"):
+                print "image" + str(i) + " taken"
                 i = i + 1
             img1.save("/var/images/image" + str(i) + ".png")
 
