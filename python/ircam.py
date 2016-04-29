@@ -124,9 +124,9 @@ class pinoir2(object):
             img1.save(js.framebuffer)
 
             i = 1
-            while os.path.isfile("/var/images/image" + str(i) + ".png"):
+            while os.path.isfile("/var/www/images/image" + str(i) + ".png"):
                 i = i + 1
-            img1.save("/var/images/image" + str(i) + ".png")
+            img1.save("/var/www/images/image" + str(i) + ".png")
 
         if cam_mode == 4: #long capture
             with picamera.PiCamera() as camera:
@@ -166,9 +166,9 @@ class pinoir2(object):
             img1.save(js.framebuffer)
 
             i = 1
-            while os.path.isfile("/var/images/image" + str(i) + ".png"):
+            while os.path.isfile("/var/www/images/image" + str(i) + ".png"):
                 i = i + 1
-            img1.save("/var/images/image" + str(i) + ".png")
+            img1.save("/var/www/images/image" + str(i) + ".png")
 
         else:
             pass
