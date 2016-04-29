@@ -68,6 +68,7 @@ sleep(4)                                               ## strategic buffering, p
 c2.getImage().save(js.framebuffer)      ## push a jpeg to the jpeg socket
 
 cam_mode = int(1)
+capture_mode = int(0)
 
 ##autocalibration
 acu = int(1)
@@ -91,8 +92,8 @@ sqy = int(144)
 stopLoading = True
 print "\n * Ready to go, just make a connection from the web socket"
 
-def actuallyRunCamera(js, cam_mode, c2, x, y, z, stat, sqx, sqy):
-    irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat, sqx, sqy)
+def actuallyRunCamera(js, cam_mode, c2, x, y, z, stat, sqx, sqy, capture_mode):
+    irpic = ircam.pinoir2(js, cam_mode, c2, x, y, z, stat, sqx, sqy, capture_mode)
     irpic.run()
 
 class WSHandler(tornado.websocket.WebSocketHandler):
@@ -110,18 +111,19 @@ class WSHandler(tornado.websocket.WebSocketHandler):
         self.showimage = showimage
         self.stepsize = stepsize #used for mapping
         self.cam_mode = cam_mode
+        self.capture_mode = capture_mode
         self.sqx = sqx
         self.sqy = sqy
 
     def runCamera(self):
         #update_thread = threading.Thread(target=actuallyRunCamera, args=(js, self.cam_mode, c2, self.x, self.y, self.z, stat, self.sqx, self.sqy))
         #update_thread.start()
-        irpic = ircam.pinoir2(js, self.cam_mode, c2, self.x, self.y, self.z, stat, self.sqx, self.sqy)
+        irpic = ircam.pinoir2(js, self.cam_mode, c2, self.x, self.y, self.z, stat, self.sqx, self.sqy, self.capture_mode)
         irpic.run()
 
 
     def updateCamera(self):
-        irpic = ircam.pinoir2(js, self.cam_mode, c2, 0, 0, 0, "", 0, 0)
+        irpic = ircam.pinoir2(js, self.cam_mode, c2, 0, 0, 0, "", 0, 0, self.capture_mode)
         irpic.update()
 
     def on_message(self, message):
@@ -138,6 +140,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
         sqy=self.sqy
 
         cam_mode = self.cam_mode
+        capture_mode = self.capture_mode
 
         # if message.startswith("uc"):
         #     cameraWidth = int(message[2:])
@@ -150,7 +153,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             if message == 'joy33':
                 self.runCamera()
             else:
-                irpic = ircam.pinoir2(js, self.cam_mode, c2, 0, 0, 0, "", 0, 0)
+                irpic = ircam.pinoir2(js, self.cam_mode, c2, 0, 0, 0, "", 0, 0, self.capture_mode)
                 irpic.update()
 
 
@@ -214,33 +217,14 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             self.runCamera()
 
         if message =='c3': #capture
-            cam_mode = 3
-            print "capturing image"
-            self.cam_mode = cam_mode
-            img1 = c2.getImage()
-            blobs = img1.findBlobs()
-            if blobs:
-                img1.drawCircle((blobs[-1].x,blobs[-1].y),30,color=(255,255,255))
-                img1.drawCircle((blobs[-1].centroid()),10,color=(255,100,100))
-                rgb1 = blobs[-1].meanColor()
-                cent = blobs[-1].centroid()
+            self.capture_mode = 1
+            self.runCamera()
+            self.capture_mode = 0
 
-            img1.drawText(str(stat), 10, 10, fontsize=50)
-            img1.drawText(str(x), 10, 70, color=(255,255,255), fontsize=25)
-            img1.drawText(str(y), 10, 100, color=(255,255,255), fontsize=25)
-            img1.drawRectangle(sqx,sqy,25, 25,color=(255,255,255))
-
-            img1.drawText(str(z), 10, 230, color=(255,255,255), fontsize=15)
-            img1.drawText(str(cent), 10, 250, color=(255,255,255), fontsize=15)
-            img1.drawText(str(rgb1), 10, 270, color=(255,255,255), fontsize=15)
-            img1.save(js.framebuffer)
-            self.write_message("echo: " + message + " " + str(cam_mode) )
-
-            i = 1
-            while os.path.isfile("/var/www/images/image" + str(i) + ".png"):
-                i = i + 1
-            print "using image" + str(i)
-            img1.save("/var/www/images/image" + str(i) + ".png")
+        if message =='c4': #capture
+            self.capture_mode = 2
+            self.runCamera()
+            self.capture_mode = 0
 
         if message =='c2': #main
             cam_mode = 2
