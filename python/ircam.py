@@ -124,7 +124,7 @@ class pinoir2(object):
             img1.save(js.framebuffer)
 
             i = 1
-            while os.path.isFile("/var/images/image" + str(i) + ".png"):
+            while os.path.isfile("/var/images/image" + str(i) + ".png"):
                 i = i + 1
             img1.save("/var/images/image" + str(i) + ".png")
 
@@ -166,7 +166,7 @@ class pinoir2(object):
             img1.save(js.framebuffer)
 
             i = 1
-            while os.path.isFile("/var/images/image" + str(i) + ".png"):
+            while os.path.isfile("/var/images/image" + str(i) + ".png"):
                 i = i + 1
             img1.save("/var/images/image" + str(i) + ".png")
 
