@@ -43,7 +43,7 @@ import tornado.web
 import serial
 import picamera
 from SimpleCV import *
-from os import path
+import os.path
 ## our library
 from ogplab import *
 import ircam
@@ -192,7 +192,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             self.write_message("echo: " + message + " up   ")
             d = 'u'
             ms = int(message[2]) * 25
-            s.write('j34')
+            s.write('j32')
             sleep(0.5 * int(message[2]))
             s.write('j33')
             #mov = acx(s, d, ms, acu, acd, acl, acr)
@@ -206,7 +206,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             self.write_message("echo: " + message + " down   ")
             d = 'd'
             ms = int(message[2]) * 25
-            s.write('j32')
+            s.write('j34')
             sleep(0.5 * int(message[2]))
             s.write('j33')
             #mov = acx(s, d, ms, acu, acd, acl, acr)
@@ -236,7 +236,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             self.write_message("echo: " + message + " " + str(cam_mode) )
 
             i = 1
-            while path.isFile("/var/images/image" + str(i) + ".png"):
+            while os.path.isFile("/var/images/image" + str(i) + ".png"):
                 i = i + 1
             img1.save("/var/images/image" + str(i) + ".png")
 

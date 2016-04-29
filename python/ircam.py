@@ -3,6 +3,7 @@ import picamera
 import time
 from time import sleep
 from fractions import Fraction
+import os.path
 ##js = SimpleCV.JpegStreamer('0.0.0.0:8080')                        ## opens socket for jpeg out
 
 class pinoir2(object):
