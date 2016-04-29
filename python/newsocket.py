@@ -238,8 +238,8 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 
             i = 1
             while os.path.isfile("/var/www/images/image" + str(i) + ".png"):
-                print "image" + str(i) + " taken"
                 i = i + 1
+            print "using image" + str(i)
             img1.save("/var/www/images/image" + str(i) + ".png")
 
         if message =='c2': #main
