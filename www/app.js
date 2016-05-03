@@ -192,7 +192,7 @@ function resizeFrame(width) {
     "marginLeft": (-1 * offsetFactor).toString() + "px"
   });
   $('iframe body').css({
-    "width": width.toString() + "px";
+    "width": width.toString() + "px"
   });
 }
 
