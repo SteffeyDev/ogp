@@ -182,7 +182,7 @@ function updateSizes() {
 function resizeFrame(width) {
   var scaleFactor = width/544;
   var offsetFactor = ((width*scaleFactor) - width) / 2;
-  $('.frame, .frame body').css({
+  $('.frame').css({
     "-ms-transform": "scale(" + scaleFactor.toString() + ")",
     "-moz-transform": "scale(" + scaleFactor.toString() + ")",
     "-o-transform": "scale(" + scaleFactor.toString() + ")",
@@ -190,6 +190,9 @@ function resizeFrame(width) {
     "transform": "scale(" + scaleFactor.toString() + ")",
     "width": width.toString() + "px",
     "marginLeft": (-1 * offsetFactor).toString() + "px"
+  });
+  $('iframe body').css({
+    "width": width.toString() + "px";
   });
 }
 
