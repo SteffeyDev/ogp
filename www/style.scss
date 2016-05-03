@@ -52,6 +52,13 @@ body {
   z-index: 0;
 }
 
+.direction {
+  position: absolute;
+  background-color: transparent;
+  width: 0;
+  height: 0;
+}
+
 .upArrow {
   border-bottom: 10px solid white;
   border-left: 10px solid transparent;
