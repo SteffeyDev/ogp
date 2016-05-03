@@ -182,7 +182,7 @@ function updateSizes() {
 function resizeFrame(width) {
   var scaleFactor = width/544;
   var offsetFactor = ((width*scaleFactor) - width) / 2;
-  $('.frame').css({
+  $('.frame, .frame body').css({
     "-ms-transform": "scale(" + scaleFactor.toString() + ")",
     "-moz-transform": "scale(" + scaleFactor.toString() + ")",
     "-o-transform": "scale(" + scaleFactor.toString() + ")",

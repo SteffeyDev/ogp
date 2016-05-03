@@ -1,9 +1,9 @@
 
 html, body {
-  width: 0;
-  height: 0;
+  width: 100%;
+  height: 100%;
   overflow: visible;
-  max-width: 0;
+  max-width: 100%;
 }
 
 button {
@@ -47,12 +47,8 @@ button {
 }
 
 body {
-  position: absolute;
   text-align: center;
   background-image: url("background_image3.jpg");
-  z-index: 0;
-  width: 0;
-  height: 0;
 }
 
 .direction {
@@ -165,6 +161,10 @@ header {
       height: 30px;
       border: 2px solid white;
       background-color:red;
+    }
+
+    body {
+      position: absolute;
     }
   }
 
