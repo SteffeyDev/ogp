@@ -1,0 +1,640 @@
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+button {
+  cursor: pointer;
+}
+
+#background {
+  position: absolute;
+  top: 0;
+  height: 50px;
+  width: 100%;
+  background-color: blue;
+  opacity: 0.7;
+  z-index: 1;
+}
+
+#infoDiv {
+  position: absolute;
+  top: 500px;
+  left: 10px;
+  right: 10px;
+  height: 100px;
+}
+
+.frame {
+  width: 100%;
+  height: 786px;
+  border: 0;
+
+  -ms-transform: scale(2);
+  -moz-transform: scale(2);
+  -o-transform: scale(2);
+  -webkit-transform: scale(2);
+  transform: scale(2);
+
+  -ms-transform-origin: 0 0;
+  -moz-transform-origin: 0 0;
+  -o-transform-origin: 0 0;
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+
+body {
+  text-align: center;
+  background-image: url("background_image3.jpg");
+}
+
+.direction {
+  position: absolute;
+  background-color: transparent;
+  width: 0;
+  height: 0;
+}
+
+.upArrow {
+  border-bottom: 10px solid white;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
+
+.downArrow {
+  border-top: 10px solid white;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
+
+.leftArrow {
+  border-right: 10px solid white;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+.rightArrow {
+  border-left: 10px solid white;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 50px;
+
+  button {
+    position: relative;
+    display: inline-block;
+
+    width: 24%;
+    z-index: 3;
+    padding-top: 0;
+    height: 50px;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 16pt;
+
+    p {
+      position: absolute;
+      z-index: 3;
+      top: -10px;
+      width: 100%;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    div {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+    }
+  }
+
+  button:hover > div {
+    background-color:darkblue;
+    opacity: 0.5;
+  }
+}
+
+#videoDiv {
+  position: absolute;
+  top: 60px;
+  width: 544px;
+  height: 350px;
+  left: 10px;
+  background-color: transparent;
+
+  iframe {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+
+    #sight {
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      width: 30px;
+      height: 30px;
+      border: 2px solid white;
+      background-color:red;
+    }
+  }
+
+  .button {
+    position: absolute;
+    height: 30px;
+    width: 100px;
+    background-color: rgba(0,0,139,0.7);
+    border-width: 1px;
+    color: white;
+    z-index: 4;
+  }
+
+  .tab {
+    position: absolute;
+    height: 30px;
+    width: 120px;
+    background-color: rgba(0,255,255,0.7);
+    border: none;
+    box-shadow: 1px 1px 5px 1px;
+    font-size: 15pt;
+  }
+
+  #spotter {
+    @extend .tab;
+    left: 0;
+    top: 0;
+    z-index: 2;
+  }
+
+  #main {
+    @extend .tab;
+    left: 120px;
+    top: 0;
+    z-index: 1;
+  }
+
+  #longCapture {
+    @extend .button;
+    right: 0;
+    top: 30px;
+  }
+
+  #capture {
+    @extend .button;
+    right: 100px;
+    top: 30px;
+  }
+
+  #chase {
+    @extend .button;
+    left: 0;
+    bottom: 0;
+  }
+
+  #plusButton {
+    @extend .button;
+    right: 100px;
+    bottom: 0;
+  }
+
+  #minusButton {
+    @extend .button;
+    right: 0;
+    bottom: 0;
+  }
+
+  // #coordinates {
+  //   position: absolute;
+  //   left: 0;
+  //   bottom: 30px;
+  //   height: 50px;
+  //   width: 300px;
+  //   color: white;
+  //   font-size: 12pt;
+  //   text-align: left;
+  //   padding-left: 5px;
+  //   margin-bottom: 5px;
+  // }
+
+  #autocal {
+    @extend .button;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+#controlDiv {
+  position: absolute;
+  top: 60px;
+  width: 180px;
+  height: 450px;
+
+  #backgroundC {
+    position: absolute;
+    top: 0;
+    left: -10px;
+    right: 0;
+    bottom:0;
+    opacity: 0.4;
+    background-color: darkblue;
+  }
+
+  #joystickContainer {
+    border-radius: 5px;
+    border: 3px solid white;
+    position: absolute;
+    top: 55px;
+    left: 15px;
+    width: 135px;
+    height: 135px;
+    box-shadow: inset 0 0 3px 2px  black;
+
+    .axis {
+      position: absolute;
+      background-color: white;
+      z-index: -2;
+    }
+
+    #verticalAxis {
+      @extend .axis;
+      top: 0;
+      left: 49%;
+      width: 3px;
+      height: 100%;
+    }
+
+    #horizontalAxis {
+      @extend .axis;
+      left: 0;
+      top: 49%;
+      height: 3px;
+      width: 100%;
+    }
+  }
+
+  .bubble {
+    position: absolute;
+    background-color: white;
+    width: 20px;
+    height: 20px;
+    transition:none;
+    border-radius: 50%;
+    box-shadow: 0 0 4px 1px black;
+    z-index: 0;
+  }
+
+  #joystickBubble {
+    @extend .bubble;
+    top: 57.5px;
+    left: 57.5px;
+  }
+
+  #lock {
+    position: absolute;
+    width: 20px;
+    height: 30px;
+    top: 15px;
+    left: 150px;
+
+    #main {
+      position: absolute;
+      background-color: white;
+      border-radius: 10%;
+      width: 20px;
+      height: 20px;
+      top: 10px;
+      left: 0;
+    }
+
+    #handle {
+      position: absolute;
+      width: 10px;
+      height: 20px;
+      top: 0;
+      left: 0;
+      border-radius: 50%;
+      border: 5px solid white;
+      background-color: transparent;
+    }
+  }
+
+  #moveCameraLabel {
+    position: absolute;
+    width: 100px;
+    height: 10px;
+    top: 10px;
+    left: 30px;
+    text-align: center;
+    margin: 0;
+    color: white;
+  }
+
+  #rotationLabel {
+    position: absolute;
+    width: 100px;
+    height: 10px;
+    top: 230px;
+    left: -20px;
+    margin: 0;
+    text-align: right;
+    color: white;
+  }
+
+  #rotation {
+    position: absolute;
+    width: 30px;
+    height: 15px;
+    top: 230px;
+    left: 90px;
+  }
+
+  #angleLabel {
+    position: absolute;
+    width: 100px;
+    height: 10px;
+    top: 260px;
+    left: -20px;
+    margin: 0;
+    text-align: right;
+    color: white;
+  }
+
+  #angle {
+    position: absolute;
+    width: 30px;
+    height: 15px;
+    top: 260px;
+    left: 90px;
+  }
+
+  #stepLabel {
+    position: absolute;
+    width: 100px;
+    height: 10px;
+    top: 290px;
+    left: -20px;
+    margin: 0;
+    text-align: right;
+    color: white;
+  }
+
+  .step {
+    position: absolute;
+    width: 20px;
+    height: 15px;
+    top: 290px;
+    background-color: white;
+    border: 0;
+    border-bottom-style: solid;
+    border-bottom-color: grey;
+    cursor: pointer;
+  }
+
+  #small {
+    @extend .step;
+    left: 90px;
+    border-bottom-width: 5px;
+    border-bottom-color: purple;
+  }
+
+  #medium {
+    @extend .step;
+    left: 112px;
+    border-bottom-width: 9px;
+  }
+
+  #large {
+    @extend .step;
+    left: 134px;
+    background-color: grey;
+    border: 0;
+  }
+
+  #focusBubble {
+    @extend .bubble;
+    top: 20px;
+    left: 0px;
+  }
+
+  #focusContainer {
+    position: absolute;
+    width: 120px;
+    height: 15px;
+    top: 340px;
+    left: 23px;
+  }
+
+  #line {
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    margin-top: 28px;
+  }
+
+  #focusLabel {
+    position: absolute;
+    width: 100px;
+    height: 10px;
+    top: 330px;
+    left: 40px;
+    text-align: center;
+    margin: 0px;
+    color: white;
+  }
+
+  #focus {
+    position: absolute;
+    width: 30px;
+    height: 15px;
+    top: 390px;
+    left: 70px;
+  }
+
+  .focus {
+    position: absolute;
+    top: 360px;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+  }
+
+  #focusMinus {
+    @extend .focus;
+    left: 5px;
+    border-right: 10px solid white;
+  }
+
+  #focusPlus {
+    @extend .focus;
+    left: 150px;
+    border-left: 10px solid white;
+  }
+
+  #up {
+    @extend .upArrow;
+    top: 40px;
+    left: 75px;
+  }
+  #down {
+    @extend .downArrow;
+    top: 200px;
+    left: 75px;
+  }
+  #left {
+    @extend .leftArrow;
+    top: 115px;
+    left: 0px;
+  }
+  #right {
+    @extend .rightArrow;
+    top: 115px;
+    left: 160px;
+  }
+}
+
+#mapDiv {
+  position: absolute;
+  width: 544px;
+  height: 544px;
+  top: 60px;
+
+  canvas {
+    width:100%;
+    height: 100%;
+    background-color: purple;
+  }
+
+  .map {
+    position: absolute;
+    width: 100px;
+    height: 30px;
+    bottom: 0;
+  }
+
+  #map {
+    @extend .map;
+    right: 0;
+  }
+
+  #map2 {
+    @extend .map;
+    left: 0;
+  }
+
+  #mapsizelabel, #stepsizelabel {
+    color: white;
+    position: absolute;
+    right: 210px;
+    top: -10px;
+    height: 30px;
+    vertical-align: middle;
+  }
+
+  #stepsizelabel {
+    top: 20px;
+  }
+
+  .sizeChange {
+    position: absolute;
+    width: 100px;
+    height: 30px;
+    top: 0;
+  }
+
+  #mapsizea {
+    @extend .sizeChange;
+    right: 100px;
+  }
+  #mapsizeb {
+    @extend .sizeChange;
+    right: 0;
+  }
+  #stepsizea {
+    @extend .sizeChange;
+    top: 30px;
+    right: 100px;
+  }
+  #stepsizeb {
+    @extend .sizeChange;
+    right: 0;
+    top: 30px;
+  }
+
+  #mapDiv #up2 {
+    @extend .upArrow;
+    top: 10px;
+    left: 30px;
+  }
+  #mapDiv #down2 {
+    @extend .downArrow;
+    top: 60px;
+    left: 30px;
+  }
+  #mapDiv #left2 {
+    @extend .leftArrow;
+    top: 30px;
+    left: 10px;
+  }
+  #mapDiv #right2 {
+    @extend .rightArrow;
+    top: 30px;
+    left: 60px;
+  }
+}
+
+
+
+#imagesDiv {
+  position: absolute;
+  top: 60px;
+  border: 1px;
+  overflow: scroll;
+
+  #imagesContainer {
+    height: 100%;
+  }
+
+  img {
+    width: 133px;
+    height: 100px;
+    margin: 10px;
+    display: inline-block;
+    float: left;
+  }
+
+  #loading {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.8;
+    border-width: 5px;
+    overflow: hidden;
+
+    h1 {
+      position:absolute;
+      left: 0;
+      top: 45%;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      color: white;
+      font-family: "Courier New" Courier Monospace;
+    }
+  }
+}

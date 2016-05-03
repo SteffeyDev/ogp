@@ -489,13 +489,13 @@ $(function() {
   // });
   $("#main").click(function() {
     ws.send('c2');
-    $("#spotter").css({"background-color":"darkgrey"});
-    $("#main").css({"background-color":"white"});
+    $("#spotter").css({"z-index":"1"});
+    $("#main").css({"z-index":"2"});
   });
   $("#spotter").click(function() {
     ws.send('c1');
-    $("#spotter").css({"background-color":"white"});
-    $("#main").css({"background-color":"darkgrey"});
+    $("#spotter").css({"z-index":"2"});
+    $("#main").css({"z-index":"1"});
   });
   $("#longCapture").click(function() {
     ws.send('c4');
