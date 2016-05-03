@@ -139,10 +139,10 @@ class pinoir2(object):
                     camera.capture('/var/www/dark.jpg')
                 img1 = Image('/var/www/dark.jpg')
 
-                i = 1
-                while os.path.isfile("/var/www/images/image" + str(i) + ".png"):
-                    i = i + 1
-                img1.save("/var/www/images/image" + str(i) + ".png")
+            i = 1
+            while os.path.isfile("/var/www/images/image" + str(i) + ".png"):
+                i = i + 1
+            img1.save("/var/www/images/image" + str(i) + ".png")
 
         else:
             pass
