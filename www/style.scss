@@ -49,13 +49,7 @@ button {
 body {
   text-align: center;
   background-image: url("background_image3.jpg");
-}
-
-.direction {
-  position: absolute;
-  background-color: transparent;
-  width: 0;
-  height: 0;
+  z-index: 0;
 }
 
 .upArrow {
