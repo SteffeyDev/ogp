@@ -191,9 +191,6 @@ function resizeFrame(width) {
     "width": width.toString() + "px",
     "marginLeft": (-1 * offsetFactor).toString() + "px"
   });
-  $('iframe body').css({
-    "width": width.toString() + "px"
-  });
 }
 
 var chasing = false;

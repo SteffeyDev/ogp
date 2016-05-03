@@ -152,6 +152,7 @@ header {
     left: 0;
     width: 100%;
     z-index: 3;
+    overflow: hidden;
 
     #sight {
       position: absolute;
@@ -249,6 +250,7 @@ header {
   top: 60px;
   width: 180px;
   height: 450px;
+  z-index: 5;
 
   #backgroundC {
     position: absolute;
@@ -509,6 +511,7 @@ header {
   width: 544px;
   height: 544px;
   top: 60px;
+  z-index: 5;
 
   canvas {
     width:100%;
