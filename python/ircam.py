@@ -49,6 +49,7 @@ class pinoir2(object):
         sqy=self.sqy
         c2 = self.c2
         cam_mode = self.cam_mode
+        capture_mode = self.capture_mode
         js = self.js
         print cam_mode
         if cam_mode == 1: #spotter
