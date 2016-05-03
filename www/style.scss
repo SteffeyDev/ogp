@@ -519,21 +519,16 @@ header {
     background-color: purple;
   }
 
-  .map {
-    position: absolute;
-    width: 100px;
-    height: 30px;
+  #map {
+    @extend .button;
+    right: 0;
     bottom: 0;
   }
 
-  #map {
-    @extend .map;
-    right: 0;
-  }
-
   #map2 {
-    @extend .map;
+    @extend .button;
     left: 0;
+    bottom: 0;
   }
 
   .label {
