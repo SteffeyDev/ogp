@@ -344,15 +344,19 @@ header {
     color: white;
   }
 
-  #rotationLabel {
+  .label {
     position: absolute;
     width: 100px;
     height: 10px;
-    top: 230px;
     left: -20px;
     margin: 0;
     text-align: right;
     color: white;
+  }
+
+  #rotationLabel {
+    @extend .label;
+    top: 230px;
   }
 
   #rotation {
@@ -364,14 +368,8 @@ header {
   }
 
   #angleLabel {
-    position: absolute;
-    width: 100px;
-    height: 10px;
+    @extend .label;
     top: 260px;
-    left: -20px;
-    margin: 0;
-    text-align: right;
-    color: white;
   }
 
   #angle {
@@ -383,14 +381,8 @@ header {
   }
 
   #stepLabel {
-    position: absolute;
-    width: 100px;
-    height: 10px;
+    @extend .label;
     top: 290px;
-    left: -20px;
-    margin: 0;
-    text-align: right;
-    color: white;
   }
 
   .step {
